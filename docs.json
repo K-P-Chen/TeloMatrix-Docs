@@ -24,17 +24,17 @@
     }
   ],
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg",
+    "light": "/logo/light.png",
+    "dark": "/logo/dark.png",
     "href": "https://www.telomatrix.com"
   },
   "navigation": {
     "pages": [
       {
-        "group": "TM文档",
+        "group": "TeloMatrix文档集",
         "pages": [
           {
-            "group": "了解 TM",
+            "group": "了解TeloMatrix",
             "pages": [
               "docs/1_About_TM/1_About_TM/TM_Design_Philosophy",
               "docs/1_About_TM/1_About_TM/TM_Product_Architecture",
@@ -57,7 +57,7 @@
         ]
       },
       {
-        "group": "TM-Lite 2.0.9.x 配置指南",
+        "group": "TM-Lite 配置指南",
         "pages": [
           {
             "group": "快速开始",
