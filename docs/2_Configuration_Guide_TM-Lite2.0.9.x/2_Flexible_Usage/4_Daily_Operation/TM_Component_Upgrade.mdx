@@ -1,0 +1,61 @@
+---
+
+sidebar_position: 12
+title: "TM 组件升级"
+---
+
+## 功能说明
+
+TM 安全云网中TMC、TMG、TME、TMD这几个组件的功能关联度比较大，需要在系统版本上始终保持统一，因此 TM 统一在TMC上给所有组件同步升级，确保每个组件的版本保持统一。
+
+## 第一步：检查更新
+选择菜单【系统管理】->【系统维护】->【组件维护】打开 TM 组件升级维护页面，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TM_Component_Upgrade/1.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+当 TM 组件有了更新版本，TM 升级服务会自动将新的版本信息推送到这里，您也可以点击“检测新版本”按钮，手动从 TM 云获取新的升级信息。
+
+## 第二步：检查本地环境
+
+当TMC获取到新的版本信息后，会先检查本地环境是否符合升级条件。
+
+如果当前网络中存在 TM 组件（包括任意TMD、TMG、TME）的版本低于当前TMC的版本，或者存在任一 TM 组件的状态异常（包括组件管理状态异常、组件离线、组件服务异常），此处将显示“组件版本过低或异常，请检查”的提示，无法下载新的升级包，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TM_Component_Upgrade/2.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+您需要在【云网监控】菜单页，检查各 TM 组件的状态和版本。如果有组件版本过低，则在组件状态监控页面会显示“版本更新”按钮，点击“版本更新”按钮，TMC会自动下载该组件的升级包，并单独对此组件进行升级。如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TM_Component_Upgrade/3.png" style={{width: "50%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+如果有组件状态异常，您需要检查异常原因，将组件状态恢复到正常。如果有些组件已经不再使用，您可以在远程管理界面注销组件。
+
+## 第三步：下载升级包
+
+当所有组件都恢复正常且版本统一，不再使用的组件也已被注销了，在升级信息页面的操作列将出现下载按钮
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TM_Component_Upgrade/4.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+点击“下载”按钮TMC将同步下载所有组件的最新更新包，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TM_Component_Upgrade/5.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+下载未完成，或者下载过程中如果出现下载失败，页面右下角的“升级并重启”按钮都将是禁用状态。
+如果某个组件下载失败，在对应组件行会出现“重试”按钮，点击可重新下载，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TM_Component_Upgrade/6.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+## 第四步：一键同步升级
+
+当所有安装包都下载完毕，“升级并重启”按钮将被激活，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TM_Component_Upgrade/7.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+点击按钮，TMC将弹出提示，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TM_Component_Upgrade/8.png" style={{width: "40%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+点击“确定”按钮，TMC将开始同步升级您的 TM 安全云网内所有 TM 组件，整个过程将耗时15分钟左右，在此期间您的 TM 安全云网将不可用。
+
+
+
+

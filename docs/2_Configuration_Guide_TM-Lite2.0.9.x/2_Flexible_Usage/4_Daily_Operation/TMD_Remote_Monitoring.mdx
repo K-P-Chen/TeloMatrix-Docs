@@ -1,0 +1,143 @@
+---
+
+sidebar_position: 5
+title: "TMD远程管控"
+---
+
+## TMD列表
+
+选择菜单【状态监控】->【云网监控】打开云网监控页面，页面下方为云网组件列表，点击【TMDNS】标签页，列表将显示您的 TM 安全云网中所有已激活的TMD，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMD_Remote_Monitoring/1.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+列表中展示您的 TM 安全云网内所有TMD的状态，包括：管理状态、在线状态和服务状态。
+
+**管理状态：**指管理员在日常运维过程中强制启停TMD后的状态，包括：正常和停用。
+
+**在线状态：**指TMD与 TM 云服务以及TMC的网络连通状态，包括：在线和离线。如果您的TMD处于离线状态，则意味着TMD无法正常为终端用户提供域名解析服务，您需要尽快查明离线原因，让TMD恢复到在线状态。
+
+**服务状态：**指TMD的关键服务是否正常，如TMD的某个服务出现异常，这里将显示异常状态。
+
+**启用/停用：**在列表中勾选需要启用或者停用的TMD，然后点击列表功能区的“启用”或“停用”按钮，可直接启用或停用TMD。当TMD被停用后，其管理状态将变更为“停用”。
+
+**注销：**在列表操作列点击“注销”按钮，可注销当前TMD。注销意味着TMD的授权证书将从“激活”状态变为“未激活”状态，TMD将从 TM 安全云网中退出，所有相关配置和数据都将删除，且不可恢复。因此在进行此操作前TMC会提示您再次确认。
+
+在注销TMD后，您可以在其他服务器或虚拟机上重新部署TMD，并更新证书进行激活。注销操作通常用于在新的物理位置重新部署TMD，注销后重新部署，新部署的TMD将会使用注销的TMD的授权，不会额外占用TMD的授权。
+
+## TMD组件状态
+
+击TMD列表操作列的“组件状态”按钮，可以打开对应TMD的状态监控抽屉页查看TMD的各项状态指标，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMD_Remote_Monitoring/2.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+**系统信息：**显示TMD的基本信息，如：组件名称、序列号、在云网中的管理IP地址等。
+
+**服务器状态：**显示部署TMD的服务器的负载，如：CPU利用率、内存利用率和存储空间利用率。
+
+**服务状态：**显示TMD的关键服务状态，如果服务出现异常，您可以在这里手动重启服务。
+
+**寻址次数：**显示TMD近24小时的DNS寻址次数统计。
+
+## TMD远程管理
+
+点击TMD列表操作列的“远程管理”按钮，可以打开对应TMG的远程管理抽屉页，您可以在这里对TMD的配置进行修改，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMD_Remote_Monitoring/3.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+### 基础信息
+
+1. 系统信息
+  在系统信息配置里，点击“修改名称”按钮，您可以修改TMD的组件名称，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMD_Remote_Monitoring/4.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+2. 时间设置
+  您可以在“时间设置”配置区域设置TMD的时间同步策略，包括设置时区、时间同步服务器地址，时间同步周期，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMD_Remote_Monitoring/5.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  **时区：**填写 TM 安全云网的TMC所在位置的时区，所有 TM 组件的时间与TMC保持一致。
+
+  **NTP服务地址：**填写网络时间同步服务器（NTP）的IP地址或域名。
+
+  **同步周期：**填写自动同步周期，同步周期范围为：1-720小时。
+
+3. 系统维护
+
+  在系统维护功能里，您可以手动重启TMD，或将TMD恢复到出厂设置。
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMD_Remote_Monitoring/6.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  恢复出厂设置将删除所有TMD相关的配置，但仍然保留TMD授权证书信息，您可以再恢复出厂配置后重新再对TMD进行配置。
+
+  注意：如果TMD正在为终端用户提供域名解析服务，当TMD重启时，或者恢复出厂设置后，终端用户将无法通过此TMD解析域名。因此，在进行此项操作前，请您确认重启和恢复出厂设置操作不会对您的业务造成影响。
+
+### 解析配置
+
+点击“解析配置”标签页，切换到域名解析配置页面，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMD_Remote_Monitoring/7.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+TMD默认会自动生成通过域名代理方式发布的业务资源的域名解析策略，无需任何额外的配置。但您依然可以在TMD上手动创建域名解析策略。
+
+点击“新增”按钮，打开创建解析策略抽屉页，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMD_Remote_Monitoring/8.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+支持对手工添加的域名解析策略进行编辑，点击“编辑”按钮，打开域名解析策略编辑页面，修改解析策略后，点击“保存”按钮即完成域名解析策略修改。
+
+### 解析列表
+
+点击“解析列表”打开解析列表标签页，您可以在这里查看所有TMD自动生成并执行的域名解析策略，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMD_Remote_Monitoring/9.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+### 网络配置
+
+点击“网络配置”标签页，切换到网络配置页面，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMD_Remote_Monitoring/10.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+1. 接口信息
+
+  在接口信息区，您可以查看部署TMD的服务器或虚拟机的网络接口配置。如果“业务接口”列显示“是”则代表此接口为虚拟网接口。
+
+2. 路由配置
+
+  在路由配置区，您可以查看当前部署TMD的服务器或虚拟机的网络路由配置，您也可以点击“添加”按钮，手动添加系统路由，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMD_Remote_Monitoring/11.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  注意：只有手动添加的路由可以删除，系统默认路由不可删除。
+
+3. 网络测试
+
+  a. ping测试
+
+  在“命令”下拉框选项中选择“ping”命令，输入目标IP地址，点击“执行”按钮即可通过ping命令测试网络连通性，如下图所示，：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMD_Remote_Monitoring/12.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  b. trace测试
+
+  在“命令”下拉框选项中选择“trace”命令，输入目标IP地址，点击“执行”按钮即可通过trace命令测试网络连通性，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMD_Remote_Monitoring/13.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+  
+  
+  c. ifconfig测试
+  
+  在“命令”下拉框选项中选择“ifconfig”命令，选择网络接口，点击“执行”按钮即可通过ifconfig命令测试查看网络接口配置，如下图所示：
+  
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMD_Remote_Monitoring/14.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+  
+  d. tcping测试
+    
+  在“命令”下拉框选项中选择“tcping”命令，填写目标IP地址和端口号，点击“执行”按钮即可通过tcping命令测试查看对端网络连通性和端口服务开放状态，如下图所示，：
+  
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMD_Remote_Monitoring/15.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+
+
+
+

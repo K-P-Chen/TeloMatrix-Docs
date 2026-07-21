@@ -1,0 +1,97 @@
+---
+
+sidebar_position: 3
+title: "页面跳转、重定向或嵌套处理方案"
+---
+## 页面跳转、重定向、嵌套带来的问题
+
+在企业的Web业务资源里经常出现页面跳转、重定向或者页面嵌套的现象。例如：
+
+1. 当企业使用了单点登录系统（SSO），终端用户用浏览器直接访问目标站点，目标站点会返回302跳转状态码给终端浏览器，要求浏览器先去SSO站点进行认证授权，然后带着认证票据再次访问目标站点；
+
+2. 当企业的业务资源进行调整或者转移的时候，经常会使用页面重定向方法保障员工的业务访问体验不受影响。重定向与页面跳转不同的地方在于，当终端用户直接访问原站点的时候，原站点会向浏览器返回301重定向状态码，意味着要求永久性将访问目标改成其他站点。
+
+页面跳转或重定向示意图：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Page_Redirect_or_Embedding/1.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+3. 页面嵌套也是在企业内常见的Web应用结构，例如企业的内部门户页面，经常会将多个业务系统的消息页面整合在一个门户页面上，让企业员工在登陆内部门户后就能直接看到多个业务系统的最新消息，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Page_Redirect_or_Embedding/2.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+当Web业务资源使用了页面跳转、重定向或者嵌套技术，则意味着当终端用户在访问此Web业务资源的时候实际上是同时访问了多个站点。
+
+因此，您需要将业务资源与跳转站点关联在一起，在您配置授权策略，选择业务资源的同时系统会将跳转站点一并授权给终端用户。
+
+否则，终端用户在访问业务资源的时候会出现站点不全或页面无法显示等问题。
+
+将站点关联在一起授权的方法有两种：
+
+a. 将业务资源都放到一个业务资源组，在授权的时候按照业务组进行授权；
+
+b. 在配置业务资源代理的时候进行站点关联。
+
+这两种方法配置方法分别如下：
+
+## 配置方法1：设置业务资源组（推荐方式）
+
+TM 支持将同一个业务资源分配到不同的业务资源组。将计划发布的业务资源与关联资源放到同一个业务资源组里，在配置授权策略的时候对资源组进行授权，是解决页面跳转、重定向、嵌套的最简单、最高效的办法，建议您使用此方法配置。
+
+这种配置方法唯一的不足处在于，您需要了解您的业务资源，知道Web业务资源里存在哪些跳转、重定向、嵌套的页面。
+
+配置过程如下：
+
+1. 选择菜单【资源管理】->【业务资源】，在资源组区点击“新增”，新建一个资源组，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Page_Redirect_or_Embedding/3.png" style={{width: "30%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Page_Redirect_or_Embedding/4.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+2. 在资源列表里勾选有关联的多个业务资源，点击列表功能区的【编辑】，批量编辑选中资源。使用覆盖方式编辑隶属资源组，将这些资源加入到新建的资源组中，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Page_Redirect_or_Embedding/5.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+3. 选择菜单【策略管理】->【授权策略】，点击“新增”按钮，在资源选择区域，选择刚才新建的资源组，点击“保存”完成授权策略的新增。此时所有与OA业务资源相关的业务资源都将被统一授权给指定的帐号和终端。
+
+## 配置方法2：TMG自动关联
+
+当在发布Web业务资源的时候，TMG会自动探测Web业务资源是否存在页面重定向或跳转（检查是否存在301或302返回码），如果存在则会弹出提示。
+
+如果跳转目标站点已经发布到 TM，则提示需要关联到当前发布的业务资源。
+
+如果跳转目标站点还未发布到 TM，则提示需要先发布跳转目标站点，然后再发布当前Web业务资源，配置时将两个站点进行关联。
+
+注意：TMG只能检测到业务资源首页上是否存在跳转或者重定向，如果站点其他页面存在跳转或重定向TMG则无法自动检测出来，另外TMG也无法检测出页面嵌套。如果存在以上两种情况，建议您采用建立业务资源组的方式关联。
+
+配置过程如下：
+
+1. 选择菜单【资源管理】->【业务资源】，打开业务资源管理页面，新建Web业务资源，然后在资源列表的操作区点击“服务代理”，打开业务资源的代理配置界面；
+
+2. 当选择了资源服务，并在可代理网关上开启代理功能的时候，网关会自动检测目标站点首页是否存在301重定向或302跳转；
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Page_Redirect_or_Embedding/6.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+3. 如果目标站点的首页存在重定向或跳转，则弹出提示。
+  
+  a. 如果跳转或重定向的目标站点还未发布到 TM 安全云网，则提示您需要先发布跳转或重定向目标站点，然后再进行关联操作，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Page_Redirect_or_Embedding/7.png" style={{width: "40%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+  
+  点击“确定”，页面将回到启动网关代理界面，您可继续完成后续的配置，但您仍需要将跳转或重定向的站点发布到 TM 安全云网，然后与此资源进行关联，否则在终端用户访问时依然会出现页面无法显示的问题。
+
+  b. 如果跳转或重定向的目标站点已经发布到 TM 安全云网，则提示您是否现在就进行关联，如下图所示：
+  
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Page_Redirect_or_Embedding/8.png" style={{width: "40%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+  
+  点击“关联”，系统自动将跳转站点与您当前配置的资源关联在一起，您可以在已关联跳转资源列表里看到您已经关联的业务资源，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Page_Redirect_or_Embedding/9.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  如果您点击了“不关联”，则跳转目标站点不会被自动与配置的业务资源关联在一起，但您可以随时在关联资源的界面中点击“手动关联”，手动将跳转站点与业务资源关联在一起。如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Page_Redirect_or_Embedding/10.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+
+
+
+

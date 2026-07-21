@@ -1,0 +1,162 @@
+---
+
+sidebar_position: 4
+title: "TME远程监控"
+---
+
+TME为 TMPro功能。
+
+## TME列表
+
+选择菜单【状态监控】->【云网监控】打开云网监控页面，页面下方为云网组件列表，点击【TM 边缘网关】标签页，列表将显示您的 TM 安全云网中所有已激活的TME，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TME_Remote_Monitoring/1.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+列表中展示您的 TM 安全云网内所有TME的状态，包括：管理状态、在线状态和服务状态。
+
+**管理状态：**指管理员在日常运维过程中强制启停TME后的状态，包括：正常和停用。
+
+**在线状态：**指TME与 TM 云服务以及TMC的网络连通状态，包括：在线和离线。如果您的TME处于离线状态，则意味着TME无法正常代理企业内网业务资源，您需要尽快查明离线原因，让TME恢复到在线状态。
+
+**服务状态：**指TME的关键服务是否正常，如TME的某个服务出现异常，这里将显示异常状态。
+
+**启用/停用：**在列表中勾选需要启用或者停用的TME，然后点击列表功能区的“启用”或“停用”按钮，可直接启用或停用TME。当TME被停用后，其管理状态将变更为“停用”。
+
+**注销：**在列表操作列点击“注销”按钮，可注销当前TME。注销意味着TME的授权证书将从“激活”状态变为“未激活”状态，TME将从 TM 安全云网中退出，所有相关配置和数据都将删除，且不可恢复。因此在进行此操作前TMC会提示您再次确认。
+
+在注销TME后，您可以在其他服务器或虚拟机上重新部署TME，并更新证书进行激活。注销操作通常用于在新的物理位置重新部署TME，注销后重新部署，新部署的TME将会使用注销的TME的授权，不会额外占用TME的授权。
+
+## TME代理资源
+
+TME列表中的代理资源列显示当前TME已经代理的业务资源数量，点击数字可弹出代理资源列表的抽屉页，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TME_Remote_Monitoring/2.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+## TME组件状态
+
+点击TME列表操作列的“组件状态”按钮，可以打开对应TME的状态监控抽屉页查看TME的各项状态指标，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TME_Remote_Monitoring/3.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+**系统信息：**显示TME的基本信息，如：组件名称、序列号、在云网中的管理IP地址等。
+
+**服务器状态：**显示部署TME的服务器的负载，如：CPU利用率、内存利用率和存储空间利用率。
+
+**服务状态：**显示TME的关键服务状态，如果服务出现异常，您可以在这里手动重启服务。
+
+**实时速率：**显示TME近24小时的流量转发速率。
+
+## TME远程管理
+
+点击TME列表操作列的“远程管理”按钮，可以打开对应TME的远程管理抽屉页，您可以在这里对TME的配置进行修改，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TME_Remote_Monitoring/4.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+### 基础信息
+
+1. **系统信息**
+
+  在系统信息配置里，点击“修改名称”按钮，您可以修改TME的组件名称，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TME_Remote_Monitoring/5.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+2. **门户配置**
+
+  TME为终端用户提供统一的Web应用代理门户，终端用户无需安装TMA客户端即可通过TME进行身份认证和业务访问，支持通过TME访问基于HTTP、HTTPS、SSH、RDP的业务资源。如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TME_Remote_Monitoring/6.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TME_Remote_Monitoring/7.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  在TME远程管理的门户配置区，您可以自定义企业门户页面的背景图、Logo等个性化信息，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TME_Remote_Monitoring/8.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  **配置项**
+
+  **域名：**如果您希望终端用户通过域名访问TME，此处需要填写域名信息。
+
+  **端口：**此处填写TME的门户Web服务开放端口，终端用户通过域名和此端口号访问TME门户。
+
+  **认证方式：**TME支持帐号密码登录和扫码登录两种登录方式，其中帐号密码方式包括使用TMC本地帐号、AD/LDAP帐号登陆，扫码方式包括使用钉钉、企业微信、飞书、TMA扫码登陆，可同时支持多种登陆方式。
+
+  **证书：**如果您希望终端用户使用加密方式访问TME企业门户，您可以在此处选择已经上传到TMC上的SSL证书。上传SSL证书的配置方式请参考证书资源管理。
+
+  **登录页背景图：**您可以上传符合企业统一样式的图片作为TME登录页背景，建议图片尺寸为520x635，图片文件大小不超过500KB，支持jpg、png格式。
+
+  **登录页Logo：**您可以上传企业Logo，将TME登录页和主页面的Logo替换成您企业的Logo，建议图片尺寸为140x40，图片文件大小不超过500KB，支持jpg、png格式。
+
+  **版权信息：**您可以自定义TME页面下方的版权信息，限制最多200个字符。
+
+3. 时间设置
+
+  您可以在“时间设置”配置区域设置TME的时间同步策略，包括设置时区、时间同步服务器地址，时间同步周期，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TME_Remote_Monitoring/9.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  **时区：**填写 TM 安全云网的TMC所在位置的时区，所有 TM 组件的时间与TMC保持一致。
+
+  **NTP服务地址：**填写网络时间同步服务器（NTP）的IP地址或域名。
+
+  **同步周期：**填写自动同步周期，同步周期范围为：1-720小时。
+
+4. 网络测试
+
+  TME的关键功能是将企业内部业务资源代理到 TM 安全云网。因此，TME需要保持在物理网络上能访问所有需要代理的或转发流量的业务资源。网络测试功能用于在部署TME后验证物理网络的连通性。
+
+  a. ping测试
+
+  在“命令”下拉框选项中选择“ping”命令，输入目标IP地址，点击“执行”按钮即可通过ping命令测试网络连通性，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TME_Remote_Monitoring/10.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  b. trace测试
+
+  在“命令”下拉框选项中选择“trace”命令，输入目标IP地址，点击“执行”按钮即可通过trace命令测试网络连通性，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TME_Remote_Monitoring/11.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  c. ifconfig测试
+  
+  在“命令”下拉框选项中选择“ifconfig”命令，选择网络接口，点击“执行”按钮即可通过ifconfig命令测试查看网络接口配置，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TME_Remote_Monitoring/12.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  d. tcping测试
+  
+  在“命令”下拉框选项中选择“tcping”命令，填写目标IP地址和端口号，点击“执行”按钮即可通过tcping命令测试查看对端网络连通性和端口服务开放状态，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TME_Remote_Monitoring/13.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+5. 系统维护
+
+  在系统维护功能里，您可以手动重启TME，或将TME恢复到出厂设置。
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TME_Remote_Monitoring/14.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  恢复出厂设置将删除所有TME相关的配置，但仍然保留TME授权证书信息，您可以再恢复出厂配置后重新再对TME进行配置。
+
+  注意：如果TME正在代理业务资源，当TME重启时，或者恢复出厂设置后，终端用户将无法通过此TME访问所有的被代理业务资源。因此，在进行此项操作前，请您确认重启和恢复出厂设置操作不会对您的业务造成影响。
+
+### 网络配置
+
+点击“网络配置”标签页，切换到网络配置页面，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TME_Remote_Monitoring/15.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+1. 接口信息
+
+  在接口信息区，您可以查看部署TME的服务器或虚拟机的网络接口配置。如果“业务接口”列显示“是”则代表此接口为虚拟网接口。
+
+2. 路由配置
+
+  在路由配置区，您可以查看当前部署TME的服务器或虚拟机的网络路由配置，您也可以点击“添加”按钮，手动添加系统路由，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TME_Remote_Monitoring/16.png" style={{width: "50%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  注意：只有手动添加的路由可以删除，系统默认路由不可删除。
+
+
+
+
+

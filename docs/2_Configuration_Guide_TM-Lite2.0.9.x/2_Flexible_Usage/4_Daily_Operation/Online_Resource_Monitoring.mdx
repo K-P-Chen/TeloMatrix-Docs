@@ -1,0 +1,126 @@
+---
+
+sidebar_position: 1
+title: "在线资源监控"
+---
+
+## 在线帐号监控
+
+选择菜单【状态监控】->【在线资源】打开在线资源监控页面，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/Online_Resource_Monitoring/1.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+页面上方的分类统计区显示当前 TM 安全云网内的在线帐号数量、在线终端数量和在线业务资源数量。点击每一个分类统计区，下方的趋势统计和明细列表将显示对应详细信息。
+
+### 在线帐号趋势统计
+
+当点击选中在线帐号时，下方的趋势统计区域默认显示近24小时的在线帐号趋势统计图。您可以通过趋势统计图右上角的统计时间选项调整统计时间，查看所选时间段内的在线帐号趋势，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/Online_Resource_Monitoring/2.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/Online_Resource_Monitoring/3.png" style={{width: "50%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+### 在线帐号-终端列表
+
+在线帐号-终端列表显示当前在线的帐号终端明细，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/Online_Resource_Monitoring/4.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+需要注意的是，列表里总行数有可能大于当前在线的帐号数量。因为在 TM 安全云网内，帐号加上终端才算做云网内的一个访问源实体，列表里的每一行代表在线的一个访问源实体，即一组帐号与终端的组合。
+
+例如：张三用自己的帐号同时在办公电脑和手机上登录了 TM 安全云网，则列表里将显示两行，分别代表张三的办公终端当前在线，张三的手机当前在线，而在统计在线帐号时只会即为张三的帐号在线。
+
+### 帐号详情
+
+点击列表中的帐号ID，可快速查看选中帐号的详情，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/Online_Resource_Monitoring/5.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+帐号信息区域显示此帐号的相关属性，如：姓名、手机号、邮箱、隶属帐号组、角色、有效期等。
+
+授权终端列表显示此帐号当前被授权使用哪些终端，点击“取消授权”可立即解除此帐号与所选终端的授权关系。解除授权后，如果此帐号再次使用被解除授权的终端登录，TMC会要求帐号重新注册终端。
+
+注意：TME统一由管理员在授权策略里进行授权绑定，在这里不能取消授权。
+
+### 强制下线
+
+在在线帐号-终端列表勾选帐号终端后，可点击列表功能区的“强制下线”按钮，手动将帐号退出 TM 安全云网，同时对帐号进行封禁。
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/Online_Resource_Monitoring/6.png" style={{width: "50%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+在日常运维过程中，如果发现某帐号出现异常，您可以使用此功能快速手动封禁帐号。
+
+## 在线终端监控
+
+### 在线终端趋势统计
+
+当点击选中在线终端时，下方的趋势统计区域默认显示近24小时的在线帐号趋势统计图。您可以通过趋势统计图右上角的统计时间选项调整统计时间，查看所选时间段内的在线帐号趋势，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/Online_Resource_Monitoring/7.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/Online_Resource_Monitoring/8.png" style={{width: "50%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+### 在线终端列表
+
+在线终端列表显示当前在线的终端明细，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/Online_Resource_Monitoring/9.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+注意：这里显示的终端IP地址，是指终端所在网络的公网IP地址。
+
+### 终端详情
+
+点击列表中的终端名称，可快速查看选中终端的详情，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/Online_Resource_Monitoring/10.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+终端信息区域显示此终端的相关属性，如：类型、用途、终端组、责任人、终端ID、系统版本等。
+
+授权帐号列表显示此终端当前被授权哪些帐号可以使用，点击“取消授权”可立即解除此终端与所选帐号的授权关系。解除授权后，如果在此终端上被解除授权的帐号再次登录，TMC会要求帐号重新注册终端。
+
+### 强制下线
+
+在在线终端列表勾选终端后，可点击列表功能区的“强制下线”按钮，手动将终端退出 TM 安全云网，同时对终端进行封禁。在日常运维过程中，如果发现某终端出现异常，您可以使用此功能快速手动封禁终端。
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/Online_Resource_Monitoring/11.png" style={{width: "50%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+## 在线业务资源监控
+
+### 在线业务资源统计
+
+当点击选中在线业务资源时，下方的趋势统计区域默认显示近24小时的在线业务资源趋势统计图。您可以通过趋势统计图右上角的统计时间选项调整统计时间，查看所选时间段内的在线帐号趋势，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/Online_Resource_Monitoring/12.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/Online_Resource_Monitoring/13.png" style={{width: "50%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+### 在线业务资源列表
+
+在线业务资源列表显示当前在线的业务资源明细，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/Online_Resource_Monitoring/14.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+### 业务资源详情
+
+点击列表中的业务资源名称，可快速查看选中业务资源的详情，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/Online_Resource_Monitoring/15.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+资源信息区域显示此业务资源的相关属性，如：资源类别、责任人、安全等级、隶属资源组、资源域名、资源IP地址、资源URI等。
+
+非云网路由资源，资源服务列表显示此业务资源当前开放了哪些服务协议和服务端口，并由哪些网关进行访问代理。
+
+云网路由资源，资源服务列表显示资源的路由策略、访问控制策略和关联业务资源，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/Online_Resource_Monitoring/16.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/Online_Resource_Monitoring/17.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/Online_Resource_Monitoring/18.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+
+
+
+
+
+

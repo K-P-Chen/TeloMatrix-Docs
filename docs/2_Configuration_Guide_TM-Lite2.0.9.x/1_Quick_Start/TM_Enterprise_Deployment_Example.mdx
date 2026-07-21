@@ -1,0 +1,354 @@
+---
+
+sidebar_position: 6
+title: "TM 企业部署实例"
+---
+
+> 本文档以一个实际的部署案例作为背景，介绍如何一步步在分布式企业网络中快速构建一个轻量级的零信任安全网络。
+> 您将通过此文档了解到：如何申请 TM 云服务，如何下载和部署 TM 组件，如何创建帐号和业务资源，如何编排认证策略，如何进行业务访问授权，以及终端用户的完整业务访问体验。
+
+## 企业网络现状
+
+1. 某科技公司，总共500名员工，主要为研发、市场和运营人员，总部设在北京，在深圳和上海分别设有分公司，公司所有员工日常使用企业微信进行工作通信，同时使用企业微信作为统一帐号管理。
+
+2. 公司的生产业务系统（面向公众的Web服务）分别部署在公有云A和公有云B上，运维工程师通过SSL VPN接入到云服务VPC，远程运维各类生产系统。
+
+3. 公司的研发和测试服务器、公司运营支撑系统，如：OA、CRM、内部邮件系统等，都部署在某数据中心，各办公区与数据中心使用IPSec VPN建立加密隧道，直接打通各办公区内网和数据中心，方便办公区员工直接从内网访问数据中心的各类服务。
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Enterprise_Deployment_Example/2.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+## 部署方案设计
+业务区的详细部署拓扑如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Enterprise_Deployment_Example/3.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+- TMC部署
+
+  在数据中心业务C网段部署TMC对全网进行集中认证和策略管控。
+
+- TMG部署
+
+  - 云服务A
+
+    - 云服务A里部署了企业对国内互联网用户开放的业务服务，所有业务服务器部署在VPC的生产区A网段，网络地址为：192.168.100.0/24;
+
+    - 在云服务A的VPC里部署TMG，代理云服务A中的业务资源接入到 TM 安全云网，关闭原云服务A中对外开放的端口和服务。
+
+  - 云服务B
+
+    - 云服务B里部署了企业对国外互联网用户开放的业务服务，所有业务服务器部署在VPC的生产区B网段，网络地址为：192.168.101.0/24;
+
+    - 在云服务B的VPC里部署TMG，代理云服务B中的业务资源接入到 TM 安全云网，关闭原云服务B中对外开放的端口和服务。
+
+  - 数据中心
+
+    - 数据中心里部署两类服务：
+
+      - 一类是企业内部使用的业务支撑系统，例如：OA系统、CRM系统、内网邮件系统等，部署在数据中心的业务C网段，网络地址为：192.168.103.0/24；
+
+      - 另一类是为企业产研团队日常研发测试使用的服务器集群，部署在数据中心的产研D网段，网络地址为：192.168.104.0/24；
+
+      - 另外，企业的内网DNS也部署在数据中心的业务C网段，IP地址为：192.168.100.1
+    
+    - 在数据中心的业务C网段和产研D网段里分别部署2个TMG，分别代理各自网段中的的业务资源接入到 TM 安全云网，关闭原数据中心对外开放的端口和服务。
+
+- TMD部署
+
+    - 在数据中心业务C网段TMD，所有发布的域名代理资源都通过TMD解析，TMD无法解析的其他业务资源通过内网DNS解析。
+
+- TMA部署
+
+    - 所有员工终端上安装 TM 客户端TMA，并通过手机企业微信扫码登陆。
+
+## 部署步骤
+
+### 第一步：申请企业用户帐号
+
+1. 打开 TM 安全云网企业注册平台首页，点击“立即注册”按钮，输入企业信息，查看并勾选同意《隐私协议》和《用户协议》，完成 TM 企业帐户注册，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Enterprise_Deployment_Example/4.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  注意：注册时需填写您真实的企业邮箱和手机号，在 TM 安全云网的日常运维过程中，我们需要通过企业邮箱和手机号给您发送必要的信息，例如：帐号初始化密码、服务状态变更通知、一次性口令等。
+
+2. 注册成功后，您注册的帐号即拥有了1个月的 TMLite免费使用权限。
+
+  使用刚才注册的帐号登陆到 TM 企业注册平台，在首页即可下载 TMLite相关组件（包括：TM 管理控制平台TMC、TM 网关TMG、TM 客户端TMA、TM 域名服务系统TMD），如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Enterprise_Deployment_Example/5.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+> 提示：如果您希望永久免费使用 TMLite，您只需要在 TM 企业注册平台提交企业实名认证，申请永久免费权限即可。如果您需要更多的并发性能权限，或更多的 TM 功能，您可以联系我们升级为 TMPro用户。
+
+### 第二步：安装部署 TM 组件
+
+1. TM 各组件安装介质均为ISO镜像文件，您可以在物理服务器、虚拟机、云主机上部署安装，更详细的 TM 组件安装部署，请参考：如何部署 TM 组件。因为TMC是其他组件的管控中心，因此在部署过程中，您需要先部署TMC并同步证书，然后再部署TMD、TMG。
+2. 在数据中心的业务C网段，分配两台新的虚拟机，硬件配置为：CPU：8核、内存：16GB、硬盘：500GB、网卡：千兆网卡x1。在这两台虚拟机上分别部署TMC和TMD。
+
+    - 在TMC的控制台界面设置TMC的网络配置为：
+
+      IP地址：192.168.103.202，子网掩码：255.255.255.0，网关：192.168.103.1，DNS：192.168.100.1
+
+    - 在TMD的控制台界面设置TMD的网络配置为：
+
+      IP地址：192.168.103.203，子网掩码：255.255.255.0，网关：192.168.103.1，DNS：192.168.100.1
+
+    - 在数据中心出口NAT网关上配置SNAT策略和访问控制策略，允许IP地址192.168.103.202、192.168.103.203可以对外访问互联网任意地址；
+
+    - 在TMC控制台的证书同步界面，输入 TM 企业帐户的帐号和密码，同步TMC证书。证书同步成功后，TMC将自动创建企业私有的 TM 安全云网，企业帐户的注册邮箱将收到TMC的初始化邮件，里面包含TMC的Web控制台默认帐号和初始化密码。
+
+    - 然后用同样方式，在TMD的控制台界面同步TMD证书，同步成功后，TMD将自动加入 TM 安全云网，并被纳入到TMC的统一管理。
+
+3. 在云服务A、云服务B、数据中心业务C网段、产研D网段分别分配四台新的虚拟机，硬件资源配置为：CPU：4核、内存：8GB、硬盘：500GB、网卡：千兆网卡 x 1。在这四台虚拟机上分别部署4个TMG。
+    
+  - 在TMG A的控制台界面设置TMG A的配置为：
+
+    - IP地址：192.168.100.201，子网掩码：255.255.255.0，网关：192.168.100.254，DNS：192.168.100.1，通过ping、curl测试TMG A可与生产区A里的业务资源正常通信。
+
+    - 在VPC中的NAT网关上配置SNAT策略和访问控制策略，允许IP地址192.168.100.201可以对外访问互联网任意地址；配置DNAT策略，将弹性公网IP（EIP1）的UDP6000端口（任意固定端口即可）映射到192.168.100.201的UDP9527端口；配置访问控制策略允许任意地址通过EIP1的UDP6000端口访问VPC内TMG A的UDP9527端口。
+
+    - 在TMG A控制台的证书同步界面，输入 TM 企业帐户的帐号和密码，同步TMG证书。
+
+  - 在TMG B的控制台界面设置TMG B的网络配置为：
+
+    - IP地址：192.168.101.201，子网掩码：255.255.255.0，网关：192.168.101.1，DNS：192.168.100.1，通过ping、curl测试TMG B可与生产区B里的业务资源正常通信。
+
+    - 在VPC中的NAT网关上配置SNAT策略和访问控制策略，允许IP地址192.168.100.201可以对外访问互联网任意地址，配置DNAT策略，将弹性公网IP（EIP2）的UDP6000端口（任意固定端口即可）映射到192.168.100.201的UDP9527端口，配置访问控制策略允许任意地址通过EIP2的UDP6000端口访问VPC内TMG B的UDP9527端口。
+
+    - 在TMG B控制台的证书同步界面，输入 TM 企业帐户的帐号和密码，同步TMG证书。
+
+  - 在TMG C的控制台界面设置TMG C的网络配置为：
+
+    - IP地址：192.168.103.201，子网掩码：255.255.255.0，网关：192.168.103.1，DNS：192.168.100.1，通过ping、curl测试TMG C可与生产区C里的业务资源正常通信。
+
+    - 在数据中心的网关上配置SNAT策略和访问控制策略，允许IP地址192.168.103.201可以对外访问互联网任意地址；配置DNAT策略，将数据中心公网IP（GIP3）的UDP6000端口（任意固定端口即可）映射到192.168.103.201的UDP9527端口；配置访问控制策略允许任意地址通过EIP1的UDP6000端口访问VPC内TMG B的UDP9527端口。
+
+    - 在TMG C控制台的证书同步界面，输入 TM 企业帐户的帐号和密码，同步TMG证书。
+
+  - 在TMG D的控制台界面设置TMG D的网络配置为：
+
+    - IP地址：192.168.104.201，子网掩码：255.255.255.0，网关：192.168.104.1，DNS：192.168.100.1，通过ping、curl测试TMG D可与生产区D里的业务资源正常通信。
+
+    - 在数据中心的网关上配置SNAT策略和访问控制策略，允许IP地址192.168.104.201可以对外访问互联网任意地址；配置DNAT策略，将数据中心公网IP（GIP3）的UDP6001端口（任意固定端口即可）映射到192.168.104.201的UDP9527端口；配置访问控制策略允许任意地址通过EIP1的UDP6001端口访问VPC内TMG B的UDP9527端口。
+
+    - 在TMG D控制台的证书同步界面，输入 TM 企业帐户的帐号和密码，同步TMG证书。
+
+  - 当TMG都部署好后，您需要登录TMC，选择【状态监控】->【云网监控】菜单打开云网监控页面，点击【TM 网关】标签页，在TMG列表里点击TMG列表操作列的“远程管理”按钮打开TMG远程管理页面，选择“网络配置”标签页，在“TMG互联网接口”配置处填入每一个TMG的互联网IP地址和端口。
+  
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Enterprise_Deployment_Example/6.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+### 第三步：业务资源配置
+
+建议您在部署完 TM 组件后，先将各区域的业务资源发布到 TM 安全云网，并使用测试帐号进行连通性测试。当确认所有业务资源都可以正常访问后再同步企业微信帐号，为每一个帐号分配业务访问权限，并将TMA分发给企业员工使用。
+
+#### TMC邮箱接口配置
+
+1. 打开TMC的Web控制台界面 (`https://192.168.103.202:16000`) ,使用TMC初始化邮件中的超级管理员帐号（sysadmin）和初始密码登录。
+
+2. 在首次使用TMC的时候，请先配置邮箱接口，当您在TMC上新建帐号时，TMC会自动通过邮箱接口自动发送帐号的初始化信息邮件到每个新建帐号的邮箱地址。
+
+  选择【系统管理】->【基础配置】->【系统接口】->【邮箱设置】，填写您的企业邮箱的相应配置，输入一个邮箱帐号作为TMC发送邮件的发件人帐号，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Enterprise_Deployment_Example/7.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  点击“保存”按钮完成邮箱接口配置，您可以输入以发送测试邮件测试配置是否正常。如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Enterprise_Deployment_Example/8.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+#### 创建测试帐号
+
+1. 选择【资源管理】->【帐号资源】，打开帐号管理页面，点击“新增”按钮，打开新增帐号页面，新增一个用于测试的帐号，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Enterprise_Deployment_Example/9.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+  
+  需要特别注意的是：在新建帐号时，需要填写真实可用的手机号和电子邮箱，并且勾选“自动发送初始化信息通知邮件”。当帐号新建好后，系统将自动发送帐号初始化信息通知邮件到帐号的注册电子邮箱地址。初始化信息包括：新建的帐号名、初始密码、TMA各版本的下载地址、手机令牌下载地址、终端证书等。
+
+#### 发布业务资源
+
+企业在云服务和数据中心部署了上百种业务资源，这里我们在每一个业务区选择一种业务资源进行配置示范，其他业务资源配置方式类似，不在本文中一一描述。
+
+本文选取以下业务资源进行配置说明：
+
+|  部署位置  | 服务名称 |  域名 |  IP地址 |  服务 |  协议 |  端口号 |  代理模式 | TMG |
+| ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
+| 云服务A | OA服务 | oa.test.com | 192.168.100.2 | Web | https | TCP443 | 域名代理 | TMG A |
+| 云服务A | OA服务 | oa.test.com | 192.168.100.2 | SSH | SSH | TCP22 | SSH代理 | TMG A |
+| 云服务B | FTP服务 |   | 192.168.101.2 | FTP | FTP | TCP23 | 4层代理 | TMG B |
+| 业务C网段 | 内网邮件 | mail.intra.test.com | 192.168.103.8 | smtp | smtp | TCP110 | 4层代理 | TMG C |
+| 业务C网段 | 内网邮件 | mail.intra.test.com | 192.168.103.8 | pop3 | pop3 | TCP25 | 云网路由 | TMG C |
+| 产研D网段 | 研发资源池 |  | 192.168.104.1-192.168.104.126 |  | 所有协议 | 所有端口 | 云网路由 | TMG D |
+
+在配置业务资源之前，建议您在对应的TMG远程管理页面上，检查TMG与业务资源的访问连通性，如确认能正常访问则说明TMG能代理对应的业务资源，如连通性有问题则说明无法代理。
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Enterprise_Deployment_Example/10.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+**配置步骤**
+
+选择【资源管理】->【业务资源】，打开业务资源管理页面，点击“新增”按钮，打开新增业务资源页面，按照上表进行配置，配置内容如下：
+
+1. OA服务-Web
+
+  - 新建资源配置
+
+      <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Enterprise_Deployment_Example/11.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  - 服务代理配置
+
+      <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Enterprise_Deployment_Example/12.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+> 通常，TMD会自动为通过域名代理方式发布的业务资源添加域名解析记录，将解析结果指向TMG的虚拟网IP地址。
+> 但如果您使用云网路由模式发布了业务资源，则需要使用内网DNS进行解析，或者在TMD上手动为业务资源添加域名解析记录。（如此例中的邮件服务器资源）
+> 关于域名解析方案您可以参考：[云网域名解析方案](../Flexible_Usage/Installation_Deployment/Cloud_Network_Domain_Resolution_Solution)
+
+
+2. OA服务-SSH
+
+  - 新建资源配置
+
+      <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Enterprise_Deployment_Example/13.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  - 服务代理配置
+
+      <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Enterprise_Deployment_Example/14.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+3. FTP服务
+
+  - 新建资源配置
+
+      <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Enterprise_Deployment_Example/15.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  - 服务代理配置
+
+      <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Enterprise_Deployment_Example/16.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+4. 内网邮件
+  - 新建资源配置
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Enterprise_Deployment_Example/17.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  - 新建云网路由资源
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Enterprise_Deployment_Example/18.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  点击“保存”按钮后，在新增的云网路由资源行的操作区点击“路由配置”，如下图：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Enterprise_Deployment_Example/19.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  在弹出的抽屉页配置路由参数，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Enterprise_Deployment_Example/20.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  - 关联业务资源
+
+  点击路由配置页面，点击“关联资源”标签，点击“关联”按钮，选择刚才配置的邮件资源，点击“关联”即可完成云网路由与邮件服务资源的关联。
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Enterprise_Deployment_Example/21.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  > 注意：在云网路由资源里关联其他资源的目的是为了将业务资源作为资源图标显示在TMA上，终端用户点击即可打开本地浏览器或者其他客户端进行访问。通常在使用云网路由模式代理Web应用资源、SSH资源时经常这样配置。
+  >
+  > 如果您不希望业务资源显示在TMA上，则关联配置可以跳过，虽然这样会让TMA上无法显示业务资源图标，但终端用户依然是可以使用本地浏览器、邮件客户端正常访问。
+  >
+  > 例如在此例中，您确认所有终端用户都是使用邮件客户端访问邮件服务，则可以跳过关联业务资源步骤，终端用户使用邮件客户端依然可以正常访问部署在内网的邮件服务。
+
+  - TMD配置
+
+  如果您的内网DNS上已经存在邮件服务器域名（mail.intra.test.com）的解析记录，您可以跳过此步骤，因为终端会通过TMD递归查询您的内网DNS对域名进行解析。
+
+  如果您的内网DNS没有邮件服务器的域名解析，您也可以在TMD上指定解析结果，操作方法如下：
+  
+  选择【状态监控】->【云网监控】，选择“TMDNS”标签，点击“远程管理”，打开 TMDNS远程管理页面，选择“解析配置”标签，点击“新增”按钮，添加邮件服务器域名解析记录，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Enterprise_Deployment_Example/22.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+5. 研发资源池
+
+  - 新建路由资源
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Enterprise_Deployment_Example/23.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  - 路由配置
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Enterprise_Deployment_Example/24.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  研发需要至少100个IP地址空间用于研发测试，所以这里为研发资源池分配25位掩码，地址空间可以从192.168.104.1-192.168.104.126。由于研发可能会使用任何端口作为测试端口，所以访问控制列表不做任何配置，即允许访问路由范围内所有IP地址、端口和协议。
+
+#### 测试授权策略
+
+当业务资源发布后，建议您给测试帐号配置所有业务资源的访问授权，并尝试是否可以通过测试帐号正常访问刚配置好的业务资源。如访问正常，您可以继续配置第四步，如访问异常，您需要检查下业务发布的配置是否存在问题。
+
+为帐号授权的方式请参考：[设置授权策略](#第五步：设置授权策略)
+
+### 第四步：同步企微帐号
+
+选择【策略管理】->【认证策略】，选择“认证接口”标签，点击“扫码认证”，选择“企业微信”扫码认证，打开企业微信认证接口配置页面，配置您企业微信的接口信息，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Enterprise_Deployment_Example/25.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+详细的配置方式请参考：[对接企业微信身份源](../Flexible_Usage/Resource_Management/Account_Resource_Management/Integrate_WeCom_Identity_Source)
+
+选择【资源管理】->【帐号资源】，点击“帐号同步”按钮，选择“企业微信”标签，，打开企业微信帐号同步配置页面，配置您企业微信的信息同步策略，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Enterprise_Deployment_Example/26.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+
+点击“保存并立即同步”TMC将同步企业微信上的组织架构和帐号信息。如果您希望在同步企业微信帐号的同时给每一个终端用户发送帐号初始化邮件，您可以选择打开“是否发送初始化邮件”开关，或者您也可以在同步帐号以后，对每个帐号单独发送初始化邮件。
+
+### <span id="第五步：设置授权策略">第五步：设置授权策略</span>
+
+选择【策略管理】->【授权策略】，打开授权策略管理页面，点击“新增”按钮，打开新增授权策略页面，根据帐号、终端和业务资源配置终端用户的网络访问权限，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Enterprise_Deployment_Example/27.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+
+点击“保存”完成授权策略的配置，此时您已经完成所有的帐号配置、业务发布和授权策略配置。
+
+### 第六步：终端用户接入
+
+终端用户从帐号初始化邮件中可以获得 TM 客户端软件的下载地址和企业证书，按照邮件说明安装 TM 客户端软件，导入企业证书后即可通过企业微信扫码登录 TM 安全云网，并正常访问分布在任意位置的业务资源。
+
+首次安装时需要导入企业证书：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Enterprise_Deployment_Example/28.png" style={{width: "50%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+使用企业微信扫码登陆：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Enterprise_Deployment_Example/29.png" style={{width: "50%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Enterprise_Deployment_Example/30.png" style={{width: "50%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+## 实现效果
+
+在完成以上部署和配置后，企业的 TM 安全云网就已经完成了基础的部署过程。您可以根据业务需要，继续发布业务资源或者接入更多的终端用户帐号，或者为每一个不同的角色或帐号配置不同的认证策略、终端策略。
+
+企业在部署了 TM 安全云网后，终端用户访问业务资源的访问路径变得非常简单。终端用户通过TMA进行认证授权并接入 TM 安全云网，接入后即可从任何地点同时访问三个业务区里的授权业务资源，访问路径如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Enterprise_Deployment_Example/31.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+1. **提高远程访问体验，随时随处，所有业务可同时访问**
+
+  部署 TM 之前，受限于VPN的技术实现，远程接入的员工每次只能同时接入到一个VPN网关，无法同时在一个终端上建立多个VPN隧道。当员工需要访问不同区域的业务时，必须手动在不同VPN上来回切换，非常影响研发和运营员工的工作效率。
+
+  部署 TM 之后，企业员工无论是在差旅路上、家里、还是在各地办公区，所有员工只要通过 TMAPP经认证授权后，即可访问所有授权业务资源。企业不再有内外网之分，员工无需考虑业务资源部署在什么位置，所有授权业务资源可同时访问，大幅提升了员工工作效率。
+
+2. **基于身份的精细化网络管控，降低运维复杂度**
+
+  部署 TM 之前，远程办公员工接入到VPN后，实际上就已经进入到了企业内部网络。由于疫情原因，远程接入员工人数大幅增多，人员角色和授权范围变得越来越复杂。
+
+  但是，网络层缺少身份，无法基于员工身份进行管控，管理员不得不给整个VPN网段开放最大的网络访问权限，允许远程接入员工在网络层可以访问所有业务，只能通过应用帐号权限对应用访问进行管控。这种管控方式在网络层留下了巨大的安全隐患，攻击者只要通过VPN接入内网，整个内网就向攻击者完全敞开，因此需要在网络层基于身份实现细粒度的网络访问控制。
+
+  部署了 TM 以后，企业可以完全基于身份设置网络访问控制策略，完全脱离了对IP地址的依赖。管理员依据每个部门每个角色设置网络访问权限，无需再考虑IP网段是否权限过大的问题。同时基于身份的策略让运维管理变得非常简单，当员工变动、业务变动的时候无需调整网络授权策略，所有网络访问控制策略将随着员工和业务的变化会自动进行调整，大幅降低了网络运维复杂度。
+
+3. **暴露面收敛，减少了安全风险**
+
+  之前企业一直存在两种网络暴露面：
+
+    - 终端用户通过VPN接入云服务和数据中心，所有VPN网关都需要对互联网暴露其IP地址和端口，以方便终端用户在任意地方远程接入，存在遭受来自互联网的攻击威胁。
+
+    - 当用户接入VPN后，远程终端将分配内网VPN网段IP地址，由于使用VPN的人员角色较多，VPN网段在网络层需要能访问几乎所有业务资源，这也意味着业务资源对通过VPN接入的远程终端用户几乎是完全暴露的，业务资源存在内网非授权用户的攻击威胁。
+
+  当企业部署了 TM 以后，所有企业的内部业务资源以及 TM 自身组件都隐藏在企业的最小可信网络中，即业务局域网中。
+
+  未认证授权的终端用户，无论是从互联网还是从企业办公网，都看不到也访问不了任何业务资源，有效的避免了来自内外网的恶意访问，同时也降低了企业在安全上的投入成本。
+
+
+
+
+

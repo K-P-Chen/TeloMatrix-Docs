@@ -1,0 +1,183 @@
+---
+
+sidebar_position: 2
+title: "TM 快速部署实例"
+---
+
+> 本文档用一个最简单网络环境作为背景，介绍如何用最快速度完成 TM 的安装部署，您将通过此文档了解到部署 TM 安全云网的最关键步骤。
+> 
+>如果您是 TM 的新用户，您可以参照此文档先快速部署一个基础的 TM 体验环境，然后在此基础上依据企业需求，逐渐丰富 TM 的各项功能配置，完善您的 TM 安全云网。
+
+## 网络环境准备
+
+下图为企业最常见网络拓扑，本文以此网络为背景，示范如何部署最简单的 TM 安全云网。
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Quick_Deployment_Example/1.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+**拓扑说明**
+
+- 企业内办公区网段地址为172.16.0.0/16，业务服务器区网段地址为192.168.10.0/24，服务器或用户终端由二层交换机接入企业网络。
+
+- 办公区终端和业务服务器通过企业网络出口路由器上配置的SNAT访问互联网，路由器分配公网IP地址（假设为：a.b.c.d）。
+
+- 在出口路由器上配置DNAT，将TMG的UDP 9527端口映射到出口公网IP地址的任意固定端口上，确保互联网的任意地址能访问部署在局域网内的TMG UDP9527端口。
+
+- 办公区终端通过路由器的路由规则访问业务服务器，所有终端和业务服务器都不对互联网暴露任何IP地址和端口。
+
+**环境准备**
+
+- 在业务服务器区准备两台虚拟机，最低配置为：CPU4C、内存8G 、硬盘100G、千兆网卡。
+
+> 部署 TM 需要的服务器配置请参考：[服务器配置建议](../Flexible_Usage/Installation_Deployment/Server_Configuration_Recommendations)
+>
+> 部署 TM 需要的物理网络访问授权请参考：[物理网络访问权限要求](../Flexible_Usage/Installation_Deployment/Physical_Network_Access_Permission_Requirements)
+
+## 第一步：注册 TM 企业帐号
+
+1. 打开[TM 企业注册平台](https://www.trustmatrixcloud.com/#/register)，注册企业帐号，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Quick_Deployment_Example/3.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+2. 注册成功后，您将收到一封包含企业帐号ID和初始密码的注册成功提示邮件（请妥善保存此帐号和密码，您在安装 TM 组件时需要使用此帐号ID和密码同步证书），您可以使用邮件中的帐号ID和密码登录 TM 企业注册平台，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Quick_Deployment_Example/4.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+> 详细的注册 TM 企业帐号的说明请参考：[如何注册 TM 企业帐号](../Quick_Start/How_to_Register_TM_Enterprise_Account)
+
+## 第二步：下载并部署 TM 组件
+
+1. 登录 TM 企业注册平台后，您需要在首页或者下载中心页，下载TMC和TMG的安装镜像，以及适合您的操作系统版本的TMA安装文件。
+
+2. 将TMC和TMG安装镜像文件分别挂载在已经准备好的两台虚拟机上，启动虚拟机进行安装。
+
+  安装过程仅需您进行以下操作：
+  
+  - 启动安装程序后，输入“nuke”并敲击回车，选择自动安装模式，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Quick_Deployment_Example/5.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  - 自动安装完成后，点击“OK”，并输入“exit”敲击回车，重启系统，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Quick_Deployment_Example/7.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Quick_Deployment_Example/8.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+2. 重启后，您需要使用 TM 组件的默认管理员帐号（**admin**）和默认密码（**b4a5928c**）登录到 TM 组件的控制台管理界面。
+
+3. 如果您的网络中开启了DHCP，您的TMC和TMG将自动获取IP地址和DNS配置，如果没有开启DHCP，您需要手动配置TMC和TMG的网络信息。
+
+  在控制台首页，选择“2.Network Configuration”，手动配置网络IP地址信息和DNS信息，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Quick_Deployment_Example/9.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />  
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Quick_Deployment_Example/10.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />  
+
+4. 在控制台界面，选择“4.License Synchronization”同步 TM 组件证书。
+
+  **需要特别注意：请务必先同步TMC的授权证书，再同步其他组件的授权证书，其他组件在同步成功后会自动接入到已同步证书的TMC，并被TMC接管。**
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Quick_Deployment_Example/11.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />  
+
+  TMC同步证书成功后，您将收到一封TMC初始化邮件，里面包含您登录TMC Web管理界面的默认帐号和初始密码。
+
+5. 使用超级管理员帐号（sysadmin）和默认密码登录TMC Web管理界面（访问地址为：https://*TMC的IP地址*:16000）。
+
+6. 首次登录时TMC会提示您修改初始密码，同时提示您填写发件邮箱配置。
+
+  在TMC页面创建帐号、在TMA登录界面找回密码时需要给终端用户发送初始化邮件，因此需要您在配置TMC之前先完成发件邮箱配置。如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Quick_Deployment_Example/12.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />    
+
+7. 登录TMC Web管理界面后，打开【状态监控】->【云网监控】，选择【TM 网关】标签页，点击网关的“远程管理”链接，如下图所示：
+  
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Quick_Deployment_Example/13.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />   
+
+8. 在TMG远程管理界面，选择“网络配置”标签页，在“TMG互联网接口”配置项中填入在出口路由器配置的DNAT信息，完成TMG的部署，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Quick_Deployment_Example/14.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />  
+
+至此，TM 组件部署完成。
+
+> 详细的 TM 组件安装部署说明请参考：[如何部署 TM 组件](../Quick_Start/How_to_Deploy_TM_Components)
+
+## 第三步：创建TMC本地帐号
+
+1. 登录TMC Web管理界面，选择【资源管理】->【帐号资源】菜单，打开帐号管理界面，点击“新增”按钮，创建TMC本地帐号，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Quick_Deployment_Example/15.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} /> 
+
+  **注意，这里需要填写您真实有效的邮箱和手机号码，因为新建帐号的初始化密码等信息将通过邮件发送到您填写的邮箱中。**
+
+2. 本地帐号创建成功后，您将收到一封帐号初始化邮件，邮件中包含：帐号初始化密码、TOTP口令种子信息二维码、TMA下载地址、企业终端证书等信息，如下图所示：
+  
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Quick_Deployment_Example/16.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} /> 
+
+> 详细的TMC本地帐号管理说明请参考：[本地帐号管理](../Flexible_Usage/Resource_Management/Account_Resource_Management/Local_Account_Management)
+
+## 第四步：安装TMA登录 TM
+
+1. 根据初始化邮件中的提示，点击TMA下载页面链接，下载适合您的操作系统版本的TMA。
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Quick_Deployment_Example/17.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />   
+
+2. 在终端上安装TMA。
+
+  首次安装时，TMA提示需要导入企业证书，您需要将帐号初始化邮件中的“tma.lic”文件导入到TMA，然后才可进入登录页面。
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Quick_Deployment_Example/18.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />   
+
+3. 登录 TM 安全云网
+  
+  在登录界面输入帐号初始化邮件中的帐号和初始密码，点击“登录”，为了安全起见，TMA提示您需要修改初始密码，如下图所示：
+  
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Quick_Deployment_Example/19.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />    
+
+  修改密码成功后，TMA返回到登录界面，您需要使用刚才修改的密码进行登录。
+
+  登录成功后TMA打开主页面，但此时您还无法访问任何业务资源，资源列表显示为空。
+  
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Quick_Deployment_Example/20.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />    
+
+  接下来我们需要在TMC上发布业务资源、配置访问授权策略。
+
+## 第五步：发布业务资源
+
+1. 登录TMC Web管理界面，选择【资源管理】->【业务资源】菜单，打开资源管理界面，点击“新增”按钮，将TMC的Web管理服务作为Web业务资源发布到 TM 安全云网。如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Quick_Deployment_Example/21.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />  
+
+2. 在业务资源列表，选择刚才新增的“TMC_Web管理界面”业务资源，点击“服务代理”链接，为资源配置代理策略，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Quick_Deployment_Example/22.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />  
+
+  选择部署的TMG，打开“启用代理开关”，进行服务代理，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Quick_Deployment_Example/23.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />  
+
+  完成以上操作后，TMC的Web管理服务就已经作为一个Web应用资源发布到了 TM 安全云网。
+
+> 详细的业务发布说明请参考：[业务资源发布方式](../Flexible_Usage/Installation_Deployment/Business_Resource_Publishing_Method)
+
+## 第六步：配置授权策略
+
+1. 登录TMC Web管理界面，选择【策略管理】->【授权策略】菜单，打开授权策略管理界面，点击“新增”按钮，新增授权策略让新建的帐号可以访问TMC的Web管理控制界面。如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Quick_Deployment_Example/24.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />  
+
+2. 点击“保存”，完成授权策略配置。
+
+3. 使用新建的帐号登录TMA，可以查看到TMA的资源列表中出现了名为“TMC_Web管理界面”的业务资源，点击资源图标将会打开本地浏览器，并访问TMC的Web管理页面。如下图所示：
+  
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Quick_Deployment_Example/25.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} /> 
+
+
+完成以上部署和配置后，最小化的 TM 安全云网就已经在您的网络中部署好了，您可以在任意位置使用TMA登录您的 TM 安全云网，访问您在任意位置发布的业务资源。
+
+TM 支持多种复杂的网络环境，具备多种安全功能，您可以参考[TM 企业部署实例](../Quick_Start/TM_Enterprise_Deployment_Example)以及文档中心的其他配置说明，设计符合您企业的 TM 安全云网，添加更多的业务资源，或者同步第三方的身份源，配置更为灵活的认证和授权策略，让您的企业不再被碎片化网络所局限，实现跨越物理位置的集中安全管控，让协同互联更可信、更灵活、更高效。
+
+
+
+
+
+
+

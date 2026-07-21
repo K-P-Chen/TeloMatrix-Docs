@@ -1,0 +1,15 @@
+/* 隐藏 "Powered by Mintlify" 品牌 watermark */
+a[href*="utm_campaign=poweredBy"] {
+  display: none !important;
+}
+
+/* 隐藏指向 mintlify.com 的外链（默认模板残留） */
+a[href*="mintlify.com/images"] {
+  display: none !important;
+}
+
+/* 隐藏 Mintlify dev mode 悬浮可拖拽按钮 */
+.fixed.z-999.cursor-grab,
+.fixed.z-999 {
+  display: none !important;
+}

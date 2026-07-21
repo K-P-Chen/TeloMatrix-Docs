@@ -1,0 +1,268 @@
+---
+
+sidebar_position: 4
+title: "如何部署 TM 组件"
+---
+
+TM 安全云网中的TMC、TMG、TMD、TME、TMI这五个组件均以ISO镜像文件方式提供，您可以在[TM 企业注册平台](https://www.trustmatrixcloud.com/)下载ISO格式的组件安装文件，并自行在虚拟机或物理机部署和激活各 TM 组件。
+
+需要注意的是：
+
+1. TM 组件在安装部署后需要先配置好网络设置，然后对组件进行激活（同步证书），在激活的时候需要输入您在 TM 企业注册平台注册的 TM 企业帐号和密码。
+
+2. TMC是 TM 安全云网的核心组件，您在首次部署 TM 时请先安装部署TMC，同步TMC的证书激活组件，然后再部署其他组件。
+
+本文将以在虚拟机里部署TMC为例，介绍如何部署 TM 组件。
+
+
+警告：根据中国相关法律法规要求，绎云科技提供的 TM 安全云网产品组件（包括：TMC、TMG、TMD、TME、TMI）仅限在中国大陆区域部署使用。绎云科技已通过技术手段限制上述产品组件在中国大陆以外区域部署使用。使用方通过任何方法绕过此限制，所引起的相关后果与责任均由使用方承担，若此行为侵犯绎云科技的合法权益，绎云科技将依法追究使用方的法律责任。 
+
+
+## 第一步：获取安装介质
+
+1. 首先，您需要[注册 TM 企业帐号](../Quick_Start/How_to_Register_TM_Enterprise_Account)，在 TM 组件安装过程中需要您使用 TM 企业帐号对每一个组件进行激活。
+
+2. 登录[TM 企业注册平台](https://www.trustmatrixcloud.com/)，进入【下载中心】页面，可下载 TM 各组件的安装ISO文件，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Deploy_TM_Components/1.Download_Installation_File.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  如果您的企业帐号是试用或永久免费权限，您可以下载TMC、TMG、TMD三个组件的安装文件，以及TMA的安装文件。
+
+  如果您的帐号是 TMPro用户权限，根据您购买的授权范围，您可以下载TMC、TMG、TMD、TME、TMI等所有 TM 组件的安装文件和TMA的安装文件。
+
+  移动版的TMA以及 TM 令牌APP需要通过扫码二维码在应用商店下载。
+
+## 第二步：安装 TM 组件
+
+TM 的各组件可以安装在虚拟机、物理服务器或云服务器上，这里我们以在Vmware Fusion Player上部署TMC为例，介绍安装部署方法。
+在物理服务器或其他虚拟机上部署 TM 组件的过程雷同，在公有云部署的方法请参考：[如何在公有云部署 TM](../Flexible_Usage/Installation_Deployment/How_to_Deploy_TM_on_Public_Cloud)。
+
+### 配置虚拟机环境
+
+创建虚拟机，配置4核CPU，8G内存，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Deploy_TM_Components/1.png" style={{width: "50%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+挂载下载的TMC安装ISO文件，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Deploy_TM_Components/2.png" style={{width: "50%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+启动虚拟机开始安装。
+
+### TM 组件安装
+
+启动虚拟机后，虚拟机将自动从ISO文件启动，TM 组件安装文件内置Mondo Rescue方案，可快速以系统恢复方式在目标服务器上用ISO镜像文件部署 TM 组件，操作步骤如下：
+
+- 启动虚拟机后，进入镜像恢复流程，系统首先会加载Mondo Rescue的启动程序，当出现下图所示的界面时，输入”nuke“选择自动恢复模式，敲回车键，系统开始自动恢复。
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Deploy_TM_Components/11.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+- 系统恢复过程无需人工干预，Mondo Rescue会自动完成所有恢复操作。在恢复过程中会出现以下几个提示界面：
+  
+  - 自动擦除硬盘信息
+    
+    <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Deploy_TM_Components/12.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  - 自动重新硬盘分区
+
+    <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Deploy_TM_Components/13.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  - 自动格式化硬盘分区
+
+    <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Deploy_TM_Components/14.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  - 恢复系统文件
+
+    <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Deploy_TM_Components/15.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  - 重新整合大文件
+
+    <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Deploy_TM_Components/16.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+- 当ISO中的系统已经部署到虚拟机以后将出现以下提示，选中“OK”键，按回车键，完成系统恢复过程。
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Deploy_TM_Components/17.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+- 当完成所有恢复操作后，系统将出现命令行界面，如下图所示。您需要将ISO文件从虚拟机的CD/DVD驱动器弹出，然后输入“exit”，按回车键，重启系统后完成所有的部署操作。
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Deploy_TM_Components/18.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+## 第三步：组件初始化配置
+
+当 TM 组件在虚拟机上安装完毕后，您还需要登录到组件的控制台界面，继续完成组件的网络基础配置以及证书同步操作，否则组件将无法正常工作。
+
+### 登录TMC控制台
+
+ 当重启虚拟机后，系统将自动显示TMC的控制台界面（当配置好网络后，您也可以通过SSH服务接口登录TMC的控制台界面），如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Deploy_TM_Components/19.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+输入用户名、密码，选择“登录”，按回车键，进入TMC控制台界面，如下图所示：
+
+> TMv209x版所有组件的控制台**默认用户名为：admin，默认密码为：b4a5928c**
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Deploy_TM_Components/20.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+### 查看系统信息
+
+选择“1”（系统信息），按回车键，可查看系统信息及IP地址分配情况，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Deploy_TM_Components/21.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+如果系统已经分配了IP地址，输入“q”，按回车返回上一级菜单，在菜单页输入“4”（同步证书），按回车，进行证书同步。
+
+如果系统没有分配IP地址，输入“q”返回上一级菜单，在菜单页输入“2”（网络配置），按回车，进入网络配置界面，先配置好网络，然后再同步证书。
+
+### 基础网络配置
+
+- 在菜单页，输入“2”（网络配置），按回车，进入网络配置界面，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Deploy_TM_Components/22.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+- 输入“1”，按回车，进入接口配置界面，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Deploy_TM_Components/23.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+- 选择要配置的接口：可输入“1”，也可输入接口名称，如：eth0；
+    
+- 选择要配置接口的模式，输入“dhcp”，按回车，系统将使用DHCP协议自动分配IP地址以及其他网络配置。
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Deploy_TM_Components/24.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+- 如您希望手动配置网络信息，可输入“static”，按回车，然后按照提示输入IP地址、子网掩码、网关和DNS信息，如有的配置项不需要配置，可根据提示直接跳过。如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Deploy_TM_Components/25.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+- 在网络配置菜单界面，输入“2”，按回车，进入DNS配置界面，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Deploy_TM_Components/26.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+- 按照提示输入DNS配置信息，按任意键回到上级菜单，完成网络配置。
+
+
+### 同步授权证书
+
+返回到控制台菜单界面，输入“4”，按回车，进入同步证书界面。
+    
+- 如果是首次部署，系统检测到本地还没有证书，将出现输入 TM 云服务帐号和密码的界面，您需要输入您在 TM 云服务平台注册的帐号和密码，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Deploy_TM_Components/27.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+- 输入“u”，按回车，系统提示扫码二维码可打开 TM 企业用户注册平台，您可以通过此平台注册企业帐号，然后再用注册的帐号ID和密码进行登录。注册步骤请参考：[如何注册 TM 企业帐号](../Quick_Start/How_to_Register_TM_Enterprise_Account)
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Deploy_TM_Components/28.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+- 如果 TM 组件曾经同步过证书，系统会自动检测到本地存在证书，并将证书信息显示在此界面，您可以输入“r”，按回车，重新加载和更新证书，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Deploy_TM_Components/29.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+当您完成了以上步骤，您的TMC就已经安装成功了。
+
+
+在您完成TMC的证书同步操作后，您在 TM 云服务平台注册时填写的邮箱将收到一封TMC初始化成功的邮件，此邮件中会包含您部署的TMC初始化帐号和密码，您可以通过浏览器访问TMC的Web管理控制界面（URL为：https://IP地址:16000），并使用TMC初始化帐号和密码登陆Web管理控制界面。
+
+## 控制台其他功能
+
+### 网络诊断
+
+在控制台的主菜单界面，输入“3”，按回车，进入网络诊断界面，如下图所示：
+  
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Deploy_TM_Components/30.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+#### ping测试
+    
+ping测试用来测试 TM 组件的网络连通性。
+    
+在网络诊断菜单界面输入“1”，按回车，进入ping测试界面，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Deploy_TM_Components/31.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+按照提示，在“请输入目标地址：”后面输入需要ping的目标地址，可以是IP地址，也可以是域名，然后按回车，系统将向目标IP地址或域名发起5次ping探测。
+
+#### traceroute测试
+    
+traceroute测试用来测试从 TM 组件到目标主机之间经过了哪些路由器，以及到达各个路由器的耗时。
+
+在网络诊断菜单界面输入“2”，按回车，进入traceroute测试界面，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Deploy_TM_Components/32.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+按照提示，在“请输入目标地址：”后面输入需要探测的目标地址，可以是IP地址，也可以是域名，然后按回车，系统将向目标IP地址或域名发起traceroute探测。
+
+#### curl测试
+
+curl测试用来测试 TM 组件与目标Web应用资源的连通性，通常在遇到发布的Web业务资源无法正常访问时，用curl测试TMG与目标站点的连通性。
+
+在网络诊断菜单界面输入“3”，按回车，进入curl测试界面，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Deploy_TM_Components/33.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+按照提示，在“请输入目标URL：”后面输入需要探测的目标URL，然后按回车，系统将使用curl命令对目标URL发起访问请求，如果目标站点可正常访问，则将出现如图所示的回显信息。
+
+#### 查看网络状态
+
+在网络诊断菜单界面输入“4”，按回车，可执行netstat指令，查看当前 TM 组件的系统网络状态，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Deploy_TM_Components/34.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+#### 查看本地路由
+
+在网络诊断菜单界面输入“5”，按回车，可执行route指令，查看当前 TM 组件的本地路由状态，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Deploy_TM_Components/35.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+#### 查看本地网卡信息
+
+在网络诊断菜单界面输入“6”，按回车，可执行ip addr指令，查看当前 TM 组件的系统网卡状态，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Deploy_TM_Components/36.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+ 
+
+### 帐号管理
+
+在控制台主菜单界面，输入“5”，按回车，进入帐号管理子菜单，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Deploy_TM_Components/37.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+
+在控制台界面，您可以修改控制台admin帐号的密码，也可以重置Web控制台超级管理员（sysadmin）密码，或者启停Web控制台的超级管理员帐号。
+
+#### 在帐号管理子菜单，输入“1”，按回车，可修改控制台admin帐号的密码，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Deploy_TM_Components/38.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+按照提示输入新密码，并确认新密码后，按回车，完成控制台admin帐号密码修改。admin帐号密码可由8-30位大小写英文字母、数字、或者特殊符号（不包含空格）组成，且英文字母、数字和特殊符号至少包含两类。
+    
+#### 在帐号管理子菜单，输入“2”，按回车，可重置Web超级管理员密码，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Deploy_TM_Components/39.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+重置Web超级管理员密码后，新的超级管理员初始化密码将以邮件的形式发送到云服务注册帐号的邮箱中，您可以使用新的初始化密码登陆Web控制台界面。
+    
+#### 在帐号管理子菜单，输入“3”或“4”，按回车，分别可启用或停用Web超级管理员帐号，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Deploy_TM_Components/40.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+### 系统控制
+
+在控制台主菜单界面，输入“6”，按回车，进系统控制子菜单，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Deploy_TM_Components/41.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+#### 输入“1”（系统重启），按回车键，显示提示信息，输入“y”，按回车键，系统将自动重启，输入“n”，按回车键，系统取消重启，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Deploy_TM_Components/42.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+#### 输入“2”（系统关机），按回车键，显示提示信息，输入“y”，按回车键，系统将自动关机，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Deploy_TM_Components/43.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+#### 输入“3”（服务重启），按回车键，显示提示信息，输入“y”，按回车键，系统服务将自动重启，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Deploy_TM_Components/44.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+
+
+
+
+

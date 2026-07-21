@@ -1,0 +1,151 @@
+---
+
+sidebar_position: 4
+title: "对接AD/LDAP身份源"
+---
+## 功能说明
+
+1. TM 支持同时对接企业已建的一个或多个AD/LDAP身份源；
+
+2. 支持手动同步或定时同步多个AD/LDAP身份源的帐号信息；
+
+3. 支持对每个AD/LDAP身份源的帐号采用不同的认证策略，以及赋予不同的访问权限；
+
+4. 终端用户在TMA上使用AD/LDAP帐号进行认证登录时，将使用对应的AD/LDAP身份源的认证服务进行身份验证。
+
+## 新建AD/LDAP身份源
+
+1. 选择菜单【策略管理】->【认证策略】打开认证策略管理页面，在页面顶部选择“认证接口”标签页，显示TMC认证接口配置页面，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_AD_or_LDAP_Identity_Source/1.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+2. 在左侧认证接口类型选项中，选择“AD/LDAP认证”，右侧列表区域将显示所有已配置的AD/LDAP身份源信息。
+
+3. 点击![新增](/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_AD_or_LDAP_Identity_Source/2.png)按钮，打开新增AD/LDAP身份源的抽屉页，如下图所示:
+
+ <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_AD_or_LDAP_Identity_Source/3.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  - **配置项（AD身份源）**
+
+  **服务名称：**AD服务名称，用于区别不同的AD身份源，必填项，名称不超过100个字符，只能是中英文、数字、特殊符号@.-_的组合。
+
+  **服务器类型：**选择是AD服务还是LDAP服务，如使用AD服务，这里需选择“AD”，二选一。
+
+  **服务地址：**填写AD服务器的IP地址，必填项，注意，TMC在物理网络里需要能正常访问AD服务器的IP地址和端口。
+
+  **服务端口：**填写AD服务器的服务端口，必填项，默认值为“389”。
+
+  **管理员帐号：**填写AD服务的管理员帐号，必填项，格式如：“CN=Administrator”，“CN=User”。
+
+  **管理员密码：**填写AD服务的对应管理员密码，必填项。
+
+  **Base DN：**填写AD服务的根标识名称，必填项，格式如：“DC=xx,DC=xx”。
+
+  **帐号过滤条件：**填写过滤出哪些AD服务上的帐号，并将这些帐号同步到TMC，必填项，默认值为：“(objectCategory=person)”。
+
+  **指定帐号字段：**取AD的哪个属性值作为帐号的帐号属性值，必填项，默认值为：“sAMAccountName”。
+
+  **指定姓名字段：**取AD的哪个属性值作为帐号的姓名属性值，必填项，默认值为：“cn”。
+
+  **指定描述字段：**取AD的哪个属性值作为帐号的描述属性值，必填项，默认值为：“description”。
+
+  **指定手机号字段：**取AD的哪个属性值作为帐号的手机号属性值，必填项，默认值为：“telephoneNumber”。
+
+  **指定邮箱字段：**取AD的哪个属性值作为帐号的邮箱属性值，必填项，默认值为：“mail”。
+
+  **指定角色字段：**取AD的哪个属性值作为TMC上AD身份源帐号的角色属性值，非必填项。AD服务默认不包含角色字段，但有时企业会把某个不常用的AD属性作为角色字段，这里用来指定作为角色字段的AD属性值。
+
+  **备注：**新建的AD身份源备注信息，非必填项，限制最多200个字符。
+  
+  
+  - **配置项（LDAP身份源）**
+
+  **服务名称：**LDAP服务命名，用于区别不同的LDAP身份源，必填项，名称不超过100个字符，只能是中英文、数字、特殊符号@.-_的组合。
+ 
+  **服务器类型：**选择是AD服务还是LDAP服务，如使用LDAP服务，这里需选择“LDAP”，二选一。
+
+  **服务地址：**填写LDAP服务器的IP地址，必填项。注意，TMC在物理网络里需要能正常访问LDAP服务器的IP地址和端口。
+
+  **服务端口：**填写LDAP服务器的服务端口，必填项，默认值为“389”。
+
+  **管理员帐号：**填写LDAP服务的管理员帐号，必填项，格式如：“CN=Administrator”，“CN=User”。
+
+  **管理员密码：**填写LDAP服务的对应管理员密码，必填项。
+
+  **Base DN：**填写LDAP服务的根标识名称，必填项，格式如：“DC=my-domain,DC=com”。
+
+  **帐号过滤条件：**填写过滤出哪些LDAP服务上的帐号，并将这些帐号同步到TMC，必填项，默认值为：“(objectCategory=person)”。
+
+  **指定帐号字段：**取LDAP的哪个属性值作为帐号的帐号属性值，必填项，默认值为：“uid”。
+
+  **指定姓名字段：**取LDAP的哪个属性值作为帐号的姓名属性值，必填项，默认值为：“cn”。
+
+  **指定描述字段：**取LDAP的哪个属性值作为帐号的描述属性值，必填项，默认值为：“description”。
+
+  **指定手机号字段：**取LDAP的哪个属性值作为帐号的手机号属性值，必填项，默认值为：“telephoneNumber”。
+
+  **指定邮箱字段：**取LDAP的哪个属性值作为帐号的邮箱属性值，必填项，默认值为：“mail”。
+
+  **指定角色字段：**取LDAP的哪个属性值作为帐号的角色属性值，非必填项。LDAP服务默认不包含角色字段，但有时企业会把某个不常用的LDAP属性作为角色字段，这里用来指定这个作为角色字段的LDAP属性值。
+
+  **指定帐号全路径字段：**指定LDAP的帐号全路径属性，必填项，默认值为“entryDN”。
+
+  **备注：**新建的LDAP身份源备注信息，非必填项，限制最多200个字符。
+
+4. 点击“保存”按钮，新建的AD/LDAP服务将被保存并启用，在AD/LDAP接口列表中能看到新建的AD/LDAP服务。
+
+5. 在AD/LDAP服务列表点击“编辑”按钮，可对创建的AD/LDAP服务进行编辑。
+
+6. 在AD/LDAP服务列表点击“清空数据”按钮，可清空从此AD/LDAP服务同步过来的所有帐号数据。**注意，此操作为不可逆操作，数据一旦清空则无法恢复，但您可以重新同步数据。**
+
+7. 选中一个或多个AD/LDAP服务后，点击列表功能区的“删除”、“启用”、“停用”按钮，可以对一个过多个AD/LDAP服务进行删除、启用和停用操作。
+
+
+## 设置AD/LDAP帐号同步策略
+
+配置好AD/LDAP服务接口后，数据不会立即同步，您还需要配置帐号同步策略，将AD/LDAP服务上的帐号同步到TMC。操作步骤如下：
+
+1. 选择菜单【资源管理】->【帐号资源】打开帐号管理页面，在页面列表功能区，点击“帐号同步”按钮，显示帐号同步配置页面，如下图所示：
+  
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_AD_or_LDAP_Identity_Source/4.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+2. 在AD/LDAP标签页，可以查看到所有已配置的AD/LDAP列表，您可以对每一个服务进行设置和操作。
+
+3. 在任意一个AD/LDAP服务的操作列，点击“同步设置”，打开同步设置抽屉页，可对选中的AD/LADP服务的进行同步策略设置，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_AD_or_LDAP_Identity_Source/5.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  **配置项：**
+
+  **帐号存储字符转换：**Windows系统默认对英文字符大小写不敏感，因此在AD/LDAP服务里帐号无论是否存在大写英文字符，都会被识别为同一个帐号，例如：Zhangsan、zhangsan、ZHANGSAN，这三个帐号在AD/LDAP里都将识别为一个帐号。但TMC里对所有帐号都是大小写敏感的，因此前述三个帐号在TMC里会识别为不同的三个帐号。因此，在同步帐号时需要配置是否将AD/LDAP里的帐号都转换为小写或者大写，然后存储在TMC里。
+
+  可选项包括：“不转换”、“转小写”、“转大写”，其中“转小写”为默认值。
+
+  **是否发送初始化邮件：**
+  
+  选择关闭，同步远端AD/LDAP服务上的帐号后，TMC不自动向每个帐号的邮箱发送初始化邮件，您可以在AD/LDAP服务列表点击“初始化”对所有帐号手动发送初始化邮件。
+  
+  选择开启，同步远端AD/LDAP服务上的帐号后，TMC自动对首次同步过来的帐号发送初始化邮件，以后每次同步，相同的帐号不再发送初始化邮件。
+
+  **开启自动同步设置：**
+  
+  选择关闭，则您必须手动同步AD/LDAP里的帐号信息。
+  
+  选择开启，则您可以选择每隔多少分钟后，TMC自动从远端AD/LDAP服务上同步帐号信息，或者，设定在每周或每天的固定时间进行同步。
+
+4. 在AD/LDAP服务列表选中一个或多个服务，点击列表功能区的“开始同步”按钮，可以让TMC立即同步选中AD/LDAP服务的帐号信息。
+
+5. 如果TMC里同时使用了TMC本地身份源和AD/LDAP身份源，终端用户在使用TMA进行登录时都将使用帐号密码进行认证登录，因此需要配置当终端用户使用帐号密码认证登录时，是优先使用TMC本地帐号进行认证，还是优先使用AD/LDAP认证服务进行认证。
+
+  配置方法为：选择【策略管理】->【全局策略】菜单，在“终端全局配置”区，选择是否启用“优先AD帐号认证”。
+
+  如果启用，则当终端用户使用帐号密码通过TMA认证登录时，将先使用AD/LDAP服务进行身份认证，如果AD/LDAP认证失败，然后再使用TMC本地认证服务进行身份认证；
+
+  如果关闭，则当终端用户使用帐号密码通过TMA认证登录时，将先使用TMC身份认证模块进行身份认证，如果认证失败，则继续使用AD/LDAP服务进行身份认证。
+
+
+
+
+
+
+  

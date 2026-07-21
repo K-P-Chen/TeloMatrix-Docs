@@ -1,0 +1,59 @@
+---
+
+sidebar_position: 8
+title: "对接CA身份源"
+---
+
+## 功能说明
+
+TM 支持使用CA证书进行终端用户的身份认证和登录，可同时启用多个可信CA服务。
+
+大多数CA服务不具备帐号读取接口，因此TMC无法同步CA上的所有帐号信息，但当终端用户使用CA证书登录后会自动在TMC的CA身份源中自动新增一个帐号。
+
+## 新建可信CA
+
+1. 选择菜单【策略管理】->【认证策略】打开认证策略管理页面，选择“CA证书认证”标签页，页面右侧显示CA证书认证配置，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_CA_Identity_Source/1.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+2. 打开“可信CA”标签页，点击![新增](/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_CA_Identity_Source/2.png)按钮，打开新增可信CA页面，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_CA_Identity_Source/3.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  您需要为新增的可信CA创建一个名称，并将服务端CA证书上传至TMC。
+
+  注意：证书文件必须是.pem、.der、.plcs7格式的证书文件，且可以被x.509协议解析出来的证书。如上传证书格式错误，或者解析错误，当点击保存时，系统提示“证书解析失败”。
+
+3. 成功新增可信CA后，在可信CA列表可以看到新建的可信CA信息，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_CA_Identity_Source/4.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  如果上传CA证书并解析成功，则在可信CA列表看到类似“CN=Authentication Global Root, O=ACF Inc., ST=BJ, C=CN”这样的属性值，在列表上可直接操作启停此可信CA。
+
+## 新建CA认证策略
+
+1. 在“CA证书认证”配置页，点击“认证策略”标签页，在CA认证策略列表功能区，点击“新增”按钮，打开新增CA认证策略配置抽屉页，如下图所示：
+  
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_CA_Identity_Source/5.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+  
+  
+  **配置项**
+
+  **CA认证源名称：**CA认证策略的命名，名称不超过100个字符，只能是中英文、数字、特殊符号@.-_的组合。
+
+  **可信CA：**必填项，选择在TMC导入的服务端可信CA，可同时支持多个服务端可信CA。
+
+  **过滤条件：**非必填项，过滤条件用于对客户端证书进行过滤，只有拥有符合条件的客户端证书的终端允许认证登录。可支持多个过滤条件，当客户端证书同时满足多个条件时才允许客户端认证登录。
+
+  **备注：**非必填项，指CA认证策略的备注信息。
+
+3. 配置好CA认证策略，并指定帐号的认证方式为CA认证方式后，终端用户登陆时即可选择终端本地证书进行认证登录，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_CA_Identity_Source/6.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_CA_Identity_Source/7.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+
+
+
+

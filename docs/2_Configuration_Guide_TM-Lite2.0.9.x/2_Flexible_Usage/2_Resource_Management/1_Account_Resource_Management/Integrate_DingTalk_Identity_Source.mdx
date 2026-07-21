@@ -1,0 +1,109 @@
+---
+
+sidebar_position: 5
+title: "对接钉钉身份源"
+---
+
+## 功能说明
+
+1. TM 支持对接钉钉身份源，支持PC和Mac终端用户使用手机钉钉扫描TMA上的二维码进行身份验证和授权登录，支持终端用户在TME上使用手机钉钉扫描TME上的二维码进行认证和授权登录。
+
+2. 支持使用钉钉帐号设置终端用户的身份验证策略、业务资源授权策略、细粒度的网络访问控制策略，以及作为网络流量身份化的身份依据。
+
+3. TMC支持手动或自动同步钉钉身份源的帐号信息，当使用钉钉身份源登录 TM 安全云网时，终端用户将使用钉钉的认证服务进行身份认证。
+
+4. 钉钉目前不支持手机上的其他应用通过钉钉APP进行关联认证，因此如果您使用钉钉身份源，您的 TM 手机端APP无法使用已登录的钉钉手机APP进行关联认证。（目前仅企业微信可以支持）
+
+## 钉钉服务端配置
+
+在TMC上对接钉钉身份源，需要先在钉钉上进行授权配置，配置步骤如下：
+
+1. 使用管理员帐号登陆钉钉管理后台（打开[钉钉扫码登陆页面](https://oa.dingtalk.com)，使用钉钉管理员的钉钉APP扫描二维码即可登录）。
+
+2. 点击【工作台】->【应用管理】菜单，在“自建应用”区域，点击“自建应用”创建一个专门用于与TMC对接的应用，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_DingTalk_Identity_Source/1.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+3. 点击“自建应用”，选择“企业应用”标签，点击“快速创建”按钮，在弹出的页面里选择“H5微应用”，填写应用名称、应用描述，选择上传应用图标，选择开发方式为“企业自主开发”，然后点击“确定创建”完成应用的创建，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_DingTalk_Identity_Source/2.png" style={{width: "50%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+4. 在钉钉管理后台首页，企业应用列表里点击刚才创建的应用，查看应用信息，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_DingTalk_Identity_Source/3.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  请记录三个应用凭证的值：“AgentId”、“AppKey”、“AppSecret”，这三个应用凭证会在TMC上配置钉钉身份源接口时用到。
+
+5. 在钉钉管理后台，选择“权限管理”菜单，为新建的企业应用分配授权范围。注意，只有分配权限的员工可以使用钉钉登陆 TM 安全云网，这里建议选择“全部员工”，如下图所示：
+  
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_DingTalk_Identity_Source/4.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  为全部员工开通以下权限：
+
+    - 通讯录部门信息读权限
+
+    - 成员信息读权限
+
+    - 企业员工手机号信息
+
+    - 邮箱等个人信息
+
+    - 企业微应用后台免登接口的访问权限
+
+6. 在钉钉管理后台，选择“登录与分享”菜单，在这里填入回调域名，以及iOS Bundle ID、Android 包名称、签名信息，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_DingTalk_Identity_Source/5.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+7. 其中，回调地址即钉钉认证结果需要返回的地址，您可以在TMC的【策略管理】->【认证策略】->【认证接口】->【扫码认证】->【钉钉】配置页找到分配给您的回调地址，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_DingTalk_Identity_Source/5.5.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+  
+
+  页面中的“重定向地址”即“回调地址”。
+
+  在“Android签名”参数里填写固定值“**1f20c88c1f71f71517cc1e7d60c43279**”。
+
+  在“应用包名”里填写固定值“**com.yjx.flutter_yjx_trust**”。
+
+
+## 新建钉钉身份源
+
+1. 选择菜单【策略管理】->【认证策略】打开认证策略管理页面，在页面顶部选择“认证接口”标签页，显示TMC的认证接口配置页面；
+
+2. 在认证接口配置页面选择“扫码认证”，并选择“钉钉”标签页，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_DingTalk_Identity_Source/7.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+3. 在钉钉接口配置项里，将在钉钉管理后台记录的“AgentID”、“AppKey”、“APPSecret”参数值填入，并点击“保存”按钮保存所有配置。
+
+## 设置钉钉帐号同步策略
+
+1. 选择菜单【资源管理】->【帐号资源】打开帐号管理页面，在“帐号管理”标签页里点击“帐号同步”按钮，打开帐号同步策略配置抽屉页，选择“钉钉”标签页，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_DingTalk_Identity_Source/8.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+2. 选择是否自动发送初始化邮件
+
+  如果开启，则同步钉钉帐号时，TMC将自动发送帐号初始化邮件到首次同步获取帐号的注册邮箱中。
+
+  如果关闭，则同步钉钉帐号时，TMC将不会给任何帐号自动发送帐号初始化邮件，您需要在帐号列表上选择需要发送的帐号，手动单独或批量为钉钉身份源的帐号发送帐号初始化邮件。
+
+3. 同步方式
+
+  如果选择“手动同步”，每次同步钉钉帐号时，您都需要点击“立即同步”按钮手动地同步帐号信息。
+
+  如果选择“自动同步”，您可以设置每隔多少分钟，或者在每天什么时刻、每周什么时刻TMC自动地同步钉钉帐号信息。
+
+4. 清空数据
+
+  清空已经从钉钉身份源同步到的所有帐号和帐号组信息。
+
+完成以上配置后，点击“保存并立即同步”完成钉钉帐号同步策略配置。
+
+
+
+
+
+
+
+

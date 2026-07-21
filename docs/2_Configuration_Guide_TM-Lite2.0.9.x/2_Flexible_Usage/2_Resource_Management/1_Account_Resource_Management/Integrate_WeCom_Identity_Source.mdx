@@ -1,0 +1,117 @@
+---
+
+sidebar_position: 6
+title: "对接企业微信身份源"
+---
+
+## 功能说明
+
+1. TM 支持对接企业微信身份源，支持PC和Mac终端用户使用手机企业微信扫描TMA上的二维码进行身份验证和授权登录，支持移动版TMA用户通过已登录的企业微信进行身份验证和授权登录，支持终端用户在TME上使用手机企业微信扫描TME上的二维码进行认证和授权登录。
+
+2. 支持使用企业微信帐号设置用户的身份验证策略、业务资源授权策略、细粒度的网络访问控制策略，以及作为网络流量身份化的身份依据。
+
+3. TMC支持手动或自动同步企业微信身份源的帐号信息，当使用企业微信身份源登录 TM 安全云网时，终端用户将使用企业微信的认证服务进行身份认证。
+
+## 企业微信服务端配置
+
+在TMC上对接企业微信身份源，您需要先在企业微信上进行授权配置，配置步骤如下：
+
+1. 使用管理员帐号登陆企业微信管理后台（打开[企业微信管理后台登陆页](https://work.weixin.qq.com/wework_admin/loginpage_wx?from=myhome)
+，使用企业微信管理员微信扫描二维码即可登录）。
+
+2. 点击【应用管理】菜单，在【应用】页面下方的“自建”区域，点击“创建应用”创建一个专门用于与TMC对接的应用，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_WeCom_Identity_Source/1.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+3. 打开创建应用页面，输入应用名称、应用介绍，上传应用logo图片，选择应用可见范围，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_WeCom_Identity_Source/2.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  注意：只有选中的部门内成员和选中的成员可以在TMA上使用企业微信登录。
+
+  点击“创建应用”，完成新应用的创建。
+
+4. 打开刚才创建的新应用页面，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_WeCom_Identity_Source/3.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  您可以查看到“AgentId”、“Secret”参数值，请记录下来，在TMC上配置企业微信身份源时需要用到。
+  
+  **AgentId：**企业应用的唯一标识ID。
+  
+  **Secret：**企业应用的独立的访问密钥，为了保证数据的安全，secret务必不能对外泄露。
+
+5. 新创建应用的配置页最底下，“开发者接口”区域，在“企业微信授权登录”信息卡上点击“设置”按钮，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_WeCom_Identity_Source/4.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+6. 选择“Web网页”，点击“设置授权回调域”，填入回调地址并保存，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_WeCom_Identity_Source/5.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  **回调地址：**当终端用户在使用TMA进行企业微信扫码认证后，企业微信的认证结果需要返回到 TM 云服务，并由 TM 云服务通知TMA，终端用户的身份验证成功或失败。
+
+  回调地址即企业微信认证结果需要返回的地址，您可以在TMC的【策略管理】->【认证策略】->【认证接口】->【扫码认证】->【企业微信】配置页找到分配给您的回调地址，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_WeCom_Identity_Source/6.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  “重定向地址”即“回调地址”。
+
+  在“iOS”点击“设置Bundle ID”，在“Bundle ID”参数里填写固定值“**com.yiYun.appClient**”；
+
+  在“Android”点击“设置该应用签名和包名”，在“应用签名”参数里填写固定值“**1f20c88c1f71f71517cc1e7d60c43279**”，在“应用包名”里填写固定值“**com.yjx.flutter_yjx_trust**”
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_WeCom_Identity_Source/7.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+7. 企业微信自动生成的应用程序schema，请记录下来，在TMC上配置企业微信身份源时需要用到。
+
+8. 在【我的企业】->【企业信息】的页面最下方，可以查看“企业ID”值，请记录下来，在TMC上配置企业微信身份源时需要用到。
+
+9. 配置企业可信IP。根据企业微信的安全策略，第三方系统或平台需要同步企业微信的组织架构和帐号数据，则必须在企业微信管理后台配置企业可信IP，企业微信仅允许企业可信IP获取相关数据。
+
+   您需要在开发者接口配置区域，点击“企业可信IP”配置区的“配置”链接，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_WeCom_Identity_Source/10.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+   在企业可信IP配置区域，填写您部署的TMC所在网络的公网IP地址即可，可填写多个公网IP地址。
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_WeCom_Identity_Source/11.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+   注意：如果您的网络使用动态的公网IP地址，则每次公网IP地址变更后，您都需要在企业微信后台对此配置进行修改。我们强烈建议您将TMC部署在使用静态公网IP地址的网络中，以避免需要经常性的修改此配置，影响终端用户体验。
+
+## 新建企业微信身份源
+
+1. 选择菜单【策略管理】->【认证策略】打开认证策略管理页面，在页面顶部选择“认证接口”标签页，显示TMC的认证接口配置页面。
+
+2. 在认证接口配置页面选择“扫码认证”，并选择“企业微信”标签页，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_WeCom_Identity_Source/8.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+3. 在企业微信接口配置项里，将在企业微信管理后台记录的“企业ID”、“AgentID”、“Secret”、“Schema”参数值填入，并点击“保存”按钮保存所有配置。
+
+## 设置企业微信帐号同步策略
+
+1. 选择菜单【资源管理】->【帐号资源】打开帐号管理页面，在“帐号管理”标签页点击“帐号同步”按钮，打开帐号同步策略配置抽屉页，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_WeCom_Identity_Source/9.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+ 
+2. 选择是否自动发送初始化邮件
+
+  如果开启，则同步企业微信帐号时，TMC将自动发送帐号初始化邮件到首次同步获取帐号的注册邮箱中。
+
+  如果关闭，则同步企业微信帐号时，TMC将不会给任何帐号自动发送帐号初始化邮件，您需要在帐号列表上选择需要发送的帐号，手动单独或批量为企业微信身份源的帐号发送帐号初始化邮件。
+
+3. 同步方式
+
+  如果选择“手动同步”，则每次同步企业微信帐号时您需要点击“立即同步”按钮，手动的同步帐号信息。
+
+  如果选择“自动同步”，您可以设置每隔多少分钟，或者在每天什么时刻、每周什么时刻TMC自动地同步企业微信帐号信息。
+
+4. 清空数据
+
+  清空已经从企业微信身份源同步到的所有帐号和帐号组信息。
+
+完成以上配置后，点击“保存并立即同步”完成企业微信帐号同步策略配置。
+
+
+

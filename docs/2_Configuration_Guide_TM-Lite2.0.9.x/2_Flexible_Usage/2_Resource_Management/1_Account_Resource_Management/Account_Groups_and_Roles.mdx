@@ -1,0 +1,136 @@
+---
+
+sidebar_position: 2
+title: "帐号组与角色管理"
+---
+## 帐号组
+
+帐号与主帐号都可以进行分组管理，并可根据帐号分组进行批量授权、批量应用策略模板。
+
+帐号组通常根据企业的组织架构进行划分，管理员也可根据业务需求自行划分，本地帐号源的帐号可以同时隶属于不同的本地帐号组。
+
+TM 本地身份源的帐号可进行帐号组的新增、删除、编辑、查询、导入导出。
+
+第三方身份源的帐号通过同步其他身份源信息而获得，因此不可新增、删除、导入、导出，只可搜索，可编辑 TM 附加属性值，如：帐号有效时间、备注等。
+
+主帐号组由系统根据多个帐号源聚合计算生成，主帐号的分组由选择的某个帐号源分组赋值，因此也不可新增、删除、导入、导出，只可搜索。
+
+本地身份源最多支持5级帐号组，第三方身份源的帐号组和主帐号组不限制帐号组级别。
+
+### 帐号组配置选项
+
+选择菜单【资源管理】->【帐号资源】打开帐号管理页面，默认显示【帐号管理】页面。页面左侧为帐号组管理区，默认只显示“本地身份源”帐号组，如果管理员配置了其他第三方身份源，则第三方身份源会显示在“本地身份源”之下，如：“钉钉身份源”、“企微身份源”等。
+
+在“本地身份源”右侧，点击![dot](/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Account_Groups_and_Roles/dot.png)图标，可展开本地身份源帐号组的配置选项，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Account_Groups_and_Roles/1.png" style={{width: "30%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+在本地身份源下的已建帐号组右侧，点击![dot](/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Account_Groups_and_Roles/dot.png)图标，可展开选中帐号组的配置选项，如下图所示：
+ 
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Account_Groups_and_Roles/2.png" style={{width: "30%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+### 新增帐号组
+
+点击“新增”，页面右侧弹出新增帐号组配置抽屉页，填入配置项点击“保存”按钮完成新增帐号组配置，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Account_Groups_and_Roles/3.png" style={{width: "50%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+**配置项**
+
+**名称：**帐号组名称，必填项，支持由中英文、数字、特殊符号@.-_的组合，最多100个字符。
+
+**隶属关系：**指定新建的帐号组隶属的父组，非必填项，默认以点击的图标所在的帐号组作为父组，可通过下拉选择指定的父组。
+
+**显示排序：**指定新建的帐号组在父组下所有同级别的帐号组里的排序位于第几位，必填项，有效输入值为1-99999的整数值，默认值为所有帐号组（包括父组和子组）的总数加1。
+
+**描述：**管理员自定义的帐号组描述，非必填项，最多200个字符。
+
+### 编辑帐号组
+
+本地身份源下所有帐号组都可编辑，点击帐号组右侧的![dot](/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Account_Groups_and_Roles/dot.png)图标，在配置选项里点击“编辑”，页面右侧弹出编辑帐号组抽屉页，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Account_Groups_and_Roles/4.png" style={{width: "50%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+修改帐号组配置项后，点击抽屉页右下方的“保存”按钮，即可保存帐号组的修改内容。
+
+### 删除帐号组
+
+点击帐号组右侧的图标，在配置选项里点击“删除”，即可删除对应的帐号组。
+
+如果被删除的帐号组中包含有帐号，则系统会提示您需要将帐号迁移至其他组，然后才可删除帐号组。
+
+### 导入帐号组
+
+点击“本地身份源”右侧的![dot](/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Account_Groups_and_Roles/dot.png)图标，在配置选项里点击“导入”，页面右侧弹出导入帐号组的抽屉页，如下图所示:
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Account_Groups_and_Roles/5.png" style={{width: "50%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+管理员可先下载xls格式的帐号组模板，在模板内录入要导入的帐号组信息，点击“点击上传”按钮选择编辑好的帐号组模板，或者直接将编辑好的帐号组模板拖拽至上传区域（图中虚线框）。
+
+点击抽屉页右下角的“确定”按钮，完成帐号组列表的上传，并在系统中添加导入的帐号组。
+
+帐号组的导入为增量导入，即导入时不会删除已有的帐号组，如果系统已存在名称相同的帐号组，则帐号组将根据导入模板内的信息进行修改，如果导入的帐号组在原有的组内不存在，则根据导入模板内的信息新建帐号组。
+
+### 导出帐号组
+
+点击“本地身份源”右侧的![dot](/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Account_Groups_and_Roles/dot.png)图标，在配置选项里点击“导出”，本地身份源的帐号组将以xls格式文件下载到本地。
+
+## 帐号角色
+
+角色为根据帐号的权限范围设置的特殊分组，角色可用于批量设置授权策略。
+
+TM 本地身份源的帐号角色只有一级，不设置多级角色。
+
+一个本地身份源的帐号只能分配一个角色。
+
+本地身份源的帐号角色新增、删除、编辑、查询，第三方身份源的帐号角色只可查询，不可新增、删除、编辑，主帐号无角色分类。
+
+### 帐号角色配置选项
+
+选择菜单【资源管理】->【帐号资源】打开帐号管理页面，默认显示【帐号管理】页面。页面左侧为帐号管理区。点击“帐号角色”切换按钮，显示帐号角色树。
+
+默认只显示“本地身份角色”，如果管理员配置了其他第三方身份源，则第三方身份源会显示在“本地身份角色”之下，如：“钉钉身份角色”、“企微身份角色”等。
+
+在“本地身份角色”右侧，点击![dot](/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Account_Groups_and_Roles/dot.png)图标，可展开帐号角色配置选项，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Account_Groups_and_Roles/6.png" style={{width: "30%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+在自定义角色右侧，点击 ![dot](/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Account_Groups_and_Roles/dot.png) 图标，可展开自定义角色配置选项，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Account_Groups_and_Roles/7.png" style={{width: "30%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+ 
+默认角色不可编辑和删除。
+
+### 新增帐号角色
+
+在“本地身份角色”右侧，点击![dot](/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Account_Groups_and_Roles/dot.png)图标，可展开帐号角色配置选项，点击“新增”选项，页面右侧弹出新增角色配置抽屉页，填入配置项点击“保存”完成新增帐号角色配置，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Account_Groups_and_Roles/8.png" style={{width: "50%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+**配置项**
+
+**名称：**帐号角色名称，必填项，支持由中英文、数字、特殊符号@.-_的组合，最多100个字符。
+
+**显示排序：**指定新建的角色在角色树里的排序位于第几位，必填项，有效输入值为1-999的整数值，默认值为角色总数的最后一位加一。
+
+**描述：**管理员自定义的帐号角色描述，非必填项，最多200个字符。
+
+### 编辑帐号角色
+
+在已建角色的右侧，点击![dot](/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Account_Groups_and_Roles/dot.png)图标，可展开帐号角色配置选项，选择“编辑”按钮，页面右侧弹出编辑帐号角色抽屉页，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Account_Groups_and_Roles/9.png" style={{width: "50%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+修改帐号角色配置项后，点击抽屉页右下方的“保存”按钮，即可保存帐号角色的修改内容。
+
+### 删除帐号角色
+
+点击帐号角色右侧的![dot](/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Account_Groups_and_Roles/dot.png)图标，在配置选项里点击“删除”，即可删除对应的帐号角色。
+
+删除帐号角色后，所有原来分配此角色的帐号都将改为“默认角色”。
+
+
+
+
+
+

@@ -1,0 +1,179 @@
+---
+
+sidebar_position: 3
+title: "TMG远程监控"
+---
+
+## TMG列表
+
+选择菜单【状态监控】->【云网监控】打开云网监控页面，页面下方为云网组件列表，点击【TM 网关】标签页，列表将显示您的 TM 安全云网中所有已激活的TMG，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMG_Remote_Monitoring/1.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+列表中展示您的 TM 安全云网内所有TMG的状态，包括：管理状态、在线状态和服务状态。
+
+**管理状态：**指管理员在日常运维过程中强制启停TMG后的状态，包括：正常和停用。
+
+**在线状态：**指TMG与 TM 云服务以及TMC的网络连通状态，包括：在线和离线。如果您的TMG处于离线状态，则意味着TMG无法正常代理企业内网业务资源，您需要尽快查明离线原因，让TMG恢复到在线状态。
+
+**服务状态：**指TMG的关键服务是否正常，如TMG的某个服务出现异常，这里将显示异常状态。
+
+**启用/停用：**在列表中勾选需要启用或者停用的TMG，然后点击列表功能区的“启用”或“停用”按钮，可直接启用或停用TMG。当TMG被停用后，其管理状态将变更为“停用”。
+
+**注销：**在列表操作列点击“注销”按钮，可注销当前TMG。注销意味着TMG的授权证书将从“激活”状态变为“未激活”状态，TMG将从 TM 安全云网中退出，所有相关配置和数据都将删除，且不可恢复，因此在执行此操作前TMC会提示您再次确认。
+
+在注销TMG后，您可以在其他服务器或虚拟机上重新部署TMG，并更新证书进行激活。注销操作通常用于在新的物理位置重新部署TMG。注销后重新部署，新部署的TMG将会使用注销的TMG的授权，不会额外占用TMG的授权。
+
+### TMG代理资源
+
+TMG列表中的代理资源列显示当前TMG已经代理的业务资源数量，点击数字可弹出代理资源列表的抽屉页，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMG_Remote_Monitoring/2.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+### TMG组件状态
+
+点击TMG列表操作列的“组件状态”按钮，可以打开对应TMG的状态监控抽屉页查看TMG的各项状态指标，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMG_Remote_Monitoring/3.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+**系统信息：**显示TMG的基本信息，如：组件名称、序列号、在云网中的管理IP地址等。
+
+**服务器状态：**显示部署TMG的服务器的负载，如：CPU利用率、内存利用率和存储空间利用率。
+
+**服务状态：**显示TMG的关键服务状态，如果服务出现异常，您可以在这里手动重启服务。
+
+**实时速率：**显示TMG近24小时的流量转发速率。
+
+### TMG远程管理
+
+点击TMG列表操作列的“远程管理”按钮，可以打开对应TMG的远程管理抽屉页，您可以在这里对TMG的配置进行修改，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMG_Remote_Monitoring/4.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+#### 基础信息
+
+1. 系统信息
+
+  在系统信息配置里，点击“修改名称”按钮，您可以修改TMG的组件名称，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMG_Remote_Monitoring/5.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+2. 时间设置
+
+  TM 安全云网可以跨越整个互联网在全球范围进行部署，通常TMG都会分布在不同物理位置，部署在业务资源所在地，但在管理上 TM 通过TMC、TMI进行集中统一的管理和分析。因此同步时间对于策略精准执行、行为精准研判都至关重要。
+
+  您可以在“时间设置”配置区域设置TMG的时间同步策略，包括设置时区、时间同步服务器地址，时间同步周期，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMG_Remote_Monitoring/6.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+
+  **时区：**填写 TM 安全云网的TMC所在位置的时区，所有 TM 组件的时间与TMC保持一致。
+
+  **NTP服务地址：**填写网络时间同步服务器（NTP）的IP地址或域名。
+
+  **同步周期：**填写自动同步周期，同步周期范围为：1-720小时。
+
+3. 网络测试
+
+  TMG的关键功能是将企业内部业务资源代理到 TM 安全云网，或通过路由转发模式将业务访问流量转发到企业内部的业务资源。因此，TMG需要保持在物理网络上能访问所有需要代理的或转发流量的业务资源，以及从内向外访问互联网。网络测试功能多用于在部署TMG后验证物理网络的连通性。
+
+  a. ping测试
+
+  在“命令”下拉框选项中选择“ping”命令，输入目标IP地址，点击“执行”按钮即可通过ping命令测试网络连通性，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMG_Remote_Monitoring/7.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  b. trace测试
+
+  在“命令”下拉框选项中选择“trace”命令，输入目标IP地址，点击“执行”按钮即可通过trace命令测试网络连通性，如下图所示：
+ 
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMG_Remote_Monitoring/8.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  c. ifconfig测试
+
+  在“命令”下拉框选项中选择“ifconfig”命令，选择网络接口，点击“执行”按钮即可通过ifconfig命令测试查看网络接口配置，如下图所示，：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMG_Remote_Monitoring/9.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  d. tcping测试
+
+  在“命令”下拉框选项中选择“tcping”命令，填写目标IP地址和端口号，点击“执行”按钮即可通过tcping命令测试查看对端网络连通性和端口服务开放状态，如下图所示，：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMG_Remote_Monitoring/10.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+4. 系统维护
+
+  在系统维护功能里，您可以手动重启TMG，或将TMG恢复到出厂设置。
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMG_Remote_Monitoring/11.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+ 
+  恢复出厂设置将删除所有TMG相关的配置，但仍然保留TMG授权证书信息，您可以再恢复出厂配置后重新再对TMG进行配置。
+
+  注意：如果TMG正在代理业务资源，当TMG重启时，或者恢复出厂设置后，终端用户将无法通过此TMG访问所有的被代理业务资源。因此，在进行此项操作前，请您确认重启和恢复出厂设置操作不会对您的业务造成影响。
+
+#### 网络配置
+
+点击“网络配置”标签页，切换到网络配置页面，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMG_Remote_Monitoring/12.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+1. 接口信息
+
+  在接口信息区，您可以查看部署TMG的服务器或虚拟机的网络接口配置。如果“业务接口”列显示“是”则代表此接口为虚拟网接口。
+
+2. 路由配置
+
+  在路由配置区，您可以查看当前部署TMG的服务器或虚拟机的网络路由配置，您也可以点击“添加”按钮，手动添加系统路由，如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMG_Remote_Monitoring/13.png" style={{width: "50%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  注意：只有手动添加的路由可以删除，系统默认路由不可删除。
+
+3. 网络出口
+
+  在TMG部署的时候，您需要在出口防火墙上配置DNAT将TMG物理IP地址的UDP9527端口映射到业务资源所在网络的出口公网IP的一个固定UDP端口上。
+
+  您需要在此处填写DNAT配置里的出口公网IP地址和固定的UDP端口。TMG外网出口信息将同步到 TM 云服务，以保证终端用户能快速的寻找到业务资源所在物理网络位置。
+
+  配置方式如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMG_Remote_Monitoring/14.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+  
+4. 源IP地址转换
+  
+  默认情况下，当TMG在转发终端用户访问业务资源的流量后，在物理网络中源IP地址将转换为TMG的IP地址，从业务资源侧看到的访问源都将是TMG的IP地址。
+  
+  关闭源地址转换后，TMG会将所有转发后的网络数据包的源IP地址转换为虚拟IP地址，从业务资源侧看到的访问源都将是终端用户的虚拟IP地址。通过这种方式，业务资源上产生的各类网络访问日志，以及部署在TMG和业务资源之间的其他网络安全设备上都能看到具体的远程终端IP地址，从而可以定位到人和终端。
+  
+  需要注意的是：关闭源IP地址转换后，在业务服务器上需要增加路由策略（回指路由），将服务器默认网关指向TMG的内网IP地址。
+  
+  配置方式如下，关闭“开启源地址转换”开关即可：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMG_Remote_Monitoring/15.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+5. 流量采集（TMPro功能）
+
+  TMG可以采集终端用户访问业务资源的网络流量日志，TMI接收并存储云网内所有TMG发过来的身份化的网络流量日志，以身份为中心进行行为可信分析。
+
+  在流量采集配置区，您可以选择开启哪些协议的流量日志采集，配置的方法如下图所示：
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMG_Remote_Monitoring/16.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+6. 应用日志采集（TMPro功能）
+
+  TMG内置Web应用代理（HTTP/HTTPS）和SSH代理功能，您可以通过应用代理服务采集业务访问日志。
+
+  HTTPS和SSH通过加密方式传输，通过网络流量直接采集无法识别加密后的内容，但使用应用代理采集可以采集解密后的内容，例如：HTTPS协议里的URL字段、Cookie字段等，或SSH协议里的指令字段和回显字段，这些字段对于后续的行为分析十分重要。
+
+  开启应用日志采集的操作如下图所示，勾选需要采集的协议，点击“保存”即可：
+
+ <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMG_Remote_Monitoring/17.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+
+
+
+
+
+
+
+

@@ -1,72 +1,184 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mintlify Starter Kit",
+  "name": "TeloMatrix 文档",
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
     "dark": "#15803D"
   },
   "favicon": "/favicon.svg",
+  "head": [
+    {
+      "tag": "link",
+      "attributes": {
+        "rel": "stylesheet",
+        "href": "/styles.css"
+      }
+    },
+    {
+      "tag": "script",
+      "attributes": {
+        "src": "/custom.js"
+      }
+    }
+  ],
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg",
+    "href": "https://www.telomatrix.com"
+  },
   "navigation": {
     "pages": [
       {
-        "group": "Getting Started",
+        "group": "TM文档",
         "pages": [
-          "index",
-          "quickstart"
+          {
+            "group": "了解 TM",
+            "pages": [
+              "docs/1_About_TM/1_About_TM/TM_Design_Philosophy",
+              "docs/1_About_TM/1_About_TM/TM_Product_Architecture",
+              "docs/1_About_TM/1_About_TM/TM_Version_Differences",
+              "docs/1_About_TM/1_About_TM/TM_and_Zero_Trust",
+              "docs/1_About_TM/1_About_TM/TM_and_VPN",
+              "docs/1_About_TM/1_About_TM/TM_and_SDP",
+              "docs/1_About_TM/1_About_TM/TM_and_SASE",
+              "docs/1_About_TM/1_About_TM/TM_and_CSMA"
+            ]
+          },
+          {
+            "group": "客户案例",
+            "pages": [
+              "docs/1_About_TM/Customer_Cases/Convenient_Trusted_Remote_Office_Access",
+              "docs/1_About_TM/Customer_Cases/Quickly_Build_Zero_Trust_Security_Network",
+              "docs/1_About_TM/Customer_Cases/Distributed_Complex_Network_Unified_Management"
+            ]
+          }
+        ]
+      },
+      {
+        "group": "TM-Lite 2.0.9.x 配置指南",
+        "pages": [
+          {
+            "group": "快速开始",
+            "pages": [
+              "docs/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Installation_Deployment_Process",
+              "docs/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Quick_Deployment_Example",
+              "docs/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Register_TM_Enterprise_Account",
+              "docs/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Deploy_TM_Components",
+              "docs/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Install_TM_Client",
+              "docs/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/TM_Enterprise_Deployment_Example"
+            ]
+          },
+          {
+            "group": "灵活使用",
+            "pages": [
+              {
+                "group": "安装部署",
+                "pages": [
+                  "docs/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/1_Installation_Deployment/Server_Configuration_Recommendations",
+                  "docs/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/1_Installation_Deployment/Physical_Network_Access_Permission_Requirements",
+                  "docs/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/1_Installation_Deployment/Business_Resource_Publishing_Method",
+                  "docs/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/1_Installation_Deployment/Cloud_Network_Domain_Resolution_Solution",
+                  "docs/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/1_Installation_Deployment/How_to_Deploy_TM_on_Public_Cloud"
+                ]
+              },
+              {
+                "group": "资源管理",
+                "pages": [
+                  {
+                    "group": "帐号资源管理",
+                    "pages": [
+                      "docs/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/TM_Account_Classification",
+                      "docs/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Account_Groups_and_Roles",
+                      "docs/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Local_Account_Management",
+                      "docs/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_AD_or_LDAP_Identity_Source",
+                      "docs/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_DingTalk_Identity_Source",
+                      "docs/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_WeCom_Identity_Source",
+                      "docs/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_Feishu_Identity_Source",
+                      "docs/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_CA_Identity_Source",
+                      "docs/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Create_Master_Account"
+                    ]
+                  },
+                  {
+                    "group": "终端资源管理",
+                    "pages": [
+                      "docs/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/2_Endpoint_Resource_Management/Endpoint_Management"
+                    ]
+                  },
+                  {
+                    "group": "业务资源管理",
+                    "pages": [
+                      "docs/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Publish_Host_Resource",
+                      "docs/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Publish_Web_Application_Resource",
+                      "docs/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Page_Redirect_or_Embedding",
+                      "docs/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Publish_Cloud_Network_Route_Resource",
+                      "docs/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Publish_DNS_Resource",
+                      "docs/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Certificate_Resource_Management"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "策略管理",
+                "pages": [
+                  "docs/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authentication_Policy_Configuration",
+                  "docs/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authorization_Policy_Configuration",
+                  "docs/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authorization_Policy_Factors",
+                  "docs/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Access_Control_Policy"
+                ]
+              },
+              {
+                "group": "日常运维",
+                "pages": [
+                  "docs/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/Online_Resource_Monitoring",
+                  "docs/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TM_Component_Management",
+                  "docs/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMG_Remote_Monitoring",
+                  "docs/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TME_Remote_Monitoring",
+                  "docs/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMD_Remote_Monitoring",
+                  "docs/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMC_and_TMI_Remote_Monitoring",
+                  "docs/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/Message_Center",
+                  "docs/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMC_Log_Management",
+                  "docs/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/System_Interface_Configuration",
+                  "docs/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/System_Account_Management",
+                  "docs/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMA_Grayscale_Upgrade",
+                  "docs/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TM_Component_Upgrade",
+                  "docs/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/Modify_Cloud_Network_Address_Pool"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "最佳实践",
+            "pages": [
+              {
+                "group": "故障排查",
+                "pages": [
+                  "docs/2_Configuration_Guide_TM-Lite2.0.9.x/3_Best_Practices/1_Troubleshooting/TMA_Common_Troubleshooting",
+                  "docs/2_Configuration_Guide_TM-Lite2.0.9.x/3_Best_Practices/1_Troubleshooting/System_Configuration_Abnormal_Diagnosis"
+                ]
+              }
+            ]
+          }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
-  },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    ]
   },
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "label": "技术支持",
+        "href": "mailto:support@telomatrix.com"
       }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Dashboard",
-      "href": "https://app.mintlify.com"
-    }
-  },
-  "contextual": {
-    "options": [
-      "copy",
-      "view",
-      "chatgpt",
-      "claude",
-      "perplexity",
-      "mcp",
-      "cursor",
-      "vscode"
     ]
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "x": "https://x.com/telomatrix",
+      "github": "https://github.com/K-P-Chen/TeloMatrix-Docs"
     }
+  },
+  "search": {
+    "prompt": "搜索文档..."
   }
 }

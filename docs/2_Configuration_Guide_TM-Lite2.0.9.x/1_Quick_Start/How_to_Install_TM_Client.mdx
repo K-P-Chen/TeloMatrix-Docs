@@ -1,0 +1,275 @@
+---
+
+sidebar_position: 5
+title: "如何安装 TM 客户端"
+---
+
+TM 客户端（TM-Application，以下简称TMA）是 TM 安全云网的客户端程序，用于将员工的终端安全地接入到企业的 TM 安全云网，让企业员工在任何地方都能便捷地访问部署在任意位置的业务系统，给企业员工带来轻松协同、可信互联的办公体验，提升员工的日常办公效率。
+
+TM 客户端支持支持Windows、macOS、Android、iOS等多种操作系统类型，本文介绍如何获取、安装和使用不同版本的TMA程序。
+
+## 如何获得
+
+当您的企业已经部署了 TM 安全云网，您可以通过以下方式获得TMA的安装程序：
+
+- 您的管理员通过帐号初始化邮件将TMA安装程序的下载链接以及您的帐号和初始化密码发送给您，您可以参照邮件上的指引下载TMA安装程序；
+
+- 咨询您的IT管理员或网络管理员，他/她会为您提供TMA最新的Windows和macOS版本的TMA安装程序；
+
+- 您可以在Apple App Store搜索“TM”获得iOS版本的TMA，或者在华为、小米、腾讯、360的应用商店搜索“TM”获得Android版本的TMA。
+
+## 如何安装
+
+### Windows版本安装
+
+双击下载好的安装程序（Windows版本的安装程序为.exe文件格式），打开安装界面，勾选同意“用户隐私协议”后，选择安装路径，然后点击【安装】按钮，程序将自动完成安装。
+
+> 特别注意：如您安装了防病毒或者电脑管家等软件，安装过程中可能会提示安装风险，您需要勾选所有风险项为允许后才能正确完成安装。之所以出现风险提示，是因为 TM 客户端在安装过程中存在修改系统注册表、安装网络驱动等系统级操作，并非给操作系统造成破坏，请放心使用。
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Install_TM_Client/1.png" style={{width: "50%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+ 
+安装完成后，勾选“运行 TM”，点击【完成】按钮，即可启动 TM 客户端。
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Install_TM_Client/2.png" style={{width: "50%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+ 
+
+### macOS版本安装
+
+双击下载好的安装程序（Mac版本的安装程序为.pkg文件格式），打开安装界面，点击【继续】按钮，出现“用户隐私协议”界面，您需要点击【同意】，确认同意“用户隐私协议”，然后点击【安装】按钮开始安装TMA。
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Install_TM_Client/3.png" style={{width: "50%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+macOS系统会弹出提示“‘安装器’正在尝试安装新的程序”，需要您输入macOS操作系统的管理员帐号和密码进行授权，安装程序将自动完成后续安装过程。
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Install_TM_Client/4.png" style={{width: "50%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+> 特别注意：您需要在Mac系统的【系统偏好设置】-【安全性与隐私】配置页里的“允许从以下位置下载的App：”配置项，选中“App Store和被认可的开发者”。
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Install_TM_Client/5.png" style={{width: "50%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+
+## 首次使用
+
+首次使用TMA的时候需要对终端环境进行初始化，大致流程如下：
+
+1. **打开TMA程序，导入企业证书**
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Install_TM_Client/6.png" style={{width: "50%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+ 
+  TM 为每一个企业分配了独立的证书，里面包含接入企业独有的 TM 安全云网所需的所有配置以及秘钥，您在终端上首次安装并使用TMA时需要导入您的企业证书。
+
+  企业证书包含在您的帐号初始化通知邮件里，您可以直接拖拽证书文件到图中证书上传区域，然后点击【导入证书】即可。
+
+ > 如果您的企业使用定制版TMA，我们会将证书植入到安装程序里，您在首次使用时就不用再导入证书了。
+
+2. **修改初始化密码**
+
+  您的帐号初始化邮件里包含您的帐号和初始密码，输入您的帐号和初始化密码点击【登录】，即可完成帐号认证和授权，并进入TMA主页面。
+
+  注意：默认情况下 TM 不强制终端用户在首次登陆时修改初始密码。但由于初始化密码是以明文方式发送到您的邮箱，因此我们建议您设置认证策略，强制终端用户在首次登陆时修改默认密码，这样能有效的防止初始密码泄露风险。
+
+  如果使用首次登陆强制修改初始密码策略，这时TMA会提示您首次登录需要修改初始密码。
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Install_TM_Client/7.png" style={{width: "50%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+ 
+  填入新密码，点击【确定】，提交新的密码，并返回登陆页面，您需要输入新的密码再次登陆。
+
+3. **注册终端**
+  
+  当您的管理员设定策略要求新安装终端必须经过审批才可使用时，TMA会要求您首次登录时对您的终端进行注册，您可以设置终端名称，终端用途和终端申请备注，管理员在收到申请后进行审批。
+
+  如果您的管理员没有要求新终端必须注册和审批，则这一步骤将不会出现。
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Install_TM_Client/8.png" style={{width: "50%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  > 终端用途包含“办公终端”、“个人终端”、“公共终端”、“临时终端”，设置不同终端用途的目的是方便为不同用途的终端采用不同的授权策略。
+  > 
+  > 当一般用户首次安装TMA时，可以将终端注册为“办公终端”或“个人终端”，当其他人使用已注册终端时，只能注册为“临时终端”，管理员可以将终端注册为“公共终端”。
+  > 
+  终端审批通过后，您将收到终端已审批的邮件通知，这时您就可以正常登陆了。
+
+## 操作说明
+
+### 登录方式
+
+TMA支持多种认证登录方式，包括：帐号密码登陆、扫码登陆（钉钉、企微、飞书、移动端TMA）、CA证书登陆等，当您的管理员配置了相应的登录方式后，您可以在登陆框下方选择不同的方式进行登录。
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Install_TM_Client/9.png" style={{width: "30%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+
+### 找回密码
+
+如果您使用帐号密码登录方式，当忘记密码时点击“忘记密码”，可自主找回密码。
+
+TMA提供两种找回密码的方式：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Install_TM_Client/10.png" style={{width: "30%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+- **手机验证**
+
+  您可以输入您的帐号，点击【获取验证码】按钮，这时您的手机将收到验证码短信。填入正确的验证码后，点击【重置密码】，新的初始化密码将发送到您的邮箱，您可以用新的初始密码进行登录。
+
+- **邮箱验证**
+
+  您可以输入您的帐号，点击【获取验证码】按钮，这时您的邮箱将收到验证码邮件。填入正确的验证码后，点击【重置密码】，新的初始化密码将发送到您的邮箱，您可以用新的初始密码进行登录。
+ 
+### 更新证书
+
+当 TM 安全云网的基础网络环境发生变化时（例如：重新部署 TM 或进行大版本升级时），可能需要您更新客户端授权证书。
+
+您可以点击TMA登录界面左下角“更新授权”连接，导入帐号初始化邮件附件中的授权证书，即可完成更新。
+
+### 登录过程
+
+在登录页点击【登录】按钮，TMA开始登录 TM 安全云网。
+
+登录过程中TMA会对帐号和终端进行认证，对终端环境进行合规检查（TMPro功能），并同步云网策略，配置云网地址，获取当前帐号终端的访问权限并加入云网。
+
+正常的登录过程大概需要耗时10-20秒左右，如果您的网络环境不佳，或者加载检测策略较多，登录时间会稍长，但正常情况下不会超过60秒。
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Install_TM_Client/11.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+登陆成功后，TMA自动进入首页。
+
+### 业务访问
+
+TMA首页如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Install_TM_Client/12.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+
+在TMA首页，您可以直观的看到您有权访问的所有业务资源。
+
+#### 资源组与业务资源
+
+您的授权业务资源将以资源组的方式显示，点击不同的资源组图标可以查看所选资源组下的所有业务资源。
+
+您可以切换以列表方式显示或者以图标方式显示，如果业务资源较多，您可以通过搜索功能快速定位您需要访问的业务。
+
+鼠标点击业务资源图标您就可以直接访问业务资源。（仅限Web类业务资源和SSH类业务资源）
+
+如果是Web类型的业务资源，TMA会唤起本地默认浏览器并打开业务资源页面。
+
+如果是主机类业务资源，TMA会唤起本地SSH客户端软件，并自动登录业务资源。
+
+其他类型的业务资源，您可以使用终端上的客户端软件进行访问。
+
+> 如果管理员设置了限制策略，要求某些Web业务资源必须用安全浏览器打开，则当您点击这些业务资源时，TMA会唤起自带的安全浏览器打开业务资源页面。（安全浏览器为 TMPro版本功能）
+>
+>安全浏览器增强了安全性，屏蔽了地址栏，鼠标右键的全部或部分功能，并且在页面上打上了水印。（具体限制项取决于管理员设置的策略）
+
+#### 业务资源设置
+
+在每一个业务资源图标上可以点击![点点点按钮](/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Install_TM_Client/13.png)进行业务资源的自定义设置。
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Install_TM_Client/14.png" style={{width: "20%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+##### 查看详情
+
+点击查看详情，可以查看业务资源的详细信息。
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Install_TM_Client/15.png" style={{width: "30%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+ 
+如果是主机类资源，您可以配置点击时唤起本地哪个客户端软件进行访问。
+
+以Scure CRT为例，您可以设置客户端程序路径，访问此业务资源的用户名和密码。
+
+设置好后，当您点击业务资源图标时，TMA将唤起客户端，并通过帐密代填方式登录到业务资源。
+
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Install_TM_Client/16.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+ 
+
+##### 收藏资源
+
+
+如果您的业务资源比较多，您可以将常用的的业务资源放到收藏夹，方便您快速定位。
+
+在业务资源图标上点击然后点击【收藏资源】即可。
+
+### 系统设置
+
+点击左侧菜单栏中的【系统设置】即可进行TMA的系统设置界面。
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Install_TM_Client/17.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+主要的设置项如下：
+
+1). 个人终端锁定：启用后，此终端将不接受除您以外任何其他帐号登陆。
+
+2). 是否开机自启：启用后，每次系统开机都将自动启动TMA。
+
+3). 语言：选择TMA界面语言，切换语言后需要重启TMA加载。
+
+4). 主题颜色：选择浅色或深色背景，或者跟随系统主题颜色。
+
+4). 日志上报：如果您的TMA在使用时出现了无法处理的异常，您可以点击【日志上报】按钮，将TMA的后台日志上报给您的管理员，由管理员帮您远程分析。
+
+### 个人中心
+
+您可以在TMA上对您的帐号进行设置。点击TMA左上角的头像图标，打开如下界面：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Install_TM_Client/18.png" style={{width: "30%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} /> 
+
+1). 更换头像：点击头像，即可上传本地图片作为您的帐号头像。
+
+2). 个人中心：点击显示帐号信息和终端信息，如下如所示
+  
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Install_TM_Client/19.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+ 
+  点击【帐号信息】显示您的帐号详情，您可以在这里修改您的个人信息，如：帐号密码、绑定手机、绑定邮箱（仅限用 TM 帐号密码登陆场景，如果使用第三方认证源登录，如：钉钉、AD等，则无法修改）。
+
+  点击【终端信息】显示您的终端详情，您可以在这里修改您的终端名称。
+
+3). 安全退出：登出TMA，并且删除所有加密的临时文件。
+
+4). 退出登录：登出TMA，但会保留加密的临时文件，如：帐号密码、收藏资源等。
+
+## 故障诊断
+
+### 环境检测
+
+TMA运行时需要您的终端能正常访问互联网，并且没有正在使用类似VPN、Web代理等软件。
+
+当您的TMA无法登录或者在使用过程中出现网络问题时，可使用客户端内置的“环境检测”功能检查当前终端环境，并进行一键修复。
+
+在登录界面右上方点击【环境检测】或登录后点击菜单【环境检测】，即可打开终端环境检测界面。
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Install_TM_Client/20.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+ 
+点击【一键检测】TMA开始对终端环境进行检测，数秒后显示检测结果。
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Install_TM_Client/21.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+ 
+如发现问题项，您可以点击【一键修复】对终端环境进行修复。如果修复失败，您可以点击上方的“发送检测结果”将检测结果发送至您的管理员，由管理员帮您分析处理。
+
+### 网络延迟检测
+
+如果您在使用TMA访问业务时感觉网络连接体验不佳，您可以查看当前网络状态，判断您网络的连通性是否出现了问题。
+
+点击TMA主页面右上角的![通用设置](/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Install_TM_Client/22.png)图标，显示当前您的终端与 TM 云服务和 TM 网关当前的网络延时，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Install_TM_Client/23.png" style={{width: "30%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+ 
+如果出现云服务节点时延过大，则可能是您所在物理网络状态不佳，建议更换互联网连接方式后再尝试。如果云服务节点质量为优，但 TM 网关延迟过大，则说明您当前网络到企业部署的网关之间的链路质量不佳。建议您将现象告知管理员，由管理员帮助您解决。
+
+### 重置网络
+
+当您在使用TMA的过程中，终端的物理网络环境发生了变化，或者在不退出TMA的情况下，终端经过长时间休眠再被唤醒时，网络访问可能出现异常。这时需要您退出TMA重新登录，或者重置网络。
+
+点击TMA主界面左上角的![重置网络按钮](/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Install_TM_Client/24.png)图标，TMA将重置网络。大部分的网络访问异常现象，在重置网络后都将得到解决。
+
+### 临时退出网络
+
+当您需要临时退出 TM 安全云网，但不退出已认证登录状态时，您可以点击TMA界面左下角的连接开关临时退出 TM 安全云网。当您需要再次登入 TM 安全云网时，重新打开连接开关即可，无需再次认证登录。
+
+### 版本升级
+
+TMA自动进行版本升级，也可以手动检查是否存在新的版本。
+
+在TMA界面，打开【系统设置】->【关于】，点击“检查更新”按钮，即可查看是否存在更新版本。如下图所示：
+
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/1_Quick_Start/How_to_Install_TM_Client/25.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+

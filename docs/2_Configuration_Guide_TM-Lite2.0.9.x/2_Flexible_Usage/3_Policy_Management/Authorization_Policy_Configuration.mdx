@@ -1,0 +1,94 @@
+---
+
+sidebar_position: 2
+title: "授权策略配置"
+---
+## 功能说明
+
+TM 安全云网是完全身份化的网络，配置授权策略非常简单，您无需考虑终端、业务资源所在的物理位置或IP地址，只需要配置什么人能用什么终端访问什么业务即可。
+
+选择菜单【策略管理】->【授权策略】打开授权策略管理页面，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authorization_Policy_Configuration/1.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+在授权策略管理页面可以查看当前所有授权策略，点击“新增”按钮，打开新增授权策略页面，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authorization_Policy_Configuration/2.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+具体的配置分为以下5个步骤：
+
+## 第一步：配置基本信息
+
+首先填写授权策略基本信息，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authorization_Policy_Configuration/3.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+**策略名称：**为授权策略命名，以便管理。必填项，不超过100个字符，只能由中英文、数字和英文点组合。
+
+**永久生效：**策略是否永久生效，默认开启。如果关闭，则需要填写生效时间段。
+
+**备注：**策略备注说明，非必填项，限制最多200字符。
+
+## 第二步：选择访问帐号
+
+在 TM 安全云网中，访问源由帐号和终端组成，因此在每一条授权策略中都需要声明授权策略对哪些帐号和什么样的终端生效，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authorization_Policy_Configuration/4.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+**筛选条件：**根据帐号分类方式进行帐号筛选，勾选帐号或帐号组名称即被选中。帐号分类方式包括：主帐号组、帐号组、帐号角色、主帐号、帐号。关于各种帐号分类的详细说明，请参考：[TM 帐号分类](../Resource_Management/Account_Resource_Management/TM_Account_Classification)。
+
+**自动勾选子组：**当使用分组的方式对帐号进行分类时，您有两种勾选分组的方法：如果勾选“自动勾选子组”，意味着当您勾选一个父组时，所有子组都将被选中；如果不勾选“自动勾选子组”，意味着当您勾选一个父组时，只会勾选父组根目录下的所有帐号，子组下的帐号不会被选中。
+
+**已筛选条件：**当选择好帐号分类方式后，勾选区域将显示此分类下的所有可勾选项，您可以在此区域勾选需要应用此授权策略的帐号。当勾选后，右侧的已筛选条件将显示已选中的帐号，帐号选择支持多种条件混合筛选。
+
+## 第三步：选择使用终端
+
+选择好帐号后，您需要继续勾选哪些终端需要应用此授权策略，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authorization_Policy_Configuration/5.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+勾选终端的方式与勾选帐号一致。终端的分类方式包括：终端组、终端用途、终端类型、终端，其中终端用途的含义，请参考：[终端用途](../Resource_Management/Endpoint_Resource_Management/Endpoint_Management#终端用途)。
+
+## 第四步：选择目标业务
+
+当选择好帐号和终端，则意味着授权策略里的访问源已经确定，接下来您需要确定这些访问源都可以访问哪些业务资源。配置界面如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authorization_Policy_Configuration/6.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+勾选业务资源的方式与勾选帐号一致。业务资源的分类方式包括：业务资源组、业务资源、业务资源服务。
+
+一个业务资源组由多个业务资源组成，一个业务资源由多个业务资源服务组成，其中一个业务资源可以隶属于多个不同的业务资源组。
+
+当您选择了帐号、终端与业务资源，授权策略的必要信息就已经完整了，您可以点击“保存”完成授权策略的创建。
+
+如果您需要再进一步对应用层进行一些更细粒度的限制，您可以继续配置应用层控制策略。
+
+## 第五步：选择应用层控制
+
+当前版本的 TMLite支持URI黑名单和SSH指令黑名单两种应用层访问控制方法，可分别对基于HTTP/HTTPS协议的Web应用和基于SSH的主机资源执行应用层访问控制，限制指定帐号和终端访问指定的Web应用URI，或限制指定帐号和终端通过SSH协议访问主机资源后执行的指令。
+
+URI黑名单的配置界面如下图所示，点击URI黑名单开关，即可开启URI黑名单过滤功能：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authorization_Policy_Configuration/7.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+下方的资源列表中将显示所有在第四步中已选择的Web应用资源，在操作列点击“选择URI集”可以为对应的Web应用资源添加预定义好的URI集合作为URI黑名单，一个Web业务资源可以同时应用多个URI集作为黑名单。
+
+配置方式如下图所示，您只需勾选需要应用的URI集，点击“确定”按钮即可。
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authorization_Policy_Configuration/8.png" style={{width: "40%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+SSH指令黑名单的配置界面如下图所示，点击指令黑名单开关，即可开SSH指令黑名单过滤功能：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authorization_Policy_Configuration/9.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+下方的资源列表中将显示所有在第四步中已选择的SSH主机资源，在操作列点击“选择指令集”可以为对应的SSH主机资源添加预定义好的SSH指令集合作为SSH指令黑名单，一个SSH主机资源可以同时应用多个指令集作为黑名单。
+
+配置方式如下图所示，您只需勾选需要应用的SSH指令集，点击“确定”按钮即可。
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authorization_Policy_Configuration/10.png" style={{width: "40%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+URI列表与指令集的编辑方法请参考[授权策略因子](../Policy_Management/Authorization_Policy_Factors)。
+
+
+
+

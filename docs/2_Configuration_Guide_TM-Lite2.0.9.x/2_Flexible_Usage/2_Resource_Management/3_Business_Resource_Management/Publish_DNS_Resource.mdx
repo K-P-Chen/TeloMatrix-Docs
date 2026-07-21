@@ -1,0 +1,30 @@
+---
+
+sidebar_position: 5
+title: "发布DNS资源"
+---
+DNS资源被设定为 TM 安全云网中的特殊资源，用于给终端配置系统DNS参数。
+
+如果您需要让用户终端在接入 TM 安全云网后使用您指定的DNS服务器进行域名解析，则可以在这里定义一个DNS服务资源，然后将此资源授权给您希望指定DNS的帐号终端。
+
+DNS资源在多种DNS解析方式中优先级最高，当您给某个帐号终端授权了DNS资源以后，此帐号终端会根据您指定的DNS服务器进行域名解析，其他解析方式将失效。
+
+选择菜单【资源管理】->【业务资源】打开业务资源管理页面，点击“新增”按钮，打开新增业务资源配置页面，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Publish_DNS_Resource/1.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+填入业务资源基本信息，在“资源类别”配置项选择“DNS资源”。
+
+
+TM 支持将公网DNS或内网DNS作为业务资源发布到 TM 安全云网：
+
+- 如果您的企业将企业DNS部署在公网，您只需选择“DNS类型”为“公网DNS”，在“DNS地址”填入您的公网DNS的IP地址即可。
+
+- 如果您的企业将企业DNS部署在内网，您需要选择“DNS类型”为“内网DNS”，在“DNS地址”填入您的内网DNS的IP地址之后，您还需要选择使用哪个TMG代理内网DNS。
+
+关于内网DNS与公网DNS的使用方法，请参考：[云网域名解析方案](../../../Flexible_Usage/Installation_Deployment/Cloud_Network_Domain_Resolution_Solution)
+
+
+
+
+

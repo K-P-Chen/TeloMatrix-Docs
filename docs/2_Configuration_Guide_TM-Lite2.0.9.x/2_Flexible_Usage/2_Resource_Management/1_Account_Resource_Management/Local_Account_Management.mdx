@@ -1,0 +1,235 @@
+---
+
+sidebar_position: 3
+title: "本地帐号管理"
+---
+
+## 新增本地帐号
+
+除了本地帐号以外，其他帐号都是从第三方身份源同步获得，因此只有本地身份源的帐号可以由管理员在TMC上手动创建、编辑和删除。
+
+## 操作方法
+
+1. 选择菜单【资源管理】->【帐号资源】打开帐号管理页面，默认显示【帐号管理】页面，页面右侧为帐号管理区。
+
+2. 点击![新增](/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Local_Account_Management/1.png)按钮，显示新增帐号配置的抽屉页，填入新增帐号配置项点击“保持”完成新增帐号组配置，即可新增本地身份源帐号，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Local_Account_Management/2.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+**配置项**
+
+**帐号：**指帐号名称，终端用户登陆时用于验证唯一身份的标识信息，必填项。
+
+  在同一个身份源里，帐号名称是唯一的，如新增时输入了已存在的帐号名称，TMC会提示帐号名称已存在，添加新帐号失败。
+
+  帐号名称命名要求不超过100个字符，只能是中英文、数字、特殊符号@.-_的组合。
+
+**认证方式：**指帐号通过哪个认证源进行认证，本地帐号只能由TMC进行身份认证，因此新建本地帐号时认证方式只能是“本地认证”，不可修改。
+
+**帐号归属：**指帐号属于哪个身份源，本地帐号的帐号归属为TMC，不可修改。
+
+**用户姓名：**指终端用户的个人姓名，用于日常运维时快速定位到人，也用于做为关联要素生成主帐号，必填项，可以重复。
+
+用户姓名不超过100个字符，只能是中英文、数字、特殊符号@.-_的组合。
+
+**手机号：**指终端用户的个人手机号码，此号码将用于终端用户的密码找回、个人信息修改、通过短信进行多因素认证、主帐号关联等操作，必填项，可以重复。
+
+**请务必输入真实有效的终端用户手机号码，填写错误的号码将影响一些功能的正常使用。**
+
+**电子邮箱：**指终端用户的企业邮箱地址，此邮箱地址将用于为终端用户发送帐号初始化邮件、终端注册提示、用户的密码找回、个人信息修改、主帐号关联等操作，必填项，可以重复。
+
+**请务必输入真实有效的邮箱地址，填写错误的地址将影响一些功能的正常使用。**
+
+**角色：**指终端用户隶属的帐号角色，角色可用于对帐号进行批量授权和策略配置，可通过下拉单选框为新建帐号选择已建的一个角色，必填项，默认值为“默认角色”。
+
+  一个帐号只能隶属于一个帐号角色。
+
+**帐号组：**指终端用户隶属的帐号组，可用于对帐号进行批量授权和策略配置，可通过下拉多选框为本地身份源帐号选择同时隶属于多个帐号组，必填项，默认值为“默认帐号组”。
+
+  一个帐号可同时属于多个帐号组。
+
+**生效日期：**指帐号从什么时候开始可激活并正常使用。通常用于管理员提前批量配置帐号，指定时间开始启用，默认值为“立即生效”。
+
+**失效日期：**指帐号从什么时候开始失效，自动停用帐号。通常用于管理员设置临时帐号，仅允许帐号在一定时间段内临时使用，默认值为“永久有效”。
+
+**备注：**备注用于为新建帐号添加备注信息，非必填项，最多支持200个字符。
+
+**自动发送初始化信息通知邮件：**如勾选，则在帐号新建成功后TMC自动发送帐号初始化邮件到帐号的邮箱中，终端用户可根据邮件内容下载 TM 客户端APP，导入证书，使用帐号和初始密码登录 TM 安全云网；如不勾选，则帐号新建成功后，不会自动发送帐号初始化邮件，管理员需要在帐号列表手动发送帐号初始化邮件。
+
+## 编辑本地帐号
+
+**操作方法**
+
+1. 在帐号列表，点击“编辑”按钮，显示编辑帐号配置的抽屉页，管理员可对本地帐号进行编辑。
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Local_Account_Management/3.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+2. 如果是对本地身份源的帐号进行编辑，抽屉页显示的编辑界面如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Local_Account_Management/4.png" style={{width: "50%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+3. 其中，“认证方式”、“帐号来源”等帐号属性值，在帐号创建后不可再进行编辑。
+
+4. 管理员可编辑的本地帐号属性值包括：“帐号”、“认证模板”、“用户姓名”、“手机号”、“电子邮箱”、“角色”、“帐号组”、“生效日期”、“失效日期”、“备注”等。
+
+5. 管理员在修改完可编辑的本地帐号属性值后，点击抽屉页的保存按钮完成帐号的编辑操作。
+
+## 编辑非本地帐号
+
+第三方身份源的帐号，如：AD帐号、钉钉帐号等，来源于第三方统一身份管理系统，在TMC上不可对第三方身份源的帐号属性进行修改，但可对TMC附加的属性值进行修改。
+
+**操作方法**
+
+1. 如果是对非本地身份源的帐号进行编辑，抽屉页显示的编辑界面如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Local_Account_Management/5.png" style={{width: "50%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+2. 可编辑的第三方身份源的帐号属性值包括：“认证模板”、“生效日期”、“失效日期”、“备注”，管理员在编辑帐号属性后，点击“确定”按钮完成对第三方身份源帐号的编辑。
+
+## 批量编辑帐号
+
+**操作方法**
+
+1. 在帐号列表中勾选部分帐号，然后再列表功能栏点击“批量编辑”按钮，可对选中的帐号进行批量编辑，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Local_Account_Management/6.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+2. 如果勾选的帐号中，只包含本地帐号，则可编辑选中本地帐号的“认证模板”、“角色”、“帐号组”、“失效日期”、“备注”等帐号属性。
+
+  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Local_Account_Management/7.png" style={{width: "50%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+  由于一个帐号可以属于多个帐号组，因此在编辑帐号组时，可选择“覆盖”方式，或“新增”方式。“覆盖”是指将所选帐号的帐号组值改为填写的新帐号组；“新增”是指在所选帐号的帐号组值里添加填写的新帐号组。
+
+3. 如果勾选的帐号中，包含任何第三方身份源的帐号，则只可编辑选中帐号的“认证模板”、“失效日期”、“备注”等帐号属性。
+
+## 删除本地帐号
+
+**操作方法**
+
+在TMC里只可对本地帐号进行删除操作，管理员可在帐号列表里选中计划删除的帐号，然后点击列表功能区的“删除”按钮，TMC显示提示“请确认是否删除选中的帐号？”，点击“确定”，即可删除选中的本地帐号。
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Local_Account_Management/8.png" style={{width: "40%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+
+## 批量删除本地帐号
+
+**操作方法**
+
+在删除本地帐号操作中，管理员同时勾选多个帐号，然后再点击“删除”按钮，则将删除所有选中的帐号。
+
+## 帐号初始化
+
+在TMC新建或导入帐号后，帐号默认为“未激活”状态，需要用户在某个终端上使用这个帐号认证登录后，帐号才可被激活并可正常使用。
+
+为了确保终端用户能正常激活帐号，在新建或导入帐号后，TMC需要为终端用户自动发送帐号初始化信息通知邮件。
+
+帐号初始化邮件内容包括：
+
+1. 帐号名称，以及自动生成的初始密码；（仅本地帐号包含初始密码，第三方帐号只包含帐号名称）
+
+2. TM 客户端APP下载地址，包括：Windows、macOS、Android、iOS版本；
+
+3. TM 手机令牌下载地址，以及帐号的手机令牌秘钥二维码；
+
+4. 终端证书文件，以及证书二维码。
+
+管理员可在新建本地帐号时选中“自动发送初始化信息通知邮件”，当本地帐号新建成功，TMC将立即发送初始化邮件到帐号邮箱中。
+
+管理员在配置第三方身份源帐号同步时，可选择是否自动发送初始化邮件，当选中后，TMC会自动给同步时首次出现的第三方帐号发送帐号初始化邮件。
+
+如果管理员在新建或者同步帐号时没有选择自动发送帐号初始化邮件，管理员也可以在帐号列表里手动发送初始化邮件。
+
+当某个终端用户忘记了自己的本地帐号密码，管理员也可以通过重新发送初始化邮件来帮终端用户重置本地帐号密码。
+
+**操作方法**
+
+1. 在帐号列表中选中希望发送邮件的帐号，点击列表功能项上的“初始化”按钮。
+
+2. 弹出提示框告知管理员即将为帐号邮箱发送初始化邮件，点击“发送初始化邮件”按钮，TMC将立即发送初始化邮件。
+
+3. 管理员也可以修改邮箱发送目标，将帐号初始化邮件发送到指定的邮箱地址，而非新建帐号录入的邮箱地址。
+如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Local_Account_Management/9.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+**注意：在发送帐号初始化邮件之前，请务必确认您已经在TMC上配置好了邮件服务器接口信息，否则初始化邮件将无法正常发出。**
+
+## 批量帐号初始化
+
+**操作方法**
+
+1. 在帐号列表，选中多个帐号。
+
+2. 然后点击列表功能区的“帐号初始化”按钮，TMC将弹出提示框，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Local_Account_Management/10.png" style={{width: "50%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+3. 点击“确认”后，TMC将同时向所有选中的帐号发送初始化邮件。
+
+注意：批量帐号初始化只能将初始化邮件发送到每一个帐号创建时录入的邮箱地址。
+
+## 帐号锁定/解锁
+
+当帐号存在异常时，管理员可以临时锁定帐号，锁定后的帐号无法正常登录 TM 安全云网，直到管理员在TMC上为锁定帐号解锁。
+
+**操作方法**
+
+在帐号列表选中计划锁定的帐号，在列表功能区点击“锁定”按钮，TMC提示是否要锁定选中数据，点击“确定”按钮，完成帐号锁定操作。
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Local_Account_Management/11.png" style={{width: "50%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+ 
+解锁操作与锁定操作一致。
+
+## 批量帐号锁定/解锁
+
+**操作方法**
+
+在帐号列表选中多个帐号，在列表功能区点击“锁定”或“解锁”，即可对选中的所有帐号进行锁定或解锁操作。
+
+## 帐号条件查询
+
+**操作方法**
+
+在帐号列表上方是帐号条件查询区域，管理员可在此区域根据帐号的属性或状态进行过滤查询。查询条件对英文大小写不敏感，支持模糊查询。
+
+如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Local_Account_Management/12.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+
+## 查询帐号详细信息
+
+**操作方法**
+
+1. 在帐号列表中，点击帐号名称，即可显示帐号详情信息的抽屉页面，如下图所示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Local_Account_Management/13.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+2. 在帐号详情页面中，管理员可查看帐号的关键属性值以及帐号的TOTP手机令牌的秘钥二维码。
+
+3. 在详情页面中，TMC以列表方式显示此帐号已经授权使用的注册终端，管理员可取消帐号的终端授权，取消授权后则意味着帐号与此终端的绑定关系被解除，用户再次使用这个终端登录时，需要重新注册终端。在授权终端列表中点击“取消授权”按钮，即可取消对应的终端授权。
+
+## 导入/导出帐号
+
+TMC支持使用XLS格式的表格批量的导入/导出帐号信息，仅本地身份源支持批量的导入/导入帐号，其他第三方身份源只支持同步身份源帐号信息。
+
+导入本地帐号操作为增量操作，即：如果TMC中已经存在相同帐号名称的帐号，则导入的同名称帐号将覆盖原帐号；如果TMC不存在相同帐号名称的帐号，则导入的帐号将在TMC里生成新的本地帐号；原有的本地帐号不会因为导入操作而被删除。
+
+**操作方法**
+
+1. 在帐号列表的功能区，点击“导入”，将显示帐号导入操作的配置页面，如下图示：
+
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Local_Account_Management/14.png" style={{width: "50%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+
+2. 管理员可下载帐号模板，根据模板要求批量填写帐号信息；
+
+3. 将编辑好的帐号XLS文件拖入帐号导入的上传页面（图中虚线区域），或者点击“点击上传”按钮，选择本地帐号XLS文件上传。
+
+4. 点击抽屉页右下角的“上传”按钮，完成帐号文件上传操作。
+
+5. 点击帐号列表的功能区“导出”按钮，可将本地身份源的帐号导出为XLS格式的文件到本地。
+
+
+
+
+
