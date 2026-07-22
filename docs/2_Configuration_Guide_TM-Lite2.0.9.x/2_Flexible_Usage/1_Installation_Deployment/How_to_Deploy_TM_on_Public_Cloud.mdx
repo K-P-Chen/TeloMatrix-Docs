@@ -1,160 +1,140 @@
 ---
-
 sidebar_position: 6
 title: "如何在公有云上部署 TM"
-
 ---
 
-> TM 安全云网的各个组件都可以部署在公有云环境中，支持在多云、混合云环境中部署，将企业的碎片化网络重新整合在一张安全的虚拟网络。
->
-> 本文以在阿里云上安装部署 TM 组件为例，描述如何在公有云环境中部署 TM 安全云网。
+本文以阿里云为例，说明如何在公有云环境中部署 TM 安全云网各组件。支持多云和混合云部署。
 
 ## TM 组件部署拓扑
 
-在云环境中部署 TM 安全云网的常见方式如下图所示：
+公有云部署的常见方式：
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/1_Installation_Deployment/How_to_Deploy_TM_on_Public_Cloud/1.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-- 如果企业的业务资源部署在公有云中，您希望将公有云里的业务资源发布到 TM 安全云网，方便终端用户在任意位置访问。您只需要在业务资源所在的安全组内再申请一台虚拟机，将TMG镜像导入到虚拟机中安装即可，申请的虚拟机无需额外的弹性公网IP和互联网带宽，直接复用VPC的公弹性公网IP和带宽即可，如图中右侧的安全组所示。
-
-- 如果您希望将TMC、TMD等 TM 组件也部署在公有云里，建议您在VPC中单独建立一个安全组，将TMC和TMD部署在此安全组中。同样，TMC和TMD也无需额外的弹性公网IP和互联网带宽，直接复用VPC的公弹性公网IP和带宽即可，如图中右侧的安全组所示。
-
-- 您需要为部署不同 TM 组件的虚拟机开通相应的网络访问权限，关于网络权限的设置请参考：[物理网络访问权限要求](../Installation_Deployment/Physical_Network_Access_Permission_Requirements)。
+- 业务资源部署在公有云中时，在业务资源所在安全组内申请一台虚拟机，将 TMG 镜像导入安装即可。无需额外弹性公网 IP 和互联网带宽，直接复用 VPC 弹性公网 IP 和带宽。（如右侧安全组所示）
+- TMC、TMD 等组件也部署在公有云时，建议在 VPC 中单独建立安全组部署。同样无需额外弹性公网 IP 和带宽。
+- 不同 TM 组件的虚拟机需开通相应网络访问权限，参考：[物理网络访问权限要求](Physical_Network_Access_Permission_Requirements)。
 
 ## 在阿里云部署 TM 组件
 
 ### 选购 TM 组件
 
-在阿里云云市场的安全市场中搜索“TM”，您可以搜到 TMLite的TMC、TMG、TMD三个组件，如下图所示：
+在阿里云云市场安全市场中搜索"TM"，可找到 TMLite 的 TMC、TMG、TMD 三个组件。
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/1_Installation_Deployment/How_to_Deploy_TM_on_Public_Cloud/2.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-点击查看详情打开产品详情和购买页，如下图所示：
+点击查看详情打开产品详情和购买页。
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/1_Installation_Deployment/How_to_Deploy_TM_on_Public_Cloud/3.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
 ### 基础配置
 
-点击“立即购买”即可进入自定义购买页面，在页面中选择购买实例的基础配置，如下图所示：
+点击"立即购买"进入自定义购买页面，选择实例的基础配置。
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/1_Installation_Deployment/How_to_Deploy_TM_on_Public_Cloud/4.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/1_Installation_Deployment/How_to_Deploy_TM_on_Public_Cloud/5.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-付费模式，地域以及可用区，可根据您的规划自行选择。实例规格需要选择x86架构，您可根据不同的需求选择相应的分类，推荐使用“通用型”和“计算型”。
+付费模式、地域和可用区根据规划自行选择。实例规格需选择 x86 架构，推荐使用"通用型"和"计算型"。云主机特点参考[阿里云说明文档](https://help.aliyun.com/document_detail/108375.html)。
 
-如想了解不同类型的云主机特点，可查阅[阿里云相关说明文档](https://help.aliyun.com/document_detail/108375.html)。
+配置建议参考：[服务器配置建议](Server_Configuration_Recommendations)。本示范选择最小配置：4vCPU、8GiB 内存、100GiB 硬盘。
 
-不同的虚拟机配置可以承载的网络规模和访问流量会有不同，具体的配置建议请参考：[服务器配置建议](../Installation_Deployment/Server_Configuration_Recommendations)。这里为了示范，选择最小配置为：4vCPU、8GiB内存、100GiB硬盘。
-
-在镜像选择区，确认当前选择的镜像为刚才在云市场上购买的 TM 组件镜像，如下图所示：
+确认镜像为在云市场购买的 TM 组件镜像。
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/1_Installation_Deployment/How_to_Deploy_TM_on_Public_Cloud/6.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-如果您不是从云市场直接点击购买镜像进入的自定义购买页面，您需要在镜像选择配置区，选择“镜像市场”，点击“从镜像市场获取更多选择（含操作系统）”，如下图所示：
+如不是从云市场直接点击购买进入，在镜像选择配置区选择"镜像市场"，点击"从镜像市场获取更多选择（含操作系统）"。
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/1_Installation_Deployment/How_to_Deploy_TM_on_Public_Cloud/7.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-点击后，在镜像搜索页面的搜索条件输入框输入“TM 安全云网”，你可以搜索到 TM 相关组件，点击“使用”可将对应的 TM 组件镜像作为虚拟机的安装镜像，如下图所示：
+在镜像搜索页面输入"TM 安全云网"搜索 TM 相关组件，点击"使用"选择组件镜像。
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/1_Installation_Deployment/How_to_Deploy_TM_on_Public_Cloud/8.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
 ### 网络与安全组配置
 
-点击下一步，进入“网络与安全组配置”页面，如下图所示：
+点击下一步进入"网络与安全组配置"页面。
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/1_Installation_Deployment/How_to_Deploy_TM_on_Public_Cloud/10.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-选择 TM 组件计划部署的位置，包括：私有网络（VPC）、虚拟交换机。
+选择 TM 组件计划部署的私有网络（VPC）和虚拟交换机。
 
-注意：所选择的VPC和虚拟交换机需要具备公网NAT网关，以便 TM 组件可以通过SNAT方式与互联网通信，同时可以通DNAT方式配置TMG互联网映射IP地址和端口，以及让管理员可以远程登录 TM 组件的WEB控制台或CLI控制台管理配置 TM 组件。
+注意：所选 VPC 和虚拟交换机需具备公网 NAT 网关，以便 TM 组件通过 SNAT 与互联网通信，通过 DNAT 配置 TMG 互联网映射 IP 地址和端口，以及让管理员远程登录。如 VPC 网络已与本地管理员所在网络打通，可忽略 DNAT 远程访问方式。如云上资源未规划 VPC 网络，也可使用分配公网 IPv4 地址方式，但不建议。
 
-如VPC网络已与本地管理员所在网络打通，则可以忽略DNAT方式远程访问 TM 组件的WEB控制台与CLI控制台。如果您的云上资源没有对VPC网络进行规划，也可以使用分配公网IPv4地址方式进行远程云主机的管理与使用（出于安全性考虑，不建议这种方式）。本例主要以VPC方式进行配置讲解。
-
-点击选择安全组，为创建的虚拟机配置网络访问策略，如下图所示：
+点击选择安全组，为虚拟机配置网络访问策略。
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/1_Installation_Deployment/How_to_Deploy_TM_on_Public_Cloud/11.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-注意：我们建议安全组的组内联通策略，使用“组内互通”，如果您的安全组使用的是“组内隔离”则请参考[物理网络访问权限要求](../Installation_Deployment/Physical_Network_Access_Permission_Requirements)。
-
-关于阿里云安全组的使用说明，请参考[阿里云官方文档](https://help.aliyun.com/document_detail/25467.html)。
-
+建议安全组的组内联通策略使用"组内互通"。如使用"组内隔离"，参考[物理网络访问权限要求](Physical_Network_Access_Permission_Requirements)。阿里云安全组使用说明参考[阿里云官方文档](https://help.aliyun.com/document_detail/25467.html)。
 
 ### 系统配置
 
-点击“下一步：系统配置”完成虚拟机系统配置，如下图所示：
+点击"下一步：系统配置"完成虚拟机系统配置。
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/1_Installation_Deployment/How_to_Deploy_TM_on_Public_Cloud/12.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-在“登录凭证”配置项，选择“创建后设置”。
+在"登录凭证"配置项选择"创建后设置"。
 
 ### 确认订单
 
-点击“下一步：确认订单”，打开配置确认页，检查配置无误后点击“确认下单”完成配置过程，如下图所示：
+点击"下一步：确认订单"，检查配置无误后点击"确认下单"。
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/1_Installation_Deployment/How_to_Deploy_TM_on_Public_Cloud/14.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
+### VPC 网络配置
 
-### VPC网络配置
-
-在云服务器ECS控制台，进入VPC管理页面，如下图所示：
+在云服务器 ECS 控制台，进入 VPC 管理页面。
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/1_Installation_Deployment/How_to_Deploy_TM_on_Public_Cloud/15.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-选择【NAT网关】->【公网NAT网关】，进入公网NAT网关配置页面。（如所使用的VPC中没有配置公网NAT网关，则需要创建，具体操作过程请参考[阿里云官方文档](https://help.aliyun.com/document_detail/194181.html?spm=5176.11182189.help.dexternal.44e74882DEiRuV)。）
+选择【NAT 网关】->【公网 NAT 网关】进入配置页面。（如 VPC 中无公网 NAT 网关需先创建，参考[阿里云官方文档](https://help.aliyun.com/document_detail/194181.html?spm=5176.11182189.help.dexternal.44e74882DEiRuV)）
 
-首先设置SNAT，使组件可与互联网进行通信。
+首先设置 SNAT，使组件可与互联网通信。
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/1_Installation_Deployment/How_to_Deploy_TM_on_Public_Cloud/16.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-配置SNAT如下图所示：
+配置 SNAT 时使用自定义网段粒度，填写组件内网 IP，选择使用的公网 IP（推荐单 IP）。
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/1_Installation_Deployment/How_to_Deploy_TM_on_Public_Cloud/17.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-阿里云提供了四种SNAT粒度，这里使用自定义网段粒度来做演示：
-
-在自定义网段中填写刚刚创建的组件内网IP，选择使用的公网IP（推荐使用单IP），配置完成后如下图所示：
+配置完成后：
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/1_Installation_Deployment/How_to_Deploy_TM_on_Public_Cloud/18.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-点击确认创建，完成SNAT配置。
+点击确认创建完成 SNAT 配置。
 
-配置DNAT，设置策略允许通过公网访问TMC web管理页面，如下图所示：
+配置 DNAT，允许通过公网访问 TMC Web 管理页面。
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/1_Installation_Deployment/How_to_Deploy_TM_on_Public_Cloud/19.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-点击确认创建，完成DNAT配置。
+点击确认创建完成 DNAT 配置。
 
-注意：由于阿里云的安全组是基于ECS创建的，如果您想对TMC WEB管理页面做访问源IP的ACL访问控制，需要在创建组件时使用的安全组内进行修改，具体配置如下图所示：
+阿里云安全组基于 ECS 创建，如需对 TMC Web 管理页面做访问源 IP 的 ACL 控制，在创建组件时使用的安全组内修改。
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/1_Installation_Deployment/How_to_Deploy_TM_on_Public_Cloud/20.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-选择配置规则，进入规则配置页面：
+选择配置规则进入规则配置页面，编辑入方向 16000 端口规则，使其只开放管理员所在区域的出口 IP 地址权限。
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/1_Installation_Deployment/How_to_Deploy_TM_on_Public_Cloud/21.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-编辑入方向16000端口的规则，使其只开放管理员所在区域的出口IP地址权限。
-
-以上完成了TMC组件的安装以及相关环境的配置，其他组件的操作与其类似，相关网络权限设置请参考[物理网络访问权限要求](../Installation_Deployment/Physical_Network_Access_Permission_Requirements)。
+以上完成 TMC 组件安装和环境配置。其他组件操作类似，网络权限设置参考[物理网络访问权限要求](Physical_Network_Access_Permission_Requirements)。
 
 ### 登录 TM 组件控制台
 
-创建实例需要一点时间，创建完实例后，您可以在实例列表中查看到刚才创建的TMC实例，如下图所示：
+创建实例完成后，在实例列表中查看 TMC 实例。
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/1_Installation_Deployment/How_to_Deploy_TM_on_Public_Cloud/22.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-在实例列表的操作列，点击“远程连接”可使用Workbeach连接TMC虚拟机控制台，登录配置里需要填入用户名：admin，密码：b4a5928c。
+在实例列表操作列点击"远程连接"，使用 Workbeach 连接 TMC 虚拟机控制台。登录需填入用户名：admin，密码：b4a5928c。
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/1_Installation_Deployment/How_to_Deploy_TM_on_Public_Cloud/23.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/1_Installation_Deployment/How_to_Deploy_TM_on_Public_Cloud/24.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-登录成功后您可以看到如下图所示的TMC控制台界面：
+登录成功后显示 TMC 控制台界面。
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/1_Installation_Deployment/How_to_Deploy_TM_on_Public_Cloud/25.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-进入 TM 组件控制台界面后，您还需要使用您的[TM 企业帐号](https://www.TeloMatrixcloud.com/#/login)，通过[同步授权证书](../../Quick_Start/How_to_Deploy_TM_Components#同步授权证书)激活 TM 组件。
+进入控制台后，使用 [TM 企业帐号](https://www.TeloMatrixcloud.com/#/login) 通过[同步授权证书](../../1_Quick_Start/How_to_Deploy_TM_Components#同步授权证书)激活 TM 组件。
 
-TM 其他组件在阿里云上的部署方式与TMC的部署方式大致相同，需要注意的是不同的组件对硬件配置和网络访问权限的要求会有不同，具体说明请参考：[服务器配置建议](../Installation_Deployment/Server_Configuration_Recommendations)、[物理网络访问权限要求](../Installation_Deployment/Physical_Network_Access_Permission_Requirements)，本文不再一一赘述。
-
-
+其他组件在阿里云上的部署方式与 TMC 类似，不同组件对硬件配置和网络权限要求不同，参考：[服务器配置建议](Server_Configuration_Recommendations)、[物理网络访问权限要求](Physical_Network_Access_Permission_Requirements)。

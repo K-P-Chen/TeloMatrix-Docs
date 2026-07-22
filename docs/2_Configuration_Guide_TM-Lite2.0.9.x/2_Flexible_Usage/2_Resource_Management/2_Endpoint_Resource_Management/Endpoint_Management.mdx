@@ -6,96 +6,54 @@ title: "终端资源管理"
 
 ## 功能说明
 
-在 TM 安全云网里，任何终端都具备独立的身份，但不是独立的网络实体，因此不能单独作为访问源用于授权策略的配置。“帐号+终端”才能代表一个独立的网络实体，可作为被授权的网络对象。
+在 TM 安全云网中，"帐号+终端"代表一个独立的网络实体，可作为被授权的网络对象。同一帐号使用不同终端、或不同帐号使用同一终端，均视为不同的网络实体，授权范围可完全不同。
 
-同一个帐号使用不同的终端时，将被 TM 视为多个不同的网络实体，其授权范围可以完全不一样；或者不同的帐号使用同一个终端时，也将被 TM 视为多个网络实体，其授权范围也可以完全不一样。
+终端加入 TM 安全云网时需绑定一个帐号进行注册。注册时可将终端用途设为以下四种类型：
 
-正因为如此，任何终端在加入 TM 安全云网时都需要绑定一个帐号进行注册（绑定意味着终端归属于某个帐号，是此帐号的办公终端或个人终端。但此终端可以临时借给其他帐号使用，被借用时此终端将以另一个帐号的临时终端身份进行授权和网络访问控制）。
-
-### 终端用途
-
-在注册终端时，可将终端用途设为以下四种类型，管理员可针对不同用途的终端设置不同的授权策略。
-
-- 个人终端
-
-  用户的私人终端，终端一旦被某帐号注册为个人终端，则不可再注册成其他帐号的个人终端、办公终端或公共终端，只能被注册为临时终端。
-
-- 办公终端
-
-  用户专门用于办公的终端，终端一旦被某帐号注册为办公终端，则不可再注册成其他帐号的个人终端、办公终端或公共终端，只能被注册为临时终端。
-
-- 临时终端
-
-  当某终端已经被注册为办公终端或者个人终端，如果用其他帐号（包括同一个人的不同身份源帐号）在此终端上登录时，需要将此终端注册为临时终端。临时终端强制设置有效时间，超过有效时间后临时终端将被自动注销。
-
-- 公共终端
-
-  管理员可以将某终端设置为公共终端，在注册时需要管理员输入TMC的超级管理员（sysadmin）帐号密码，进行操作的认证授权。公共终端可以由多个帐号共同使用而无需逐一注册。
+- **个人终端：**用户的私人终端，注册后不可再注册为其他帐号的个人、办公或公共终端，只能被注册为临时终端。
+- **办公终端：**用户专用办公终端，约束同上。
+- **临时终端：**已被注册的终端用其他帐号登录时，需注册为临时终端。临时终端有强制有效时间，超期后自动注销。
+- **公共终端：**由管理员设置，需输入超级管理员（sysadmin）密码授权。多个帐号可共用而无需逐一注册。
 
 ## 完整的终端注册流程
 
-此流程为最严格的新终端管控方式，需要管理员进行审批确认操作，通常在对网络安全要求比较高的时候采用此方式。
+此流程为最严格的新终端管控方式，需管理员审批确认。
 
-如果您更希望终端注册更简单，用户体验更好，您可以参考[“简化的终端注册流程”](#简化的终端注册流程)优化终端注册。
+1. **下载安装 TM 客户端APP：**终端用户使用有效 TM 帐号进行首次认证登录。
+2. **终端用户提交注册申请：**TMA 识别未注册终端后弹出注册页面，填写终端名称、用途、申请理由。
 
-- **第一步：下载并安装 TM 客户端APP**
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/2_Endpoint_Resource_Management/Endpoint_Management/1.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-  参考[“安装 TM 客户端”](../../../Quick_Start/How_to_Install_TM_Client)文档，终端用户下载和安装 TM 客户端APP，并使用有效的 TM 帐号进行首次认证登录。
-
-- **第二步：终端用户提交注册申请**
-
-  TMA识别此终端从未在本企业的 TM 安全云网中注册，因此弹出终端注册页面，需要终端用户输入终端注册信息，如：定义终端名称、选择终端用途、终端申请理由以便于管理员审批。如下图所示：
-
-  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/2_Endpoint_Resource_Management/Endpoint_Management/1.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
-  
-- **第三步：管理员在TMC上审批终端注册申请**
-
-  管理员在TMC的消息中心可查看到终端用户提交的终端注册申请，可对终端申请进行审批或者拒绝。
-
-  在审批的时候管理员可以修改终端用户提交的终端名称、用途，可以分配终端组，在驳回的时候，管理员可以填入拒绝理由，TMC将自动通过邮件发送到终端用户的邮箱。
+3. **管理员在 TMC 审批：**在消息中心查看终端注册申请，可审批通过（可修改终端名称、用途、分配终端组）或驳回（填入理由，通过邮件通知）。
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/2_Endpoint_Resource_Management/Endpoint_Management/2.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/2_Endpoint_Resource_Management/Endpoint_Management/3.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-
 ## <span id="简化的终端注册流程">简化的终端注册流程</span>
 
-  TM 默认的终端注册流程功能有助于您细粒度地对终端进行分类授权和管控，但注册流程相对比较繁琐，需要您审批每一个终端，同时对终端用户的使用体验也会有影响。
-
-  您可以通过一些方法简化终端注册流程，在企业大范围部署TMA的时候可大幅增加您的工作效率，同时在重保期间您也可以修改这些配置，采用强管控的终端注册流程，增强企业网络的安全性。
+简化流程可在大范围部署 TMA 时提升效率。重保期间可恢复强管控流程。
 
 ### 方式一：终端自动注册
 
-点击菜单【策略管理】->【全局策略】，在“终端全局配置”区域，您可以关闭终端注册流程，如下图所示：
+选择菜单【策略管理】->【全局策略】，在"终端全局配置"区域关闭终端注册流程。
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/2_Endpoint_Resource_Management/Endpoint_Management/4.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
- 
-关闭终端注册流程并非不再注册终端，而是不再要求用户和管理员参与终端注册流程。当用户在新终端上安装了TMA并进行登录的时候，TMA会自动提交终端注册申请，TMC在收到自动提交的终端注册申请后，自动审批通过。
 
-TMA自动注册终端时终端名称将使用操作系统名称，终端用途将使用管理员选择的默认终端用途，自动注册的终端都将分配到默认终端组。
-
-您在企业内部大范围部署TMA的时候可以采用此种方式。
+关闭后，TMA 自动提交终端注册申请，TMC 自动审批通过。终端名称使用操作系统名称，终端用途使用默认设置，终端分配到默认终端组。
 
 ### 方式二：开启自动审批
 
-点击菜单【策略管理】->【全局策略】，在“终端全局配置”区域，您可以开启终端自动审批流程，如下图所示：
+选择菜单【策略管理】->【全局策略】，在"终端全局配置"区域开启终端自动审批流程。
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/2_Endpoint_Resource_Management/Endpoint_Management/5.png" style={{width: "40%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
- 
-终端自动审批是指：当终端用户在使用新的终端认证登录时，需要提交新终端注册申请到TMC，但管理员无需手动审批新的注册终端，TMC在收到任何新终端申请后将立即审批通过。
+
+终端用户提交注册申请后，TMC 立即自动审批通过，无需管理员操作。
 
 ### 方式三：开启短信验证审批
 
-点击菜单【策略管理】->【全局策略】，在“终端全局配置”区域，您可以开启终端自动审批流程，如下图所示：
+选择菜单【策略管理】->【全局策略】，在"终端全局配置"区域开启终端自动审批流程。
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/2_Endpoint_Resource_Management/Endpoint_Management/6.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-使用短信校验注册终端是指：当终端用户在新的终端认证登录时，需要提交新终端注册申请到TMC，TMC自动发送6位数的验证码到登录帐号的手机上，终端用户输入正确的验证码即可自动完成终端注册。
-
-在使用短信验证方式审批时，请先确认已经配置好短信网关。
-
-
-
-
-
+TMC 自动发送 6 位验证码到登录帐号的手机上，用户输入正确验证码后自动完成注册。使用前请确认已配置短信网关。

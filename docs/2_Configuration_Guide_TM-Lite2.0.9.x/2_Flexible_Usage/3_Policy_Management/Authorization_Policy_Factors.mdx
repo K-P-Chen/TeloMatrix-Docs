@@ -6,51 +6,37 @@ title: "授权策略因子"
 
 ## 功能说明
 
-如果您需要限制终端用户访问某些业务资源的URI，或者限制在主机资源上执行某些SSH指令，您可以预先定义URI列表或者SSH指令集作为授权策略因子，在配置授权策略时引用这些策略因子，作为应用层访问的URI黑名单和指令黑名单。
+授权策略因子是预定义的 URI 列表或 SSH 指令集，在配置授权策略时引用，作为应用层访问的 URI 黑名单和指令黑名单。
 
-授权策略因子的配置方法如下：
-
-在授权策略配置页面，点击“授权策略因子”，打开授权策略因子配置标签页，如下图所示：
+在授权策略配置页面，点击"授权策略因子"打开配置标签页：
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authorization_Policy_Factors/1.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-## 配置URI列表
+## 配置 URI 列表
 
-在左侧的策略因子类型栏选择“URI列表”，右侧将显示所有已配置的URI列表，点击“新建”按钮，打开URI列表配置页面，如下图所示：
+1. 在左侧策略因子类型栏选择"URI列表"，右侧显示已配置的 URI 列表。
+2. 点击"新建"打开 URI 列表配置页面：
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authorization_Policy_Factors/2.png" style={{width: "50%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-**配置项**
+3. 配置项说明：
+   - **名称：**必填。
+   - **备注：**非必填，最多200字符。
+   - **URI：**每行一条 URI，以回车键隔开，支持通配符。输入后需点击"新增"按钮才会录入到列表。
+4. 点击"保存"完成创建，在配置授权策略时可引用。
 
-**名称：**为URI列表命名，以便引用，必填项。
+## 配置 SSH 指令集
 
-**备注：**URI列表的备注说明，非必填项，限制最多200字符。
-
-**URI：**输入需要过滤的URI列表，可同时添加多条，每行填写一条，以回车键隔开，支持通配符。
-
-**注意：**在输入框输入URI列表后，点击“新增”按钮，输入框内填入的URI才会被加入到URI列表中，并逐条显示在下方URI列表里，仅在输入框输入并不代表已经录入到URI列表。
-
-点击“保存”即完成URI列表的创建，在配置授权策略时可以引用新建的URI列表。
-
-**配置SSH指令集**
-
-在左侧的策略因子类型栏选择“SSH指令集”，右侧将显示所有已配置的SSH指令集列表，点击“新建”按钮，打开SSH指令集配置页面，如下图所示：
+1. 在左侧策略因子类型栏选择"SSH指令集"，右侧显示已配置的 SSH 指令集。
+2. 点击"新建"打开 SSH 指令集配置页面：
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authorization_Policy_Factors/3.png" style={{width: "50%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-**配置项**
-
-**名称：**为SSH指令集命名，以便引用，必填项。
-
-**备注：**SSH指令集的备注说明，非必填项，限制最多200字符。
-
-**指令：**输入需要过滤的SSH指令，可同时添加多条，每行填写一条，以回车键隔开，支持通配符。
-
-注意：在输入框输入SSH指令后，点击“新增”按钮，输入框内填入的SSH指令才会被加入到SSH指令集中，并逐条显示在下方SSH指令列表里，仅在输入框输入并不代表已经录入到SSH指令集。
-
-点击“保存”即完成SSH指令集的创建，在配置授权策略时可以引用新建的SSH指令集。
-
-
+3. 配置项说明：
+   - **名称：**必填。
+   - **备注：**非必填，最多200字符。
+   - **指令：**每行一条 SSH 指令，以回车键隔开，支持通配符。输入后需点击"新增"按钮才会录入到指令集。
+4. 点击"保存"完成创建，在配置授权策略时可引用。
 
 
 

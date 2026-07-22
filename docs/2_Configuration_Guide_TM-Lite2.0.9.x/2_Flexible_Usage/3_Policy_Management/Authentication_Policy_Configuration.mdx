@@ -6,269 +6,167 @@ title: "认证策略配置"
 
 ## 功能说明
 
-在 TM 安全云网里，您可以为每一个帐号或某一类帐号配置不同的认证策略。
+选择菜单【策略管理】->【认证策略】打开认证策略管理页面。为不同帐号配置认证策略需两步：先创建认证规则并组合成认证模板，再将模板应用到帐号。
 
-当一个新的帐号在TMC上被创建或者同步到TMC上时，TMC会为每一个帐号自动配置对应的默认策略，默认策略安全限制相对比较少。如果您需要为不同的帐号配置更高安全级别的认证策略，您可以在认证策略配置页面创建不同的认证规则，并组合成认证模板，再将认证模板应用到不同的帐号或帐号组，让认证规则生效。
+新帐号创建或同步到 TMC 时，系统会自动配置默认策略。如需更高安全级别，可在认证策略页创建自定义规则和模板。
 
 ## 配置认证规则
 
-选择菜单【策略管理】->【认证策略】打开认证策略管理页面，点击“认证规则”标签页，打开认证规则的配置页面，如下图所示：
+点击"认证规则"标签页：
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authentication_Policy_Configuration/1.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-在主页面的左侧，您可以选择配置四种不同类型的认证规则：
+左侧可选择配置四种认证规则：
 
 ### 自动下线规则
 
-**功能含义：**当终端用户在登录 TM 安全云网后，多长时间没有任何业务操作后将自动退出 TM。（业务操作包括：业务访问、策刷新网络、重置网络、个人信息修改等）
+终端用户登录后无业务操作达指定时长后自动退出 TM。
 
-**配置方法：**在配置页主页面左侧，选择“自动下线规则”，在右侧规则列表功能区点击“新增”按钮，打开新增自动下线规则配置界面。完成配置后，点击”保存“完成自动下线规则新建。如下图所示：
+在左侧选择"自动下线规则"，点击"新增"，完成后点击"保存"：
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authentication_Policy_Configuration/2.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-**配置项**
-
-**规则名称：**为规则命名，以便引用，必填项。
-
-**无操作时长限制：**多长时间没有操作即强制将帐号退出 TM，必填项，单位为分钟。
-
-**提示时长：**在强制退出前多长时间，TMA上将出现提示，告知用户因无业务操作即将退出 TM。必填项，单位为分钟，提示时长必须小于无操作时长。
-
-**备注：**规则备注说明，非必填项，限制最多200字符。
+- **规则名称：**必填。
+- **无操作时长限制：**必填，单位分钟。
+- **提示时长：**必填，强制退出前的提示时间，单位分钟，必须小于无操作时长。
+- **备注：**非必填，最多200字符。
 
 ### 认证失败规则
 
-**功能含义：**当终端用户在一个时间段内，连续多次认证失败时，将在多长时间内禁止此帐号认证登录。
+连续多次认证失败后，在指定时间内禁止帐号认证登录。
 
-**配置方法：**在配置页主页面左侧，选择“认证失败规则”，在右侧规则列表功能区点击“新增”按钮，打开新增认证失败规则配置界面。完成配置后，点击”保存“完成认证失败规则新建。如下图所示：
+在左侧选择"认证失败规则"，点击"新增"，完成后点击"保存"：
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authentication_Policy_Configuration/3.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-**配置项**
-
-**规则名称：**为规则命名以便引用，必填项。
-
-**认证失败次数：**在一定时间内连续认证失败几次后开始禁止帐号认证登录，必填项，单位为次。
-
-**验证时间：**在多长时间内连续认证失败多次后开始禁止帐号认证登录，必填项，单位为分钟。
-
-**锁定时间：**在一定时间内连续认证失败多次后，禁止帐号多长时间内不能再认证登录，必填项，单位为分钟。
-
-**备注：**规则备注说明，非必填项，限制最多200字符。
+- **规则名称：**必填。
+- **认证失败次数：**必填，单位次。
+- **验证时间：**必填，单位分钟。
+- **锁定时间：**必填，单位分钟。
+- **备注：**非必填，最多200字符。
 
 ### 帐号密码规则
 
-**功能含义：**要求帐号密码必须符合什么复杂度要求。
+设置密码复杂度要求。仅对 TMC 本地身份源帐号有效，第三方身份源帐号遵循各自密码规则。
 
-需要注意的是，帐号密码规则只对TMC本地身份源帐号有效，其他第三方身份源帐号将遵循第三方帐号密码规则策略。
-
-**配置方法：**在配置页主页面左侧，选择“帐号密码规则”，在右侧规则列表功能区点击“新增”按钮，打开新增认证失败规则配置界面。完成配置后，点击”保存“完成认证失败规则新建。如下图所示：
+在左侧选择"帐号密码规则"，点击"新增"，完成后点击"保存"：
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authentication_Policy_Configuration/4.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-**配置项**
-
-**规则名称：**为规则命名，以便引用，必填项。
-
-**首次登录修改密码：**当终端用户使用帐号初始化密码第一次登录 TM 时，是否强制帐号修改密码。
-
-**允许与帐号相同：**是否允许帐号密码与帐号完全一致。
-
-**密码到期前几天提示：**密码到期前几天在TMA上提示终端用户需要尽快修改密码。
-
-**密码有效天数：**密码在使用多少天后强制必须修改。
-
-**历史密码个数：**系统记录帐号曾经用过的密码，不允许新密码与前几个使用过的密码重复。
-
-**连续字符检查：**密码中是否允许存在连续的重复字符，例如：“password”里，“ss”就是连续重复字符。当连续字符检查功能开启时，需要配置允许连续字符的数量。
-
-**密码长度：**要求密码必须最少和最多长度，可在6-20位之间选择。
-
-**密码复杂度：**勾选对密码复杂度的要求，选中即代表必须满足被勾选项，可多选，但非必选。
-
-**备注：**规则备注说明，非必填项，限制最多200字符。
+- **规则名称：**必填。
+- **首次登录修改密码：**是否强制首次登录修改密码。
+- **允许与帐号相同：**是否允许密码与帐号一致。
+- **密码到期前几天提示：**到期前提前提示天数。
+- **密码有效天数：**密码强制修改周期。
+- **历史密码个数：**不允许新密码与前 N 个历史密码重复。
+- **连续字符检查：**是否允许连续重复字符，开启后需设置允许连续数量。
+- **密码长度：**6-20位之间设置最小和最大长度。
+- **密码复杂度：**勾选需要满足的复杂度要求，可多选。
+- **备注：**非必填，最多200字符。
 
 ### 认证时间规则
 
-**功能含义：**限制帐号在什么时间段内可以认证登录，或者在什么时间段内不能认证登录。
+限制帐号可认证登录的时间段。
 
-**配置方法：**在配置页主页面左侧，选择“认证时间规则”，在右侧规则列表功能区点击“新增”按钮，打开新增认证时间规则配置界面。完成配置后，点击”保存“完成认证时间规则新建。如下图所示：
+在左侧选择"认证时间规则"，点击"新增"，完成后点击"保存"：
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authentication_Policy_Configuration/5.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-**配置项**
-
-**规则名称：**为规则命名，以便引用，必填项。
-
-**访问控制类型：**选“允许”则意味着在下方选择的时间段内允许帐号认证登录，选“拒绝”则意味着在下方选择的时间段内禁止帐号认证登录。
-
-**备注：**规则备注说明，非必填项，限制最多200字符。
-
-**周期类型：**选择一种时间段选择方案。
-选择“每天”则意味着在每天两个时间点之间的范围内允许或禁止帐号认证登录，配置如上图所示。
-选择“每周”则意味着在每周的周几，且在每天两个时间点之间的范围内允许或禁止帐号认证登录，配置如下图所示：
+- **规则名称：**必填。
+- **访问控制类型：**选"允许"则在所选时段内允许登录，选"拒绝"则禁止登录。
+- **周期类型：**
+  - "每天"：每天两个时间点之间允许或禁止。
+  - "每周"：每周指定星期几的两个时间点之间：
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authentication_Policy_Configuration/6.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-选择“指定时间”则意味着在某个日期范围内，且在每天两个时间范围内允许或禁止帐号认证登录，配置如下图所示：
+  - "指定时间"：指定日期范围内每天两个时间点之间：
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authentication_Policy_Configuration/7.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
+- **备注：**非必填，最多200字符。
+
 ## 配置认证模板
 
-在完成认证规则的配置后，您可以选择“认证模板”标签，打开认证模板配置页面，如下图所示：
+选择"认证模板"标签页：
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authentication_Policy_Configuration/8.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-点击“新建”打开新增认证模板配置页面，完成各配置项后点击“保存”按钮完成认证模板的创建，如下图所示： 
+点击"新建"，完成各配置项后点击"保存"：
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authentication_Policy_Configuration/9.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-**配置项**
+**模板名称：**必填。
 
-**模板名称：**为模板命名，以便引用，必填项。
+**域名解析：**选择终端接入后的域名解析方式：
+- 使用 DNS 解析：终端通过云网 DNS 服务解析域名。
+- 使用 HOST 文件解析：TMA 修改本地 HOST 文件，写入域名代理业务资源的解析结果。详见[云网域名解析方案](../1_Installation_Deployment/Cloud_Network_Domain_Resolution_Solution)。
 
-**域名解析：**选择一种域名解析方式，终端在接入 TM 后将采用这里选择的方式进行域名解析：
+**认证类型：**TM 支持以下 9 种认证方式：
 
-a. 使用DNS解析：当终端认证成功后，虚拟网卡上会根据域名解析方案配置 TM 安全云网的DNS服务，终端用户在通过域名访问业务资源时，将通过云网DNS服务进行域名解析。
+1. **帐号密码认证：**通过用户名密码认证，包括 TMC 本地身份和 AD/LDAP 身份。若两种身份源同时存在且帐号相同，可在【策略管理】->【全局策略】中设置"优先 AD 帐号认证"：
 
-b. 使用HOST文件解析：当终端认证登录后，TMA会修改本地系统的HOST文件，将授权的通过域名代理的业务资源域名解析地址写入到HOST文件里，终端用户在通过域名访问业务资源时，直接从HOST文件中读取解析结果。
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authentication_Policy_Configuration/10.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-关于 TM 安全云网的域名解析方法，请参考[云网域名解析方案](../Installation_Deployment/Cloud_Network_Domain_Resolution_Solution)。
+2. **帐号密码+短信认证：**帐号密码认证加短信验证码 MFA。需先配置短信服务接口，配置时选择使用的短信接口：
 
-**认证类型：**选择帐号的认证方式，TM 支持以下9种认证方式：
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authentication_Policy_Configuration/11.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-1. 帐号密码认证
+3. **帐号密码+动态口令认证：**帐号密码认证加动态口令 MFA。支持 TM 自带 TOTP 或 Radius 一次性口令：
 
-  终端用户通过输入用户名密码进行认证。这种认证方式包括使用TMC本地身份帐号进行认证，和使用AD/LDAP身份帐号进行认证。如果两种身份源同时存在，且存在同样的帐号时，您可以在【策略管理】->【全局策略】里选择是否开启“优先AD帐号认证”开关，如下图所示：
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authentication_Policy_Configuration/12.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authentication_Policy_Configuration/10.png" style={{width: "80%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+TOTP 方式：终端用户通过手机令牌 APP 扫描帐号初始化邮件中的二维码获取口令。Radius 方式：需先在【系统管理】->【基础配置】->【系统接口】配置 Radius 接口，详见 [Radius 接口配置](../4_Daily_Operation/System_Interface_Configuration#RADIUS接口配置)。
 
-  开启则意味着在TMC身份源和AD/LDAP身份源里存在同样的帐号时，系统会优先使用AD/LDAP身份源进行认证，关闭则意味着优先TMC本地身份源进行认证。
+4. **企业微信扫码认证：**PC/Mac 端通过手机企业微信扫描 TMA 登录界面二维码；iOS/Android 端通过手机已登录的企业微信帐号授权。需先在【认证接口】配置企业微信接口并授权企业微信身份源帐号。
 
+5. **钉钉扫码认证：**登录方式与企业微信一致。钉钉官方声明暂不支持 iOS/Android 端通过已登录钉钉帐号授权。需先在【认证接口】配置钉钉接口并授权。
 
-2. 帐号密码+短信认证
+6. **飞书扫码认证：**登录方式与企业微信一致。需先在【认证接口】配置飞书接口并授权。
 
-  使用帐号密码认证，同时启用MFA（多因素认证），使用短信验证码进行第二种因素的认证。
+7. **CA 证书认证：**终端用户选择操作系统中已安装的 CA 客户端证书进行认证。需先在【认证接口】配置 CA 证书认证服务。
 
-  注意，当选择这种认证方式前，您需要确认已经配置了至少一个短信服务接口，在配置时需要您选择使用其中一个短信接口，如下图所示：
+8. **CA 证书+短信认证：**CA 证书加短信验证码 MFA。需先配置短信服务接口：
 
-  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authentication_Policy_Configuration/11.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
- 
-3. 帐号密码+动态口令认证
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authentication_Policy_Configuration/13.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-  使用帐号密码认证，同时启用MFA（多因素认证），使用动态口令进行第二因素的认证。如下图所示：
+9. **CA 证书+动态口令认证：**CA 证书加动态口令 MFA。支持 TM 自带 TOTP 或 Radius 一次性口令：
 
-  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authentication_Policy_Configuration/12.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authentication_Policy_Configuration/14.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-  TM 支持使用 TM 自带的TOTP动态口令服务或Radius一次性口令服务。
+**认证失败规则：**选择已配置的认证失败规则。
 
-  如果使用 TM 自带的TOTP动态口令服务，终端用户需要使用 TM 手机令牌APP，或第三方基于TOTP的手机令牌APP扫描帐号初始化邮件中的TOTP种子文件二维码获得自己的一次性口令。
+**帐号密码规则：**选择已配置的帐号密码规则。仅对 TMC 自身身份源有效。
 
-  如果使用Radius一次性口令服务，您需要先在【系统管理】->【基础配置】->【系统接口】配置页面，配置好Radius接口。
+**自动下线规则：**选择已配置的自动下线规则。
 
-  配置方法请参考：[Radius接口配置](../Daily_Operation/System_Interface_Configuration#RADIUS配置)。
-
-
-4. 企业微信扫码认证
-
-  TM 支持使用企业微信扫码认证。终端用户使用PC或Mac端认证登录时，可以通过手机企业微信扫描TMA登录界面的企业微信认证二维码进行认证和登录，如果使用iOS或Android版TMA认证登录时，可以通过手机上已登录的企业微信帐号进行认证和授权。
-
-  在选择使用企业微信扫码认证之前，您需要确认已经在【策略管理】->【认证策略】->【认证接口】配置好了企业微信接口，并对企业微信身份源的帐号进行了授权。
-
-5. 钉钉扫码认证
-  
-  TM 支持使用钉钉扫码认证，登录方式与企业微信一致，但根据钉钉官方声明，目前不支持使用iOS或Android版TMA通过手机上已登录的钉钉帐号进行认证和授权。
- 
-  在选择使用钉钉扫码认证之前，您需要确认已经在【策略管理】->【认证策略】->【认证接口】配置好了钉钉接口，并对钉钉身份源的帐号进行了授权。
-
-6. 飞书扫码认证
-
-  TM 支持使用飞书扫码认证，登录方式与企业微信一致。
-
-  在选择使用飞书扫码认证之前，您需要确认已经在【策略管理】->【认证策略】->【认证接口】配置好了飞书接口，并对飞书身份源的帐号进行了授权。
-
-7. CA证书认证
-  
-  TM 支持使用CA证书进行认证。终端用户使用CA证书进行认证登录时，需要选择操作系统中已经安装好的CA客户端证书进行认证。
-  
-  在选择CA认证服务之前，您需要确认已经在【策略管理】->【认证策略】->【认证接口】配置好了CA证书认证服务。
-
-8. CA证书+短信认证
-
-  使用CA证书认证，同时启用MFA（多因素认证），使用短信验证码进行第二因素的认证。注意，当选择这种认证方式前，您需要确认已经配置了至少一个短信服务接口，您需要选择其中一个短信接口进行认证，如下图所示：
-
-  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authentication_Policy_Configuration/13.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />  
- 
-
-9. CA证书+动态口令认证
-  
-  使用CA证书认证，同时启用MFA（多因素认证），使用动态口令进行第二因素的认证。如下图所示：
-
-  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authentication_Policy_Configuration/14.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} /> 
- 
-  TM 支持使用 TM 自带的TOTP动态口令服务或Radius一次性口令服务。如果使用 TM 自带的TOTP动态口令服务，终端用户需要使用 TM 手机令牌APP或第三方基于TOTP的手机令牌APP扫描帐号初始化邮件中的一次口令二维码获得自己的一次性口令。
-
-  如果使用Radius一次性口令服务，您需要先在【系统管理】->【基础配置】->【系统接口】配置页面，配置好Radius接口。配置方法请参考：[Radius接口配置](../Daily_Operation/System_Interface_Configuration#RADIUS接口配置)。
-  
-**认证失败规则：**选择配置好的认证失败规则。
-  
-**帐号密码规则：**选择配置好的帐号密码规则。需要注意的是，帐号密码规则仅对TMC自己的身份源有效，AD/LDAP、钉钉、企业微信、飞书、CA证书身份源的认证过程中将使用各身份源自己的密码规则。
-
-**自动下线规则：**选择配置好的自动下线规则。
-
-**认证时间规则：**选择配置好的认证时间规则。
+**认证时间规则：**选择已配置的认证时间规则。
 
 ## 将模板应用到帐号
 
-选择菜单【策略管理】->【认证策略】打开认证策略管理页面，在页面里您可以查看所有帐号，以及帐号已经应用的策略模板。
+选择菜单【策略管理】->【认证策略】，页面显示所有帐号及其已应用的策略模板。新帐号会自动应用默认认证模板：
 
-如果是新建本地帐号或者是同步其他身份源获得的新帐号，TMC会为帐号应用对应的默认认证模板。如下图所示：
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authentication_Policy_Configuration/15.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authentication_Policy_Configuration/15.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} /> 
+### 编辑单个帐号认证策略
 
-### 编辑帐号认证策略
+1. 在搜索区根据帐号属性筛选目标帐号。
+2. 点击操作列的"编辑"：
 
-如果您希望修改任意帐号的认证策略模板，您可以在搜索区根据帐号、姓名、手机号、邮箱等帐号属性进行筛选，然后在需要修改的帐号的操作列点击“编辑”，打开编辑页面，如下图所示：
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authentication_Policy_Configuration/16.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authentication_Policy_Configuration/16.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} /> 
-
-在可选用认证模板里选择对应的认证模板，点击“确定”按钮完成帐号认证策略的修改。
-
-注：认证模板与认证类型对应，不同的身份源只可选择跟自身认证类型一致的认证模板。
+3. 选择认证模板，点击"确定"。不同身份源的帐号只能选择与自身认证类型一致的模板。
 
 ### 批量编辑帐号认证策略
 
-如果您希望批量修改帐号的认证模板，您可以在认证策略配置页面点击“批量编辑”按钮，打开批量编辑认证策略配置界面，如下图所示：
+点击"批量编辑"按钮：
 
-  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authentication_Policy_Configuration/17.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} /> 
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/3_Policy_Management/Authentication_Policy_Configuration/17.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-操作步骤如下：
+1. **选择认证方式：**先选择帐号身份源类型——本地认证（TMC 身份源）、AD/LDAP 认证、证书认证（CA 证书）、扫码认证（钉钉/企业微信/飞书）。
+2. **批量选择帐号：**按帐号组、帐号角色或单独选择帐号。
+3. **选择可用认证模板：**为选中帐号指定认证模板。
 
-- **第一步：选择认证方式**
-
-  在 TM 里不同身份源的认证方式会不同，因此**在批量对帐号进行认证策略修改前，需要先选择认证方式**。可选项包括：
-
-  **本地认证：**对TMC身份源帐号的认证策略进行修改；
-
-  **AD/LDAP认证：**对AD/LDAP身份源帐号的认证策略进行修改；
-
-  **证书认证：**对CA证书身份源帐号的认证策略进行修改；
-
-  **扫码认证：**对钉钉、企业微信、飞书身份源帐号的认证策略进行修改。
-
-- **第二步：批量选择帐号**
-
-  选择身份源以后，再选择身份源中的哪些帐号需要进行认证策略的批量修改。这里您可以根据帐号组、帐号角色进行批量选择，也可以单独选择帐号。
-
-- **第三步：选择可用认证模板**
-  
-  为选中的帐号指定使用对应的认证模板。
-
-
-完成以上三个步骤的配置后，点击“保存”按钮，即完成批量帐号的认证策略修改。所有终端用户在下一次认证的时候将采用新的认证模板进行身份和终端的认证。
-
-
-
+点击"保存"完成批量修改，终端用户下次认证时将使用新模板。
 
 

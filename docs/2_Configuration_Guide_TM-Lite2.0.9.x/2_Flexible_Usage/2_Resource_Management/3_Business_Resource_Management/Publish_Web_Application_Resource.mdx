@@ -3,141 +3,86 @@
 sidebar_position: 2
 title: "发布Web应用资源"
 ---
-在企业中Web应用资源占大多数，在发布Web应用资源时需要考虑Web服务的一些特殊情况，例如：域名解析、页面跳转、SSL加密卸载、访问方式等。
 
-因此，TMC将Web应用资源单独作为一类业务资源来进行配置。
-
-建议您在发布Web应用资源时，按照以下步骤操作：
+TMC 将 Web 应用资源单独作为一类业务资源配置，需考虑域名解析、页面跳转、SSL 加密卸载、访问方式等情况。
 
 ## 确认终端访问方式
 
-1. 确认终端用户访问Web业务资源的方式
-  
-  在 TM 安全云网里，终端用户访问Web应用资源存在三种方式：
-  
-  **a. 使用虚拟IP地址加端口方式访问**
+终端用户访问 Web 业务资源有三种方式：
 
-    这种方式配置起来最简单，无需考虑域名解析问题。
+**a. 使用虚拟 IP 地址加端口访问**
+配置最简单，但终端用户需使用新的虚拟 IP 地址和端口，用户体验较差。
 
-    但缺点是终端用户需要使用新的虚拟IP地址和端口进行访问，用户体验相对较差。
+**b. 使用域名方式访问，网络地址为 TMG 的代理虚拟 IP 地址（推荐）**
+终端用户无需更换访问方式，体验较好。如存在多个 TMG，需在虚拟网络中部署 TMD 进行域名解析。
 
-  **b. 使用域名方式访问，网络地址为TMG的代理虚拟IP地址。（推荐）**
+**c. 使用域名方式访问，网络地址为资源的物理 IP 地址**
+需云网路由与 Web 应用资源混合配置，终端用户可保持原方式访问。但可能存在本地 IP 与内网 IP 网段冲突的问题。
 
-    这种方式终端用户无需更换访问方式，用户体验比较好。
+域名解析方法参考[云网域名解析方案](../../1_Installation_Deployment/Cloud_Network_Domain_Resolution_Solution)。
 
-    缺点是如果 TM 安全云网里存在多个TMG，则需要在虚拟网络里部署TMD，使用TMD进行域名解析。如只有一个TMG，则无需部署TMD，可以使用TMG对代理Web业务资源进行域名解析。
-
-  **c. 使用域名方式访问，访问网络地址为资源的物理IP地址。**
-
-    这种方式需要使用云网路由资源与Web应用资源混合配置，可以让终端用户采用与原来完全一致的方式从任意位置访问企业内部网络中的Web业务资源。
-
-    缺点是由于使用了云网路由方式，因此可能存在终端用户本地IP地址与Web业务资源的内网IP地址在同一网段，导致网络冲突的问题。
-
-  关于在 TM 安全云网内进行域名解析的方法，请参考“[云网域名解析方案](../../Installation_Deployment/Cloud_Network_Domain_Resolution_Solution)”。
-
-  我们建议您使用**方法b**进行配置，因为相对来说这种访问方式既保留了网络环境的兼容性、安全策略的灵活性，又对终端用户的体验影响最小。
-
-2. 确认Web应用资源的首页URI
-
-  有些Web业务资源的首页并不能通过域名直接访问，而是需要在域名之后指明URI地址。如果您要发布的Web业务资源也是这种情况，请先确认首页URI地址。
-
-3. 确认Web应用资源是否存在非同一站点的页面跳转或页面嵌套
-
-  Web业务资源可能存在页面跳转或者页面嵌套，如果跳转或嵌套的URL不在同一个Web业务资源内，则意味着当终端用户访问发布的Web业务资源时，实际上同时在访问其他Web资源。
-
-  因此，建议您在发布Web业务资源前确认计划发布的Web业务资源是否存在非本站范围的页面跳转或嵌套。如果存在，则建议您参考“[页面跳转与嵌套处理方案](../Business_Resource_Management/Page_Redirect_or_Embedding)”进行配置，确保终端用户访问正常。
-
-4. 如Web应用资源使用HTTPS协议，您需提前准备服务端SSL证书。
-
-5. 确认计划使用的TMG能正常访问Web应用资源。
+除访问方式外，还需确认：
+- Web 应用资源的首页 URI（部分站点不能通过域名直接访问）。
+- 是否存在非同一站点的页面跳转或嵌套。如存在，参考[页面跳转与嵌套处理方案](Page_Redirect_or_Embedding)。
+- HTTPS 协议需提前准备 SSL 证书。
+- 计划使用的 TMG 能正常访问 Web 应用资源。
 
 ## 新建Web应用资源
 
-1. 点击菜单【资源管理】->【业务资源】打开业务资源管理页面，如下图所示：
+1. 点击菜单【资源管理】->【业务资源】。
 
-  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Publish_Web_Application_Resource/1.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Publish_Web_Application_Resource/1.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-2. 点击资源列表功能区的“新增”按钮，打开新建业务资源抽屉页，填写Web应用资源的必要参数值，然后点击“保存”按钮完成新建操作，如下图所示：
+2. 点击"新增"按钮，填写参数后点击"保存"。
 
-  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Publish_Web_Application_Resource/2.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Publish_Web_Application_Resource/2.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-  **配置项**
-  
-  **资源名称：**为业务资源命名以方便管理；必填项，且不可重复。资源名称不超过100个字符，只能是中英文、数字、特殊符号@.-_的组合。
+**配置项**
 
-  **资源组：**将业务资源分配到一个或多个资源组，方便以资源组的方式批量授权，必填项。
-
-  **责任人：**选择业务资源的责任人，方便在业务资源出现异常时可快速找到业务责任人，必填项，一个业务资源只能有一个责任人。
-
-  **安全级别：**为业务资源选择安全级别，可选项为1级-9级，默认为5级，用于动态授权时根据不同级别进行权限调整（TMPro版功能），必填项。
-
-  **资源状态：**包括“正常”和“停用”两种状态，默认为“正常”，当业务资源维护时可以临时停用代理业务资源，必填项。
-
-  **资源图标：**为业务资源自定义显示图标，自定义图标将在TMA、TMC业务资源详情、TMI的业务资源画像中显示，非必填项，不配置则采用TMC的默认图标。
-  
-  **备注：**为业务资源标注备注信息，非必填项。
-  
-  **资源类别：**选择资源类别，包括：“主机”、“Web应用”、“云网路由”、“DNS资源”，新建Web应用资源时，这里选择“Web应用”。
-
-  **客户端显示：**授权给终端用户后，是否在终端的TMA上显示业务资源图标，开启则显示，关闭则不显示，但从客户端上依然可以访问，默认为“开启”状态。
-
-  **TM 安全浏览器：**强制终端用户必须使用TMA自带的安全浏览器访问，默认关闭（TMPro版功能）。
-
-  **域名：**填入Web业务资源的访问域名，域名与IP地址必须填写一项，如只填写域名则采用域名代理模式，如填写了域名和IP地址则优先使用域名代理模式。
-
-  **IP地址：**填入Web业务资源的物理IP地址，IP地址与域名必须填写一项。
-
-  **URI：**填写Web业务资源首页的URI地址，格式如：“/information”，非必填项；
-
-  **开放服务：**一个Web业务资源支持多个开放服务，每个开放服务都可以在终端TMA上单独显示，在同一个Web业务资源里，服务名称不可重复，必填项。
-
-  **服务名称：**为业务资源服务命名，以方便识别和管理，必填项。
-
-  **服务协议：**选择HTTP或HTTPS协议，必填项。
-
-  **服务端口号：**填写业务资源服务端口号，端口范围：1-65535，必填项。
-
-  **证书：**从证书资源中选择已经上传的SSL证书，对HTTPS进行正常解密，当使用HTTPS协议时为必填项。
+- **资源名称：**必填，不可重复，不超过 100 个字符，中英文、数字、@.-_ 组合。
+- **资源组：**必填，可分配到一个或多个资源组。
+- **责任人：**必填，一个业务资源只能有一个责任人。
+- **安全级别：**1-9 级，默认 5 级（TMPro 版功能）。
+- **资源状态：**"正常"或"停用"，默认"正常"。
+- **资源图标：**非必填。
+- **备注：**非必填。
+- **资源类别：**选择"Web应用"。
+- **客户端显示：**是否在 TMA 上显示图标，默认开启。
+- **TM 安全浏览器：**强制使用 TMA 自带安全浏览器访问，默认关闭（TMPro 版功能）。
+- **域名：**与 IP 地址至少填写一项。如只填域名则采用域名代理模式。
+- **IP地址：**与域名至少填写一项。
+- **URI：**首页 URI 地址，格式如 /information，非必填。
+- **开放服务：**必填，同一业务资源内服务名称不可重复。
+  - **服务名称：**必填。
+  - **服务协议：**HTTP 或 HTTPS。
+  - **服务端口号：**必填，范围 1-65535。
+  - **证书：**使用 HTTPS 协议时必填，从证书资源中选择已上传的 SSL 证书。
 
 ## 配置服务代理
 
-1. 在业务资源列表找到新建的Web应用资源类的业务资源，如下图所示：
+1. 在业务资源列表找到新建的 Web 应用类业务资源。
 
-  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Publish_Web_Application_Resource/3.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Publish_Web_Application_Resource/3.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-2. 在新建Web应用资源的操作列，点击“服务代理”按钮，打开服务代理配置页面，如下图所示：
+2. 点击操作列的"服务代理"按钮。
 
-  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Publish_Web_Application_Resource/4.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Publish_Web_Application_Resource/4.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-3. 配置页左侧为服务列表，当选中主机资源的某个服务后，右侧显示对应的网关代理配置。
+3. 左侧为服务列表，选中服务后右侧显示网关代理配置。
 
-  a. 如果使用IP代理模式（新建Web业务资源时只填写了IP地址，未填写域名），则显示如下图所示：
+**IP代理模式**（只填写了 IP 地址）：
 
-  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Publish_Web_Application_Resource/5.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Publish_Web_Application_Resource/5.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-    **协议：**不可编辑，Web业务资源的服务在新建时使用了什么协议类型，网关在虚拟网中也采用同样的协议类型进行代理。
+- 协议：不可编辑，与新建时一致。
+- 端口：未被代理时可自定义，范围 20000-60000。被任何网关代理后端口在虚拟网内锁定。
 
-    **端口：**在业务资源服务没有被任何网关代理的时候，业务资源在虚拟网里的服务代理端口会自动生成，您也可以自定义服务代理端口号，取值范围为20000-60000之间的整数。
+**域名代理模式**（填写了域名）：
 
-    当业务资源服务已经被任何一个网关代理后，端口号则在虚拟网内被锁定，所有网关都不可再使用同样端口代理业务资源的服务。当所有网关都不再使用此端口代理业务资源的服务时，虚拟网的代理端口将被自动释放。
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Publish_Web_Application_Resource/7.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-  b. 如果使用域名代理模式（新建Web业务资源时填写了域名），则显示如下图所示：
+4. 在 TM 网关列表中开启启用代理开关。同一服务可由多个 TM 网关代理，网关必须能在物理网络上正常访问业务资源服务。
 
-  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Publish_Web_Application_Resource/7.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+5. TMG 会自动探测 Web 应用首页是否存在跳转或嵌套。如存在且目标站点已创建为业务资源，可在关联资源配置区点击"关联"，将跳转目标站点与当前资源绑定。详见[页面跳转、重定向或嵌套处理方案](Page_Redirect_or_Embedding)。
 
-4. 选择使用哪几个 TM 网关对业务资源的服务进行代理，您只需在 TM 网关列表中打开启用代理开关即可。在 TM 安全云网里，同一个业务资源服务可以由多个 TM 网关进行代理。
-
-  需要注意的是，**TM 网关必须要能够在物理网络上正常访问业务资源服务**，否则代理操作会提示失败。
-
-5. TMG会自动探测Web应用资源的首页是否存在页面跳转或者嵌套，如果存在并且跳转的目标站点已经被创建成Web业务资源。则在关联资源配置区，点击“关联”按钮，可以查看到。
-  
-  勾选这些站点，点击“关联”按钮，即可将跳转目标站点与新建的Web应用资源绑定在一起。当给Web应用资源授权时，将同时给跳转页面站点授权。
-
-  详细配置请参考：[页面跳转、重定向或嵌套处理方案](../Business_Resource_Management/Page_Redirect_or_Embedding)。
-
-当您成功完成以上操作，Web业务资源就成功发布到了 TM 安全云网，您可以继续配置授权策略，选择什么帐号用什么终端允许访问您发布的Web业务资源。
-
-
-
-
-
+完成以上操作后，Web 业务资源发布到 TM 安全云网，可继续配置授权策略。

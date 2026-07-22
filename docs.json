@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "TeloMatrix 文档",
+  "name": "TeloMatrix 文档集",
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
@@ -31,21 +31,10 @@
   "navigation": {
     "pages": [
       {
-        "group": "TeloMatrix文档集",
+        "group": "了解TeloMatrix",
         "pages": [
-          {
-            "group": "了解TeloMatrix",
-            "pages": [
-              "docs/1_About_TM/1_About_TM/TM_Design_Philosophy",
-              "docs/1_About_TM/1_About_TM/TM_Product_Architecture",
-              "docs/1_About_TM/1_About_TM/TM_Version_Differences",
-              "docs/1_About_TM/1_About_TM/TM_and_Zero_Trust",
-              "docs/1_About_TM/1_About_TM/TM_and_VPN",
-              "docs/1_About_TM/1_About_TM/TM_and_SDP",
-              "docs/1_About_TM/1_About_TM/TM_and_SASE",
-              "docs/1_About_TM/1_About_TM/TM_and_CSMA"
-            ]
-          },
+          "docs/1_About_TM/1_About_TM/About_TM"        
+          ,
           {
             "group": "客户案例",
             "pages": [
@@ -171,12 +160,6 @@
         "href": "mailto:support@telomatrix.com"
       }
     ]
-  },
-  "footer": {
-    "socials": {
-      "x": "https://x.com/telomatrix",
-      "github": "https://github.com/K-P-Chen/TeloMatrix-Docs"
-    }
   },
   "search": {
     "prompt": "搜索文档..."

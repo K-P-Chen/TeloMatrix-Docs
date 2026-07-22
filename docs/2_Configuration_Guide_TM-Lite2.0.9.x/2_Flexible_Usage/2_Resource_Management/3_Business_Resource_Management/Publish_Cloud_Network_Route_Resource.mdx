@@ -3,72 +3,51 @@
 sidebar_position: 4
 title: "发布云网路由资源"
 ---
+
 ## 新建云网路由资源
 
-选择菜单【资源管理】->【业务资源】打开业务资源管理页面，点击“新增”按钮，打开新增业务资源配置页面，如下图所示：
+选择菜单【资源管理】->【业务资源】，点击"新增"按钮。
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Publish_Cloud_Network_Route_Resource/1.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-填入业务资源基本信息，在“资源类别”配置项选择“云网路由”，并选择转发数据流量的TMG。
-
-云网路由资源支持由多个TMG同时转发，实现高可用和负载集群的效果。您可以在“代理网关”配置项选择多个已部署的TMG，但需要注意，选择的TMG必须在物理网络里能正常访问要发布的内网网段。
-
-点击“保存”按钮，完成云网路由资源的新建操作。
+填入基本信息，在"资源类别"选择"云网路由"，选择转发数据流量的 TMG。云网路由支持多个 TMG 同时转发实现高可用，但选择的 TMG 必须在物理网络里能正常访问要发布的内网网段。点击"保存"完成新建。
 
 ## 配置路由策略
 
-回到业务资源管理界面，找到刚才新建的云网路由资源，点击列表的操作选项“路由配置”，打开云网路由的策略配置页面。
+回到业务资源管理界面，点击云网路由资源的"路由配置"。
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Publish_Cloud_Network_Route_Resource/2.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-在“路由配置”标签页点击“新增”按钮，为云网路由资源添加路由。
-
-输入需要接入 TM 的内网网段地址和掩码，支持扩展掩码（CIDR无分类编址掩码），一个云网路由资源支持多个内网网段，可配置多条路由策略。配置如下图所示：
+在"路由配置"标签页点击"新增"，输入内网网段地址和掩码（支持 CIDR）。一个云网路由资源可配置多条路由策略。
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Publish_Cloud_Network_Route_Resource/3.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-注意：如果某终端用户被授权某个云网路由资源，云网路由资源里配置的每一条内网网段路由策略都将在终端用户接入 TM 时下发到终端本地操作系统。因此建议您在配置云网路由的时候尽量将希望发布的网段配置到相对较大的网段里，减少路由条数，避免终端出现大量路由策略影响系统稳定性。
+建议将希望发布的网段配置到相对较大的网段中，减少路由条数，避免终端出现大量路由影响系统稳定性。
 
 ## 配置访问控制策略
 
-当路由策略配置好后，在网络路由层面，远程终端已经可以访问云网路由资源了。
+路由配置完成后，远程终端即可访问云网路由资源。如不继续配置访问控制列表，被授权的终端用户可访问路由网段内的所有 IP 地址、端口和协议。
 
-如果不继续配置访问控制列表，则意味着授权了此云网路由资源的终端用户可以访问这个路由网段内的所有IP地址、端口和协议。
-
-如果您并不希望终端用户访问整个网段的所有IP地址、端口和协议，您也可以继续配置在此网段内的网络访问控制策略。在访问控制列表配置区，点击“新增”按钮，可在路由网段内增加访问控制策略，如下图所示：
+如需细粒度控制，在访问控制列表配置区点击"新增"，在路由网段内增加访问控制策略。
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Publish_Cloud_Network_Route_Resource/4.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-同一个云网路由资源可配置多条路由策略，每条路由策略可配置多条访问控制策略，如下图所示：
+每条路由策略可配置多条访问控制策略。
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Publish_Cloud_Network_Route_Resource/5.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Publish_Cloud_Network_Route_Resource/6.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-
 ## 配置关联业务资源
 
-云网路由资源被授权给终端用户后，终端用户即可通过任意客户端软件进行访问，如：浏览器、ScureCRT等。
+云网路由资源默认不在 TMA 上显示路由网段中的业务资源。点击"关联资源"标签页，点击"关联"按钮新增关联业务资源（需提前配置），使业务资源图标在 TMA 上显示，终端用户点击图标即可访问。
 
-但在TMA上默认不会显示云网路由网段中的业务资源，您需要继续为云网路由关联内网网段中包含的业务资源（业务资源需要提前配置），使这些业务资源能在TMA上显示，终端用户点击图标即可呼起本地客户端访问。
-
-注意：业务资源可以同时配置为代理模式和云网路由模式，这时在TMA上会被显示为两个独立的业务资源，云网路由模式资源的图标上会多一个R标识。
-
-点击“关联资源”标签页，点击“关联”按钮新增关联业务资源，配置界面如下图所示：
+业务资源可同时配置为代理模式和云网路由模式，此时在 TMA 上显示为两个独立资源，云网路由模式图标上多一个 R 标识。
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Publish_Cloud_Network_Route_Resource/7.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-选中需要关联的业务资源后，点击“关联”按钮，完成业务资源关联，如下图所示：
+选中需要关联的业务资源后点击"关联"完成。
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Publish_Cloud_Network_Route_Resource/8.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-完成以上配置后，云网路由资源就已经发布到了 TM 安全云网。
-
-您可以将云网路由资源授权给指定的帐号和终端，远程终端用户的TMA上会显示云网路由关联的业务资源图标，点击资源图标即可呼起本地客户端访问远程业务。
-
-其他没有业务资源关联，但属于云网路由范围内的IP地址、端口和协议，远程终端也可以访问，只是不在TMA上用资源图标方式显示。
-
-
-
-
-
+完成后，没有被关联但属于云网路由范围内的 IP 地址、端口和协议，远程终端仍可访问，只是不在 TMA 上显示。

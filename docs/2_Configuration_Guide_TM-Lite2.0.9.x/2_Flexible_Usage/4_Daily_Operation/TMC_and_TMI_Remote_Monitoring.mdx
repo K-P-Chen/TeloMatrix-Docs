@@ -4,60 +4,42 @@ sidebar_position: 6
 title: "TMC和TMI远程监控"
 ---
 
-## TMC/TMI列表
+## TMC/TMI 列表
 
-选择菜单【状态监控】->【云网监控】打开云网监控页面，页面下方为云网组件列表，点击【TM 智能分析平台】标签页，列表将显示您的 TM 安全云网中已激活的TMI，点击【TM 管理控制平台】标签页，列表将显示您的 TM 安全云网中已激活的TMC。
-
-如下图所示：
+选择菜单【状态监控】->【云网监控】，点击【TM 智能分析平台】标签页查看 TMI 列表，点击【TM 管理控制平台】标签页查看 TMC 列表：
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMC_and_TMI_Remote_Monitoring/1.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMC_and_TMI_Remote_Monitoring/2.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
+列表中展示 TMC 或 TMI 的在线状态和服务状态。
 
-列表中展示您的 TM 安全云网内所有TMC或TMI的状态，包括：在线状态和服务状态。
+- **在线状态：**TMC 与 TM 云服务、TMI 与 TM 云服务和 TMC 的网络连通状态，值为在线或离线。离线时终端用户无法通过 TMC 认证和同步策略，或 TMI 无法接收日志，需尽快恢复。
+- **服务状态：**TMC 或 TMI 关键服务是否正常。
+- **注销：**点击"注销"可注销当前组件。证书将从"激活"变为"未激活"，组件退出云网，所有配置和数据删除且不可恢复。注销后可重新部署并用同一授权激活，不额外占用授权。
 
-**在线状态：**指TMC与 TM 云服务的连通状态，或TMI与 TM 云服务以及TMC的网络连通状态，状态值包括：在线和离线。
+## TMC 组件状态
 
-如果您的TMC处于离线状态，则意味着终端用户无法通过TMC进行认证、同步访问控制策略；如果您的TMI处于离线状态，则意味着TMI无法接受来自终端和TMG、TME的日志信息，您需要尽快查明离线原因，让TMC或TMI恢复到在线状态。
-
-**服务状态：**指TMC或TMI的关键服务是否正常，如TMC或TMI的某个服务出现异常，这里将显示异常状态。
-
-**注销：**在列表操作列点击“注销”按钮，可注销当前TMC或TMI。注销意味着TMC或TMI的授权证书将从“激活”状态变为“未激活”状态，组件将从 TM 安全云网中退出，所有相关配置和数据都将删除，且不可恢复。因此在进行此操作前TMC会提示您再次确认。
-
-在注销TMC或TMI后，您可以在其他服务器或虚拟机上重新部署，并更新证书进行激活。注销操作通常用于在新的物理位置重新部署 TM 组件，注销后重新部署，新部署的 TM 组件将会使用注销的组件的授权，不会额外占用新的的授权。
-
-## TMC组件状态
-
-TMC列表中点击“组件状态”可弹出TMC组件状态抽屉页，如下图所示：
+点击 TMC 列表中的"组件状态"：
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMC_and_TMI_Remote_Monitoring/3.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-**系统信息：**显示TMC的基本信息，如：组件名称、序列号、在云网中的管理IP地址等。点击组件名称后面的“修改”按钮，可对TMC的名称进行修改。
+- **系统信息：**组件名称、序列号、云网管理 IP 等。可点击"修改"按钮修改组件名称。
+- **服务器状态：**CPU 利用率、内存利用率、存储空间利用率和日志存储总量。
+- **服务状态：**关键服务状态，异常时可手动重启。
+- **认证请求趋势：**近 24 小时认证请求趋势。
 
-**服务器状态：**显示部署TMC的服务器的负载，如：CPU利用率、内存利用率、存储空间利用率和日志存储总量。
+## TMI 组件状态
 
-**服务状态：**显示TMC的关键服务状态，如果服务出现异常，您可以在这里手动重启服务。
-
-**认证请求趋势：**显示TMC近24小时的认证请求趋势。
-
-## TMI组件状态
-
-TMI列表中点击“组件状态”可弹出TMI组件状态抽屉页，如下图所示：
+点击 TMI 列表中的"组件状态"：
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMC_and_TMI_Remote_Monitoring/4.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-**系统信息：**显示TMC的基本信息，如：组件名称、序列号、在云网中的管理IP地址等。点击组件名称后面的“修改”按钮，可对TMC的名称进行修改。
-
-**数据同步配置：**填写TMI用于跟TMC同步数据的IP地址和端口，通常情况下IP地址处填写TMI的物理IP地址，请确认此地址与TMC的物理IP地址是互通的，端口号填写：9092。
-
-**服务器状态：**显示部署TMI的服务器的负载，如：CPU利用率、内存利用率、存储空间利用率和日志存储总量。
-
-**服务状态：**显示TMI的关键服务状态，如果服务出现异常，您可以在这里手动重启服务。
-
-**数据采集趋势：**显示TMI近24小时的数据采集量的趋势。
-
-
+- **系统信息：**组件名称、序列号、云网管理 IP 等。
+- **数据同步配置：**TMI 与 TMC 同步数据的 IP 地址（通常填写 TMI 物理 IP，需与 TMC 互通）和端口（9092）。
+- **服务器状态：**CPU 利用率、内存利用率、存储空间利用率和日志存储总量。
+- **服务状态：**关键服务状态，异常时可手动重启。
+- **数据采集趋势：**近 24 小时数据采集量趋势。
 
 
 

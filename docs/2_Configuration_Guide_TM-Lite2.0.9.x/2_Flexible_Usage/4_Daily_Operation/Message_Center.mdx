@@ -6,70 +6,57 @@ title: "消息中心"
 
 ## 功能说明
 
-消息中心是 TM 安全云网在日常运维过程中，产生的一些需要管理员知晓或者干预的一些信息或事件。其中包括：终端审批任务、动态策略确认、系统告警信息、策略计算任务。
+消息中心汇总 TM 安全云网日常运维中需管理员知晓或干预的信息和事件，包括：终端审批任务、动态策略确认、系统告警信息、策略计算任务。
 
-在TMC任意页面的右上角点击![](/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/Message_Center/1.png)图标，即可打开任务消息列表。
+在 TMC 任意页面右上角点击 ![](/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/Message_Center/1.png) 图标打开消息列表。
 
 ## 终端审批任务
 
-点击“终端审批”标签可以查看需要终端用户提交的待审批终端信息。如下图所示：
+点击"终端审批"标签查看待审批终端信息：
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/Message_Center/2.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-点击“审批”按钮，将显示终端用户提交的终端审批申请详情，如下图所示：
+1. 点击"审批"按钮查看申请详情，可修改终端名称、用途、隶属终端组和备注：
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/Message_Center/3.png" style={{width: "60%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-您可以修改待审批终端的名称、用途、隶属终端组和备注信息，然后点击“审批”按钮完成审批。
-
-如在终端审批任务列表点击“拒绝”按钮，将显示拒绝终端注册申请页面，您可以填写拒绝审批理由，如下图所示：
+2. 点击"审批"完成审批。如需拒绝，点击"拒绝"并填写拒绝理由，申请人将收到包含拒绝理由的邮件：
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/Message_Center/4.png" style={{width: "50%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-点击“拒绝”按钮后，终端注册申请将被拒绝，申请人将收到拒绝终端注册的邮件，邮件中将包含您填入的拒绝审批理由。
-
-
-
-
 ## 动态策略任务（TMPro功能）
 
-在 TM 安全云网中，TMI采集终端环境数据和网络流量日志，自动地通过AI算法以身份为中心学习每一个帐号和终端的行为基线，实时地评估帐号和终端是否持续可信，一旦发现异常将自动通知TMC对帐号或终端进行处置。
+TMI 采集终端环境数据和网络流量日志，通过 AI 算法以身份为中心学习行为基线，实时评估帐号和终端可信度。发现异常时自动通知 TMC 进行处置。
 
-动态策略任务即TMI向TMC发起的帐号或终端处置任务。
-
-点击“动态策略”标签，如果您未在【策略管理】->【全局策略】里关闭自动执行处置任务，则所有的处置任务都需要TMC管理员手动确认是否处置。TMI发出的处置任务都将在这里显示出来，如下图所示：
+点击"动态策略"标签，若未在【策略管理】->【全局策略】中关闭自动执行，所有处置任务需管理员手动确认：
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/Message_Center/5.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-点击操作列里的“忽略”链接，可忽略处置任务，点击操作列里的“处置”链接，在弹出的提示框内点击“确定”按钮，可立即执行TMI的处置任务并向TMI返回处置结果，如下图所示：
+点击"忽略"可忽略任务，点击"处置"并确认可立即执行处置并向 TMI 返回结果：
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/Message_Center/6.png" style={{width: "50%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
 ## 系统告警信息
 
-点击“系统告警”标签，显示当前所有未被管理员查看过的中、高级别系统告警列表，如下图所示：
+点击"系统告警"标签显示未被管理员查看过的中、高级别系统告警：
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/Message_Center/7.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-点击“查看”链接，可查看告警详情，如下图所示：
+点击"查看"可查看告警详情：
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/Message_Center/8.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-消息中心只显示未被管理员查看过的告警，所有已被管理员查看过的告警都不再此表中显示，如果您想查看所有告警，可以打开【系统日志】->【告警日志】中查看所有历史告警。
+消息中心仅显示未查看的告警，已查看的告警不再显示。查看所有历史告警请打开【系统日志】->【告警日志】。
 
 ## 策略计算任务
 
-TM 安全云网的细粒度访问控制策略是根据企业内部帐号、终端和业务的动态变化，按照授权策略实时计算出来的。
+细粒度访问控制策略根据帐号、终端和业务资源的动态变化实时计算。帐号、终端、业务资源或授权策略变化时，TMC 自动生成策略计算任务并提交到计算引擎。
 
-每次帐号、终端、业务资源产生变化，或者授权策略出现变化时，TMC都将自动生成新的策略计算任务，并提交到策略计算引擎进行批量计算。
-
-点击”策略计算任务“，可打开策略计算任务列表，查看当前正在执行的策略计算任务，如下图所示：
+点击"策略计算任务"查看当前正在执行的计算任务：
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/Message_Center/9.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-策略计算任务列表显示的是系统自动生成的计划中或正在执行的批量策略计算任务，已经计算完成的任务不在列表中显示。
-
-
+列表仅显示计划中或正在执行的任务，已完成的任务不显示。
 
 
 

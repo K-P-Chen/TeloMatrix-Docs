@@ -3,71 +3,49 @@
 sidebar_position: 1
 title: "发布主机资源"
 ---
+
 ## 新建业务资源
 
-1. 点击菜单【资源管理】->【业务资源】打开业务资源管理页面，如下图所示：
+1. 点击菜单【资源管理】->【业务资源】。
 
-  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Publish_Host_Resource/1.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Publish_Host_Resource/1.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-2. 点击资源列表功能区的“新建”按钮，打开新建业务资源抽屉页，填写主机资源的必要参数值，然后点击“保存”按钮完成新建操作，如下图所示：
+2. 点击资源列表功能区的"新建"按钮，填写必要参数后点击"保存"。
 
-  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Publish_Host_Resource/2.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Publish_Host_Resource/2.png" style={{width: "70%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-  **配置项**
+**配置项**
 
-  **资源名称：**为业务资源命名以方便管理，必填项，且不可重复。资源名称不超过100个字符，只能是中英文、数字、特殊符号@.-_的组合。
-
-  **资源组：**将业务资源分配到一个或多个资源组，方便以资源组的方式批量授权，必填项。
-
-  **责任人：**选择业务资源的责任人，方便在业务资源出现异常时可快速找到业务责任人，一个业务资源只能有一个责任人，必填项。
-
-  **安全级别：**为业务资源选择安全级别，用于动态授权时根据不同级别进行权限调整（TMPro版功能），可选项为1级-9级，默认为5级，必填项。
-
-  **资源状态：**包括“正常”和“停用”两种状态，当业务资源维护时可以临时停用代理业务资源，默认为“正常”，必填项。
-
-  **资源图标：**为业务资源自定义显示图标，自定义图标将在TMA、TMC业务资源详情、TMI的业务画像中显示，非必填项，不配置则采用TMC的默认图标。
-
-  **备注：**为业务资源标注备注信息，非必填项.
-
-  **资源类别：**选择资源类别，包括：“主机”、“Web应用系统”、“云网路由”、“DNS资源”，新建主机资源时选择“主机”。
-
-  **客户端显示：**授权给终端用户后，是否在终端的TMA上显示业务资源图标，开启则显示，关闭则不显示，但从客户端上依然可以访问，默认为“开启”状态。
-
-  **IP地址：**填入业务资源的物理IP地址，必填项。
-
-  **开放服务：**一个业务资源可开放多个服务，每个开放服务都可以在终端TMA上单独显示，必填项。在同一个业务资源里，服务名称不可重复，TCP、SSH、RDP协议类型的端口不可重复、UDP类型的端口不可重复。
-
-  **服务名称：**为业务资源服务命名，以方便识别和管理，必填项。
-
-  **服务协议：**可选择TCP、UDP、SSH、RDP四种服务协议，必填项。
-
-  **服务端口号：**填写业务资源服务端口号，必填项。
+- **资源名称：**必填，不可重复，不超过 100 个字符，中英文、数字、@.-_ 组合。
+- **资源组：**必填，可分配到一个或多个资源组。
+- **责任人：**必填，一个业务资源只能有一个责任人。
+- **安全级别：**1-9 级，默认 5 级（TMPro 版功能）。
+- **资源状态：**"正常"或"停用"，默认"正常"。
+- **资源图标：**非必填，不配置则使用默认图标。
+- **备注：**非必填。
+- **资源类别：**选择"主机"。
+- **客户端显示：**是否在 TMA 上显示图标，默认开启。
+- **IP地址：**必填，业务资源的物理 IP 地址。
+- **开放服务：**必填，同一业务资源内服务名称不可重复。TCP、SSH、RDP 协议端口不可重复，UDP 端口不可重复。
+  - **服务名称：**必填。
+  - **服务协议：**TCP、UDP、SSH、RDP。
+  - **服务端口号：**必填。
 
 ## 代理业务资源
 
-1. 在业务资源列表找到新建的主机类的业务资源，如下图所示：
+1. 在业务资源列表找到新建的主机类业务资源。
 
-  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Publish_Host_Resource/3.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Publish_Host_Resource/3.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
+2. 点击操作列的"服务代理"按钮。
 
-2. 在列表的操作列，点击“服务代理”按钮，打开服务代理配置页面，如下图所示：
-  
-  <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Publish_Host_Resource/4.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
-  
-  配置页左侧为服务列表，当选中主机资源的某个服务后，右侧显示对应的网关代理配置。
+<img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Publish_Host_Resource/4.png" style={{width: "100%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-  **协议：**不可编辑，主机业务资源的服务在新建时使用了什么协议类型，网关在虚拟网中也采用同样的协议类型进行代理。
+左侧为服务列表，选中服务后右侧显示网关代理配置。
 
-  **端口：**业务资源在虚拟网里的服务代理端口会自动生成。在业务资源服务没有被任何网关代理的时候，您也可以自定义服务代理端口号，取值范围为20000-60000之间的整数。
+- **协议：**不可编辑，与新建时选择的协议一致。
+- **端口：**虚拟网中的代理端口自动生成，未被代理时可自定义，范围 20000-60000。被任何网关代理后端口在虚拟网内锁定，所有网关都不再代理时端口自动释放。
 
-  当业务资源服务已经被任何一个网关代理后，端口号则在整个虚拟网内被锁定，所有网关都不可再使用同样端口代理其他业务资源的服务。当所有网关都不再使用此端口代理业务资源的服务时，虚拟网的代理端口将被自动释放。
+3. 在 TM 网关列表中开启启用代理开关。同一业务资源服务可由多个 TM 网关代理。TM 网关必须能在物理网络上正常访问业务资源服务，否则代理操作会提示失败。
 
-3. 选择使用哪几个 TM 网关对业务资源的服务进行代理，您只需在 TM 网关列表中打开启用代理开关即可。
-
-  在 TM 安全云网里，同一个业务资源服务可以由多个 TM 网关进行代理。但需要注意的是，**TM 网关必须要能够在物理网络上正常访问业务资源服务**，否则代理操作会提示失败。
-
-  当您成功完成以上操作，主机业务资源就成功发布到了 TM 安全云网，您可以继续配置授权策略，选择什么帐号用什么终端允许访问您发布的主机业务资源。
-
-
-
-
+完成以上操作后，主机业务资源发布到 TM 安全云网，可继续配置授权策略。

@@ -1,144 +1,109 @@
 ---
-
 sidebar_position: 1
 title: "TM 安装部署流程"
 ---
-**TM 安全云网的安装部署并不复杂，但由于每一个企业的网络环境不同，实际部署场景和配置内容会有很大差别。建议您先仔细阅读安装部署流程，然后根据您的实际环境制定好方案后再开始部署。**
 
-TM 安装部署的主要流程分为以下八个步骤：
+TM 安装部署分为以下八个步骤。
 
 ## 第一步：注册并下载安装介质
 
-1. 首先，您需要登录[TM 企业注册平台](https://portal.telomatrix.com/#/login)并注册您的企业帐号。注册成功后，您即拥有了30天的 TMLite免费试用授权。
+1. 登录 [TM 企业注册平台](https://portal.telomatrix.com/#/login) 注册企业帐号。注册成功后获得 30 天 TMLite 免费试用授权。
 
-2. 您可以在 TM 企业注册平台的【下载中心】下载 TMLite安装介质，包括：TM 管理控制平台（TMC）、TM 网关（TMG）、TMDNS服务（TMD）、TM 终端APP（TMA）。 
+2. 在 TM 企业注册平台的【下载中心】下载 TMLite 安装介质：TM 管理控制平台（TMC）、TM 网关（TMG）、TMDNS 服务（TMD）、TM 终端 APP（TMA）。
 
-3. 您也可以在[TM 企业注册平台](https://portal.telomatrix.com/#/login)自行完成企业认证，升级为 TMLite永久免费客户，或者联系我们升级为 TMPro客户，您将拥有更多并发终端授权、下载拥有更多功能的 TM 组件，如：TM 智能分析平台TMI、TM 边缘网关TME。
+3. 可在 [TM 企业注册平台](https://portal.telomatrix.com/#/login) 完成企业认证，升级为 TMLite 永久免费客户，或联系我们升级为 TMPro 客户，获取更多并发终端授权和 TM 组件（TMI、TME）。
 
 ## 第二步：准备部署环境资源
 
-1. TM 的各个组件都是软件形态，您需要提前准备服务器或者虚拟机资源来部署 TM 组件，如果需要部署在阿里云、腾讯云、华为云上，您可以在云市场免费购买我们的 TMLite产品，以获得安装镜像文件。在公有云部署 TM 的详细配置建议请参考：[如何在公有云部署 TM](../Flexible_Usage/Installation_Deployment/How_to_Deploy_TM_on_Public_Cloud)。
-  
-  不同规模的网络对服务器的硬件配置要求不同，如果硬件配置过低，可能导致在使用过程中出现认证响应慢、策略生效慢、访问速度慢等现象。建议您按照我们的推荐配置来准备服务器，详细的配置建议请参考：[服务器配置建议](../Flexible_Usage/Installation_Deployment/Server_Configuration_Recommendations)。
+1. 准备服务器或虚拟机资源。如在阿里云、腾讯云、华为云部署，可在云市场购买 TMLite 产品获取安装镜像。详情参考：[如何在公有云部署 TM](../2_Flexible_Usage/1_Installation_Deployment/How_to_Deploy_TM_on_Public_Cloud)。硬件配置建议参考：[服务器配置建议](../2_Flexible_Usage/1_Installation_Deployment/Server_Configuration_Recommendations)。
 
-2. 您需要为服务器分配内网物理IP地址，并确保分配的IP地址具备必要的网络访问权限，详细的网络权限要求请参考：[TM 组件网络权限要求](../Flexible_Usage/Installation_Deployment/Physical_Network_Access_Permission_Requirements)。
+2. 为服务器分配内网物理 IP 地址，确保分配的 IP 具备必要的网络访问权限，参考：[TM 组件网络权限要求](../2_Flexible_Usage/1_Installation_Deployment/Physical_Network_Access_Permission_Requirements)。
 
   ------------------------
-  
-  <mark> 警告：根据中国相关法律法规要求，大河乐境提供的 TM 安全云网产品组件（包括：TMC、TMG、TMD、TME、TMI）仅限在中国大陆区域部署使用。大河乐境已通过技术手段限制上述产品组件在中国大陆以外区域部署使用。使用方通过任何方法绕过此限制，所引起的相关后果与责任均由使用方承担，若此行为侵犯大河乐境的合法权益，大河乐境将依法追究使用方的法律责任。 </mark>
-  
+
+  **警告：根据中国相关法律法规要求，大河乐境提供的 TM 安全云网产品组件（包括：TMC、TMG、TMD、TME、TMI）仅限在中国大陆区域部署使用。大河乐境已通过技术手段限制上述产品组件在中国大陆以外区域部署使用。使用方通过任何方法绕过此限制，所引起的相关后果与责任均由使用方承担，若此行为侵犯大河乐境的合法权益，大河乐境将依法追究使用方的法律责任。**
+
   ------------------------
 
-3. TM 安全云网适应各种分布式网络环境，可将碎片化的企业网络重新整合在一起，但由于每个企业的网络环境都各不一样，建议您在部署前先根据您企业的实际网络环境设计部署拓扑，这将有助于您一次性部署成功。
+3. 部署前根据企业实际网络环境设计部署拓扑，遵循以下原则：
 
-  设计部署网络拓扑时，请遵循以下原则：
+  a. TMC、TMG、TMD 需能正常访问互联网，TMC、TMD 无需对局域网外开放端口。
 
-  a. 确保TMC、TMG、TMD都能正常访问互联网，TMC、TMD无需对局域网外开放端口。
-    
-  b. 需要在互联网出口防火墙配置DNAT，将TMG的UDP9527端口映射到出口公网IP地址的任意固定端口上，确保互联网的任意地址能访问TMG的UDP9527端口。所有从互联网发往TMG的UDP9527端口的网络数据包都会进行身份校验，您无需担心未经认证授权的终端发过来的网络数据包会带来安全威胁，它们都将被TMG丢弃。
-  
-  c. 确保TMG分配的物理IP地址能正常访问计划要代理的业务资源服务。
-  
-  d. 理论上TMG可以代理任何TMG可以正常访问的业务资源，但由于TMG到业务资源之间不在 TM 安全云网的安全保护范围内，因此建议您尽量将TMG部署在靠近业务资源的地方，以实现尽量小的网络安全边界。
-  
-  e. 为了保障业务访问的高可用性，建议您的每个业务区域部署至少两个TMG，每个业务资源同时被至少两个TMG所代理。终端用户在使用TMA访问业务资源时会自动选择链路状态最佳的TMG进行流量转发。
+  b. 在互联网出口防火墙配置 DNAT，将 TMG 的 UDP9527 端口映射到出口公网 IP 地址的任意固定端口，允许互联网任意地址访问 TMG 的 UDP9527 端口。所有发往该端口的网络数据包均经过身份校验，未认证授权的数据包将被 TMG 丢弃。
+
+  c. TMG 分配的物理 IP 地址需能正常访问待代理的业务资源。
+
+  d. TMG 可代理其能正常访问的任意业务资源。建议将 TMG 部署在靠近业务资源的位置，缩小网络安全边界。
+
+  e. 建议每个业务区域部署至少两个 TMG，每个业务资源同时被至少两个 TMG 代理。TMA 访问业务资源时自动选择链路状态最佳的 TMG 进行流量转发。
 
 ## 第三步：安装 TM 组件并激活
 
-1. 除了 TM 客户端TMA以外，其他 TM 各组件安装介质均为ISO镜像文件，您可以在物理服务器、虚拟机、云主机上部署安装。详细的安装步骤请参考：[如何部署 TM 组件](../Quick_Start/How_to_Deploy_TM_Components)
+1. TM 各组件（TMA 除外）安装介质均为 ISO 镜像文件，可在物理服务器、虚拟机、云主机上部署安装。安装步骤参考：[如何部署 TM 组件](How_to_Deploy_TM_Components)
 
-2. **TMC是 TM 安全云网的统一管控平台，请您务必先部署TMC并同步证书成功后再部署其他 TM 组件。**
+2. TMC 是统一管控平台，须先部署 TMC 并同步证书成功后再部署其他组件。
 
-3. 部署完TMC后，您需要在TMC系统控制台界面，更新TMC的授权证书。当授权证书成功更新后，TMC将被自动激活，并且自动生成专属于您企业的虚拟网络。TM 组件激活的操作方法请参考：[同步授权证书](../Quick_Start/How_to_Deploy_TM_Components#同步授权证书)
+3. 部署 TMC 后，在 TMC 系统控制台界面更新授权证书。证书更新成功后 TMC 自动激活，并生成企业专属虚拟网络。操作方法参考：[同步授权证书](How_to_Deploy_TM_Components#同步授权证书)
 
-4. TMC在激活的同时，我们会给您在 TM 企业注册平台注册时填写的邮箱地址发送TMC Web管理界面的默认帐号和初始密码，您可以通过这个帐号和密码登录TMC的Web管理页面。
+4. TMC 激活时，TM 企业注册平台注册邮箱将收到 TMC Web 管理界面的默认帐号和初始密码。
 
-5. 您的 TM 安全云网授权时间将从TMC的激活时间开始计算。
+5. TM 安全云网授权时间从 TMC 激活时间开始计算。
 
-6. 部署完TMC后，您可以按照任意顺序部署其他 TM 组件，并逐一地在每个 TM 组件的系统控制台界面更新组件的授权证书。证书更新后，TM 组件将被激活，并自动加入专属于您企业的虚拟网络，自动被TMC统一接管。
+6. TMC 部署完成后，按任意顺序部署其他 TM 组件，逐一在控制台界面更新组件授权证书。证书更新后组件自动激活并加入企业虚拟网络，被 TMC 统一接管。
 
-7. 当完成 TM 各组件部署后，您可以通过浏览器访问TMC的管理界面。
-
-  在开始其他配置前，建议您先配置企业的邮件服务器接口和短信网关接口信息，因为在创建本地帐号时会将默认的帐号密码通过邮件服务器发送到员工的邮箱中，员工可以通过邮件验证码或者短信验证码重置密码或者修改个人信息。具体配置方法请参考：[邮件服务器配置](../Flexible_Usage/Daily_Operation/System_Interface_Configuration#邮件服务器配置)、[短信接口配置](../Flexible_Usage/Daily_Operation/System_Interface_Configuration#短信接口配置)
+7. 完成组件部署后，通过浏览器访问 TMC 管理界面。建议先配置企业邮件服务器接口和短信网关接口，创建本地帐号时系统将通过邮件发送默认帐号密码，员工可通过邮件验证码或短信验证码重置密码或修改个人信息。配置方法参考：[邮件服务器配置](../4_Daily_Operation/System_Interface_Configuration#邮件服务器配置)、[短信接口配置](../4_Daily_Operation/System_Interface_Configuration#短信接口配置)
 
 ## 第四步：发布业务资源
 
-1. 您可以在TMC的【资源管理】->【业务资源】配置页面新增业务资源，并配置业务资源代理，将业务资源发布到 TM 安全云网。具体配置方法请参考：[业务资源管理](../Flexible_Usage/Resource_Management/Business_Resource_Management/Publish_Host_Resource)
+1. 在 TMC 的【资源管理】->【业务资源】配置页面新增业务资源并配置代理。配置方法参考：[业务资源管理](../2_Flexible_Usage/2_Resource_Management/3_Business_Resource_Management/Publish_Host_Resource)
 
-2. 在新建业务资源前请您务必先确认以下内容：
+2. 新建业务资源前确认以下内容：
 
-  - 主机类资源
+  - 主机类资源：确认 TMG 在物理网络里能正常访问此业务资源的 IP 地址和端口。
 
-    - 请确认TMG在物理网络里能正常访问此业务资源的IP地址和端口。
+  - Web 类资源：
+    - 确认 TMG 在物理网络里能正常访问此业务资源的 IP 地址和端口。
+    - 确认终端用户通过域名还是 IP 访问。如通过域名访问，参考[域名解析方案](../2_Flexible_Usage/1_Installation_Deployment/Cloud_Network_Domain_Resolution_Solution)。
+    - 确认业务资源首页的 URI。
+    - 如使用 HTTPS 协议，准备 SSL 服务器证书，用于浏览器加密访问、应用层策略管控和 HTTPS 流量日志采集。
+    - 确认是否存在非本站点的跳转页面或嵌套页面。如存在，先将跳转源站或嵌套页面源站作为 Web 资源发布到 TM 安全云网，配置服务代理时关联在一起，或将它们放入同一资源组统一授权。
 
-  - Web类资源
+  - 云网路由资源：将一个内网地址段作为业务资源发布，终端用户可在任意地点通过内网物理地址访问。确认 TMG 能正常访问该网段内所有 IP 地址和端口。如需在 TMA 上显示某些业务资源图标，先创建对应业务资源，在配置云网路由资源时关联。
 
-    - 请确认TMG在物理网络里能正常访问此业务资源的IP地址和端口。
-
-    - 请确认终端用户访问方式是通过域名访问还是IP访问，如果是域名访问，请先了解 TM 安全云网里的[域名解析方案](../Flexible_Usage/Installation_Deployment/Cloud_Network_Domain_Resolution_Solution)，并选择合适的域名解析方式。
-
-    - 请确认业务资源首页的URI。
-
-    - 如果Web资源采用HTTPS协议，请准备好SSL服务器证书。您需要导入SSL证书来实现浏览器加密访问、对应用层的策略管控，以及HTTPS流量日志的采集。
-
-    - 请确认计划代理的Web资源是否存在非本站点的跳转页面或者嵌套页面，如果存在，请先将跳转源站或嵌套页面源站作为Web资源发布到 TM 安全云网，并在配置服务代理的时候将跳转源站、嵌套页面源站与计划代理的Web资源关联在一起。或者将跳转源站、嵌套页面源站与计划代理的Web资源放到一个资源组里，在配置授权策略的时候将整个资源组授权给终端用户。
-
-  - 云网路由资源
-
-    - 云网路由资源是指将一个内网地址段作为一个业务资源发布到 TM 安全云网，终端用户在任意地点，都能直接通过内网物理地址访问这个网段内的业务资源。
-
-    - 请确认TMG在物理网络里能正常访问计划发布的内网网络地址段内所有IP地址和端口。
-
-    - 因为云网路由资源本身不会显示在TMA的资源列表界面，如果您需要将此网段内的某些业务资源显示在终端TMA的业务资源界面，则需要先创建需显示的业务资源，并在配置云网路由资源时将发布的业务资源进行关联。
-
-  - DNS服务资源
-
-    - DNS服务资源是将企业内网的域名服务发布到 TM 安全云网，当终端用户登录到 TM 安全云网后，可以通过原有的内网DNS进行业务资源的域名解析。TM 安全云网内的DNS解析非常灵活，建议您在部署前参考[云网域名解析方案](../Flexible_Usage/Installation_Deployment/Cloud_Network_Domain_Resolution_Solution)。
-
-    - 请确认TMG在物理网络里能正常访问内网DNS服务。
+  - DNS 服务资源：将企业内网域名服务发布到 TM 安全云网，终端用户登录后可通过内网 DNS 进行域名解析。参考[云网域名解析方案](../2_Flexible_Usage/1_Installation_Deployment/Cloud_Network_Domain_Resolution_Solution)。确认 TMG 能正常访问内网 DNS 服务。
 
 ## 第五步：新建帐号资源
 
-1. 您可以在TMC的【资源管理】->【帐号资源】配置页面新建本地帐号，或者同步AD/LDAP、钉钉、企业微信、飞书的帐号和帐号组。
+1. 在 TMC 的【资源管理】->【帐号资源】配置页面新建本地帐号，或同步 AD/LDAP、钉钉、企业微信、飞书的帐号和帐号组。新建本地帐号前需配置好邮件服务器接口。
 
-  如果您要在TMC上新建本地帐号，请确认您已经配置好了企业的邮件服务器接口，因为新建帐号的初始密码将通过邮件发送到用户的邮箱中。
+2. 同步企业已有帐号系统前，需在【策略管理】->【认证策略】->【认证接口】配置帐号认证接口，参考：[对接 AD 或 LDAP 身份源](../2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_AD_or_LDAP_Identity_Source)；[对接钉钉身份源](../2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_DingTalk_Identity_Source)；[对接企业微信身份源](../2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_WeCom_Identity_Source)；[对接飞书身份源](../2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_Feishu_Identity_Source#新建飞书身份源)；[对接 CA 身份源](../2_Flexible_Usage/2_Resource_Management/1_Account_Resource_Management/Integrate_CA_Identity_Source)
 
-2. 如果您需要同步企业已建的帐号管理系统里的帐号，您需要先在【策略管理】->【认证策略】->【认证接口】配置页面配置好帐号认证接口，具体配置方法请参考：[对接AD或LDAP身份源](../Flexible_Usage/Resource_Management/Account_Resource_Management/Integrate_AD_or_LDAP_Identity_Source) ； [对接钉钉身份源](../Flexible_Usage/Resource_Management/Account_Resource_Management/Integrate_DingTalk_Identity_Source) ； [对接企业微信身份源](../Flexible_Usage/Resource_Management/Account_Resource_Management/Integrate_WeCom_Identity_Source) ； [对接飞书身份源](../Flexible_Usage/Resource_Management/Account_Resource_Management/Integrate_Feishu_Identity_Source#新建飞书身份源) ； [对接CA身份源](../Flexible_Usage/Resource_Management/Account_Resource_Management/Integrate_CA_Identity_Source)
+3. 可通过 Excel 文件批量导入本地帐号。
 
-3. 您也可以通过Excel文件批量导入本地帐号。
+4. 可同时对接多个不同的帐号系统，根据帐号姓名、手机号、邮箱等信息对不同帐号源的帐号进行聚合生成主帐号。对主帐号授权时，相关身份源的帐号统一被授权。
 
-4. 您可以同时对接多个不同的帐号系统，并根据帐号姓名、手机号、邮箱等信息对不同帐号源的帐号进行聚合，生成主帐号。当对主帐号授权时，相关身份源的帐号将统一被授权。
-
-5. 所有帐号在创建后默认是未激活状态，帐号创建信息会发送到帐号邮箱里，终端用户可按照邮件提示下载 TM 客户端APP到本地安装，安装时终端将被注册到 TM 安全云网，作为一个可授权对象，帐号在成功登录后将被激活。
+5. 所有帐号创建后默认为未激活状态。帐号创建信息发送到帐号邮箱，终端用户按邮件提示下载安装 TM 客户端 APP，安装时终端注册到 TM 安全云网，帐号成功登录后激活。
 
 ## 第六步：设置认证与访问策略
 
-1. 您可以在【策略管理】->【认证策略】里配置终端用户的认证策略，将不同的认证规则配置成认证模板，并批量地应用到不同的帐号上。
+1. 在【策略管理】->【认证策略】里配置终端用户认证策略，将不同认证规则配置成认证模板，批量应用到不同帐号。
 
-2. 终端用户使用不同的身份源帐号登录时，将使用对应身份源的认证服务进行认证，因此不同身份源只能使用认证类型与身份源一致的策略模板。系统自带默认认证模板，您如果不配置，则会自动选择默认模板进行认证。
+2. 终端用户使用不同身份源帐号登录时，使用对应身份源的认证服务进行认证。不同身份源只能使用认证类型与身份源一致的策略模板。
 
-3. 您可以在【策略管理】->【授权策略】里为不同的帐号、终端配置授权访问的业务资源。TM 的授权策略配置与IP地址无关，您只需要指定什么人能用什么端访问什么业务即可。
+3. 在【策略管理】->【授权策略】里为不同帐号、终端配置授权访问的业务资源。授权策略配置与 IP 地址无关，指定什么人用什么端访问什么业务即可。
 
-4. 授权策略一旦配置完成，系统会立即根据实际已经激活的帐号、终端，以及发布的业务资源生成细粒度的访问控制策略，并同步到对应每一个TMA和TMG上执行。
+4. 授权策略配置完成后，系统根据已激活的帐号、终端和发布的业务资源生成细粒度访问控制策略，同步到每个 TMA 和 TMG 执行。
 
 ## 第七步：安装 TMAPP
 
-1. 您可以在帐号初始化邮件中点击TMA下载页面链接，在TMA下载页面下载 TM 客户端APP，并在终端操作系统上进行安装，安装方法请参考：[如何安装 TMAPP](../Quick_Start/How_to_Install_TM_Client)。
+1. 从帐号初始化邮件中的 TMA 下载页面链接下载 TM 客户端 APP，安装方法参考：[如何安装 TMAPP](How_to_Install_TM_Client)。也可在 Apple APPStore、华为应用市场、360 应用市场、小米应用市场搜索"TM"下载移动版 TMAPP。
 
-  您也可以在Apple APPStore、华为应用市场、360应用市场、小米应用市场等APP应用市场搜索“TM”下载和安装移动版 TMAPP。
+2. 安装过程中如防火墙、防病毒软件提示 TMA 将修改系统配置或文件，请允许安装。
 
-2. 在安装过程中，如果您的终端防火墙、防病毒软件提示TMA安装程序将修改系统配置或文件，请点击允许安装，这些系统配置的修改是必要且安全的，您无需担心。
+3. TM 提供独立手机令牌程序，可在各应用市场搜索"TM 手机令牌"安装。也可使用第三方基于 TOTP 的手机令牌 APP 扫码获取 TM 一次性口令。
 
-3. TM 提供了独立的手机令牌程序，您可以在Apple APPStore、华为应用市场、360应用市场、小米应用市场等APP应用市场搜索“TM 手机令牌”进行安装。您也可以使用第三方的基于TOTP的手机令牌APP扫码二维码获得 TM 一次性口令。
-
-4. TMA在安装后终端用户需要先导入企业证书，如果是移动版则需要扫描企业证书二维码，证书和二维码会随帐号初始化邮件发送到终端用户邮箱。
+4. TMA 安装后需导入企业证书，移动版需扫描企业证书二维码。证书和二维码随帐号初始化邮件发送。
 
 ## 第八步：关闭开放端口
 
-最后，当所有业务资源都已经发布到了 TM 安全云网，终端用户也都安装好了 TMAPP，配置好了访问策略，可以正常访问所有业务资源了，建议您在物理网络上关闭原来向互联网开放的业务服务端口，禁止来自不可信网络对业务资源的直接访问，实现业务资源的互联网隐身。
-
-
-
-
-
-
+所有业务资源发布到 TM 安全云网、终端用户安装好 TMAPP、配置好访问策略且可正常访问后，在物理网络上关闭原来向互联网开放的业务服务端口，禁止不可信网络对业务资源的直接访问。

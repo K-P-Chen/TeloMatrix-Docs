@@ -1,55 +1,152 @@
-# Mintlify Starter Kit
+# TeloMatrix 云网产品文档
 
-Use the starter kit to get your docs deployed and ready to customize.
+> 本仓库仅为 TeloMatrix 云网产品的**技术文档集**，不提供软件安装文件或源代码。
+> 如需获取产品软件或商务合作，请联系 [support@telomatrix.com](mailto:support@telomatrix.com)。
 
-Click the green **Use this template** button at the top of this repo to copy the Mintlify starter kit. The starter kit contains examples with
+---
 
-- Guide pages
-- Navigation
-- Customizations
-- API reference pages
-- Use of popular components
+## 什么是 TeloMatrix
 
-**[Follow the full quickstart guide](https://starter.mintlify.com/quickstart)**
+TeloMatrix（简称 TM）云网是一款面向分布式企业的**身份化安全网络**产品。它融合了网络虚拟化、身份认证、分布式访问控制等技术，采用网络安全网格架构（CSMA），在企业碎片化的业务网络之上构建一张覆盖全球、完全隐身、实名制的专有安全网络。
 
-## AI-assisted writing
+TM 的核心理念是：**将企业网络从基于 IP（位置）的架构升级为基于 ID（身份）的架构**。网络访问控制不再依赖 IP 地址，而是始终聚焦"人、终端、业务"三个核心对象，让业务协同更可信、更灵活、更高效。
 
-Set up your AI coding tool to work with Mintlify:
+---
 
-```bash
-npx skills add https://mintlify.com/docs
+## 解决什么问题
+
+随着云计算、移动办公和多云多数据中心架构的普及，传统以办公室为中心的企业正在演变为**分布式企业**。传统边界安全模型面临以下挑战：
+
+- 网络越来越碎片化，基于 IP 的安全策略难以维护
+- 远程办公体验差，VPN 频繁断线、需手动切换链路
+- 互联网暴露面大，业务资源容易被攻击者发现和入侵
+- 安全管理成本高，策略配置复杂且难以细粒度管控
+
+TM 安全云网通过构建身份化的虚拟网络，让网络安全性与业务灵活性不再相互制约。
+
+---
+
+## 核心设计思想
+
+### 1. 网格架构的云化安全网络
+
+采用与云计算类似的网络虚拟化方法，将分布在多个云、多个数据中心、互联网任意位置的终端与业务资源整合在一张 Full-Mesh 结构的点对点 Overlay 网络中。终端和业务资源突破地理位置限制，逻辑上属于同一网络，默认基于身份互相隔离，仅授权后才可访问。
+
+### 2. 统一身份的实名数据网络
+
+将企业统一身份同步到云网，对每个接入终端执行实名注册，并利用加密技术将身份信息植入每个传输层数据包中，在传输层实现完全实名制的底层网络。网络访问控制从此不再依赖 IP 地址，而是以用户身份和终端身份作为关键要素。
+
+### 3. 集中策略编排，分布式执行
+
+安全管理员在虚拟网络中集中地对任意位置的终端与业务资源进行策略编排，TM 根据帐号、终端、业务资源信息动态生成基于身份的细粒度网络访问控制策略，并实时同步到每个终端和网关上分布式执行。
+
+### 4. 围绕身份的智能风险分析
+
+所有终端环境信息和网络流量日志都被打上身份标签，通过 AI 算法对每个帐号、终端进行二十多个维度的行为特征分析，形成动态行为基线。发现异常行为时自动进行二次研判，实时对帐号或终端进行全网处置。
+
+---
+
+## 产品架构
+
+TM 安全云网由 6 个关键组件构成：
+
+| 组件 | 名称 | 功能 |
+|------|------|------|
+| **TMC** | TM 管理控制平台 | 整个云网的管理控制中心，负责帐号/终端/业务资源管理、策略配置、认证授权、开放接口等 |
+| **TMG** | TM 网关 | 通过传输层代理、应用层代理和路由转发将业务资源接入云网，执行访问控制和流量采集 |
+| **TMA** | TM 客户端 | 安装在用户终端上的轻量级访问代理，支持 Windows、macOS、iOS、Android |
+| **TMD** | TM 域名解析服务 | 为云网提供独立的域名解析服务，用户可通过域名直接访问业务资源 |
+| **TMI** | TM 智能分析平台 | 采集全网身份化数据，进行场景化威胁分析和可信评估，实时调整策略 |
+| **TME** | TM 边缘网关 | 部署在云网边缘的统一业务访问门户，用户无需安装客户端即可通过浏览器访问 Web/SSH/RDP 资源 |
+
+**网络架构特点：**
+
+- **Full-Mesh 虚拟网络**：控制平面（TMC、TMI）与数据平面（TMA、TMG、TME、TMD）分离，各组件通过 Overlay 网络实现跨地域互联互通
+- **完全隐身**：关键组件部署在单向访问的局域网中，对外部网络完全隐身；所有业务流量在终端与网关之间点对点逐包认证、逐包加密
+- **灵活部署**：TMC、TMD、TMI 无需对互联网开放任何端口；TMG 仅需开放一个 UDP 端口，支持集群部署和自动最佳路径选择
+
+---
+
+## 核心价值
+
+### 随处办公
+
+- 员工在任何地方都能像在办公室一样，无需切换链路即可同时访问不同物理位置的授权业务
+- 支持电脑、手机、浏览器访问，可对接钉钉、企微、飞书等 IM 平台
+- 支持单点登录，一次认证即可访问所有授权业务
+- 支持长时间、大流量稳定访问，自动链路优化
+
+### 高效运维
+
+- 支持多云、云地混合、多数据中心环境的灵活组网
+- 用身份打通认证、授权、网络访问控制全流程
+- 网络资源分级管理，支持分权发布和授权
+
+### 零信任网络
+
+- 业务资源分布全球，对未授信的人和端永远不可见
+- 用身份构筑安全边界，永不信任、始终验证、最小授权、动态授权
+- 全网行为可感知，威胁事件实时响应
+- 网络流量身份化，支持以人为中心的跨地域业务行为分析
+
+---
+
+## 适用场景
+
+- **远程办公接入**：替代传统 VPN，解决体验差、易断线、无法细粒度管控的问题
+- **分布式企业组网**：多云、多数据中心、多分支机构的统一网络整合
+- **零信任安全改造**：快速构建零信任网络架构，收敛互联网暴露面
+- **远程运维管控**：为运维人员提供安全、可审计的远程接入通道
+- **合作伙伴协同**：为承包商、供应商提供受控的业务访问入口
+
+---
+
+## 文档目录结构
+
+```
+docs/
+├── 1_About_TM/                          # 产品介绍
+│   ├── 1_About_TM/                      # TeloMatrix云网简介、设计思想、产品架构
+│   │   ├── About_TM.mdx                 # 版本差异、与零信任/VPN/SDP/SASE/CSMA 对比
+│   │   ├── TM_Design_Philosophy.mdx
+│   │   ├── TM_Product_Architecture.mdx
+│   │   ├── TM_Version_Differences.mdx
+│   │   ├── TM_and_Zero_Trust.mdx
+│   │   ├── TM_and_VPN.mdx
+│   │   ├── TM_and_SDP.mdx
+│   │   ├── TM_and_SASE.mdx
+│   │   └── TM_and_CSMA.mdx
+│   └── Customer_Cases/                  # 客户案例
+│       ├── Convenient_Trusted_Remote_Office_Access.mdx
+│       ├── Quickly_Build_Zero_Trust_Security_Network.mdx
+│       └── Distributed_Complex_Network_Unified_Management.mdx
+└── 2_Configuration_Guide_TM-Lite2.0.9.x/  # TM-Lite 2.0.9.x 配置指南
+    ├── 1_Quick_Start/                    # 快速开始
+    ├── 2_Flexible_Usage/                 # 详细使用
+    │   ├── 1_Installation_Deployment/    # 安装部署
+    │   ├── 2_Resource_Management/        # 资源管理
+    │   │   ├── 1_Account_Resource_Management/
+    │   │   ├── 2_Endpoint_Resource_Management/
+    │   │   └── 3_Business_Resource_Management/
+    │   ├── 3_Policy_Management/          # 策略管理
+    │   └── 4_Daily_Operation/            # 日常运维
+    └── 3_Best_Practices/                 # 最佳实践
+        └── 1_Troubleshooting/            # 故障排查
 ```
 
-This command installs Mintlify's documentation skill for your configured AI tools like Claude Code, Cursor, Windsurf, and others. The skill includes component reference, writing standards, and workflow guidance.
+---
 
-See the [AI tools guides](/ai-tools) for tool-specific setup.
 
-## Development
+---
 
-Install the [Mintlify CLI](https://www.npmjs.com/package/mint) to preview your documentation changes locally. To install, use the following command:
+## 联系我们
 
-```
-npm i -g mint
-```
+如有任何问题或需求，欢迎通过以下方式联系：
 
-Run the following command at the root of your documentation, where your `docs.json` is located:
+- **邮箱**：[support@telomatrix.com](mailto:support@telomatrix.com)
 
-```
-mint dev
-```
+---
 
-View your local preview at `http://localhost:3000`.
+## License
 
-## Publishing changes
-
-Install our GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app) to propagate changes from your repo to your deployment. Changes are deployed to production automatically after pushing to the default branch.
-
-## Need help?
-
-### Troubleshooting
-
-- If your dev environment isn't running: Run `mint update` to ensure you have the most recent version of the CLI.
-- If a page loads as a 404: Make sure you are running in a folder with a valid `docs.json`.
-
-### Resources
-- [Mintlify documentation](https://mintlify.com/docs)
+本仓库的文档内容版权归 TeloMatrix 所有，未经授权不得转载或商用。

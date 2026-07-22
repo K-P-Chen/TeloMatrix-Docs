@@ -3,43 +3,39 @@
 sidebar_position: 8
 title: "TMC日志管理"
 ---
+
 ## 终端日志
 
-选择菜单【状态监控】->【终端日志】打开终端日志管理页面，如下图所示：
+选择菜单【状态监控】->【终端日志】：
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMC_Log_Management/1.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-终端日志指终端用户使用TMA进行的管理类操作的日志记录，包括：终端用户的认证登录行为、注册终端操作、修改帐号或终端信息、退出登录等操作行为。
+终端日志记录终端用户通过 TMA 执行的管理类操作，包括认证登录、注册终端、修改帐号或终端信息、退出登录等。不包含业务访问日志——终端环境数据和网络流量日志单独存储在 TMI 中。
 
-终端日志不包含终端用户的业务访问日志，所有终端的环境数据、网络流量日志都将单独存储在TMI的大数据存储服务中。
-
-点击会话ID，您可以将终端用户一次完整会话过程中的所有操作聚合在一起，查看终端用户认证登录后的所有操作记录，如下图所示：
+点击会话 ID，可聚合同一会话过程中终端用户的所有操作记录：
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMC_Log_Management/2.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
 ## 操作日志
 
-系统操作日志是指TMC管理员登陆到TMC上后进行的操作日志。
+系统操作日志记录 TMC 管理员登录后的操作行为。
 
-选择菜单【系统日志】->【操作日志】打开系统操作日志管理页面，如下图所示：
+选择菜单【系统日志】->【操作日志】：
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMC_Log_Management/3.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-您可根据系统帐号、操作类型、操作时间等进行日志筛选。您也可以点击日志的会话ID，根据管理员的一次会话，汇总管理员在一次会话过程中的所有操作记录，如下图所示：
+可根据系统帐号、操作类型、操作时间等筛选日志。点击会话 ID 可汇总管理员一次会话中的所有操作记录：
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMC_Log_Management/4.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
 ## 系统告警
 
-系统告警日志是指TMC集中管理的所有 TM 组件的自身服务出现异常，或者系统环境出现异常后产生的系统告警。
+系统告警日志记录 TMC 集中管理的所有 TM 组件自身服务或系统环境异常时产生的告警。
 
-选择菜单【系统日志】->【告警日志】打开系统告警日志管理页面，如下图所示：
+选择菜单【系统日志】->【告警日志】：
 
 <img src="/images/2_Configuration_Guide_TM-Lite2.0.9.x/2_Flexible_Usage/4_Daily_Operation/TMC_Log_Management/5.png" style={{width: "90%", display: "block", margin: "0 auto", border: "1px solid #e5e7eb", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
 
-TMC默认情况下会实时同步所有云网内的 TM 组件告警日志，您也可以点击列表功能区右侧的“立即同步”按钮，手动同步云网内所有其他 TM 组件的系统告警日志。
-
-
-
+TMC 默认实时同步所有云网组件告警日志。可点击"立即同步"按钮手动同步其他 TM 组件的系统告警日志。
 
 
